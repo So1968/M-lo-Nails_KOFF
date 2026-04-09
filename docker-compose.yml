@@ -1,0 +1,69 @@
+# MicroERP Pi - Orchestration Docker Compose
+# Stack ARM64 optimisée pour Raspberry Pi 5 : proxy, base de données et application.
+
+services:
+  # Reverse proxy + gestion TLS/Let's Encrypt
+  proxy:
+    image: jc21/nginx-proxy-manager:latest
+    container_name: microerp_proxy
+    restart: unless-stopped
+    ports:
+      - "80:80"    # HTTP
+      - "443:443"  # HTTPS
+      - "81:81"    # Interface d'administration NPM (accès local conseillé)
+    volumes:
+      - proxy_data:/data
+      - proxy_letsencrypt:/etc/letsencrypt
+    networks:
+      - microerp_network
+
+  # Base de données MariaDB (non exposée à l'hôte)
+  db:
+    image: mariadb:10.11
+    container_name: microerp_db
+    restart: unless-stopped
+    environment:
+      # Variables injectées depuis le fichier .env (aucun secret en dur)
+      MARIADB_ROOT_PASSWORD: ${DB_ROOT_PASSWORD}
+      MARIADB_DATABASE: ${DB_DATABASE}
+      MARIADB_USER: ${DB_USER}
+      MARIADB_PASSWORD: ${DB_PASSWORD}
+    volumes:
+      - db_data:/var/lib/mysql
+    networks:
+      - microerp_network
+
+  # Application WordPress (accès uniquement via le reverse proxy)
+  app:
+    image: wordpress:latest
+    container_name: microerp_app
+    restart: unless-stopped
+    depends_on:
+      - db
+    environment:
+      # Liaison WordPress -> MariaDB via les variables du fichier .env
+      WORDPRESS_DB_HOST: db:3306
+      WORDPRESS_DB_NAME: ${DB_DATABASE}
+      WORDPRESS_DB_USER: ${DB_USER}
+      WORDPRESS_DB_PASSWORD: ${DB_PASSWORD}
+    volumes:
+      - wp_data:/var/www/html
+    networks:
+      - microerp_network
+
+# Réseau privé dédié à la plateforme MicroERP Pi
+networks:
+  microerp_network:
+    name: microerp_network
+    driver: bridge
+
+# Volumes nommés pour la persistance des données
+volumes:
+  proxy_data:
+    name: proxy_data
+  proxy_letsencrypt:
+    name: proxy_letsencrypt
+  db_data:
+    name: db_data
+  wp_data:
+    name: wp_data
