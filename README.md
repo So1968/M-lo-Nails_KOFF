@@ -1,72 +1,76 @@
-# melo-nails
-site  autoentrepreneur
-📄 MicroERP Pi — Cahier des charges V2
-1. Vision et Objectif Produit
-Créer une plateforme tout-en-un, auto-hébergée sur Raspberry Pi 5, dédiée au pilotage intégral d'une micro-entreprise.
-Le système ne doit posséder qu'un seul point d'entrée (un seul back-office) pour gérer le site public, les rendez-vous, les clients, les stocks et la facturation.
+# Melo Nails — MicroERP auto‑hébergé
 
-Cible initiale : Prothésie ongulaire / Esthétique.
+Projet de plateforme **tout‑en‑un** pour piloter une micro‑entreprise de prothésie ongulaire / esthétique, hébergée sur un **Raspberry Pi 5**.
 
-Mantra : Zéro friction. Si une action prend plus de 3 clics, le système est trop complexe.
+## 🎯 Objectif
 
-2. Architecture Technique (La "Stack" ultra-simplifiée)
-Pour éviter la dispersion et les API fragiles, nous abandonnons la séparation stricte Front/Back au profit d'un écosystème unifié, soutenu par une infrastructure robuste.
+Construire un système unique avec un seul point d’entrée (back‑office) pour gérer :
 
-Matériel : Raspberry Pi 5 (8 Go) + SSD NVMe (Crucial) + Alimentation officielle 27W.
+- le site vitrine,
+- les réservations,
+- la relation client (CRM léger),
+- la facturation,
+- le suivi de stock,
+- la sécurité et les sauvegardes.
 
-Système OS : Debian / Raspberry Pi OS 64-bit Lite (sans interface graphique).
+> Mantra : **zéro friction**. Si une action prend plus de 3 clics, le système doit être simplifié.
 
-Orchestration : Docker + Docker Compose.
+---
 
-Réseau & Sécurité : Traefik ou Nginx Proxy Manager (pour la gestion visuelle et automatisée des certificats HTTPS Let's Encrypt) + Fail2Ban.
+## 🧱 Périmètre fonctionnel
 
-Le Cœur Applicatif (Recommandation) : WordPress All-in-One.
+### Front public (cliente)
+- Présentation des services
+- Galerie avant/après
+- FAQ et contact
+- Réservation en ligne (prestation + créneau)
+- Espace client (historique, factures, annulation/report)
 
-Pourquoi ? C'est le seul outil capable de faire vitrine, e-commerce (WooCommerce), réservation pro (Amelia ou Bookly) et génération de factures légales/CRM simple sur une seule base de données, gérable depuis un smartphone.
+### Back‑office (gérante)
+- CRM client (profil, notes, historique)
+- Agenda (jour/semaine, indisponibilités, buffers)
+- Facturation / acomptes / suivi paiements
+- Stock simple + alertes de seuil
+- Tableau de bord d’activité (CA, RDV, paiements en attente)
 
-Alternative "ERP pur" : Odoo Community (plus lourd, mais tout-en-un natif).
+---
 
-3. Périmètre Fonctionnel (Ce que l'outil fait)
-A. Le Front Public (Ce que voit la cliente)
+## ⚙️ Stack technique cible
 
-Vitrine : Présentation, galerie de réalisations avant/après, FAQ, formulaire de contact.
+- **Matériel** : Raspberry Pi 5 (8 Go), SSD NVMe, alimentation officielle 27W
+- **OS** : Debian / Raspberry Pi OS 64‑bit Lite
+- **Orchestration** : Docker + Docker Compose
+- **Réseau/Sécurité** : Traefik *ou* Nginx Proxy Manager + Fail2Ban
+- **Applicatif recommandé** : WordPress (WooCommerce + plugin de réservation type Amelia/Bookly)
+- **Alternative** : Odoo Community (plus complet, plus lourd)
 
-Réservation : Sélection de la prestation (pose complète, remplissage, nail art), choix du créneau, calcul automatique de la durée.
+---
 
-Boutique légère : Vente de produits d'entretien (huiles cuticules, etc.) en click-and-collect ou livraison.
+## 🔐 Sécurité, sauvegarde et conformité
 
-Espace Client : Historique des rendez-vous, factures, annulation/report autonome.
+- HTTPS obligatoire
+- Sauvegarde **3‑2‑1** (base + fichiers, sauvegarde chiffrée hors site)
+- Pages légales (mentions, CGV/CGU) + consentement RGPD
+- Back‑office non indexé + accès admin via VPN (Tailscale/WireGuard recommandé)
 
-B. Le Back-Office "Poste de Commandement" (Ce que voit la gérante)
+---
 
-CRM (Clients) : Fiches clientes automatisées à chaque réservation, historique d'achats, notes internes (allergies, préférences), base email/SMS.
+## 🗺️ Feuille de route
 
-Agenda : Vue calendrier (jour/semaine), blocage des indisponibilités, temps de "buffer" (nettoyage entre deux clientes).
+La feuille de route détaillée est disponible ici :
 
-Ventes & Facturation : Création de devis et factures (générés automatiquement lors d'une réservation ou commande), gestion des acomptes, suivi des paiements.
+- [`docs/ROADMAP.md`](docs/ROADMAP.md)
 
-Stock : Inventaire simple des produits à la vente et alertes de seuil bas pour les consommables (vernis).
+Suivi opérationnel (état d’avancement des tâches) :
 
-Tableau de bord : Chiffre d'affaires du mois, rendez-vous du jour, paiements en attente.
+- [`docs/SUIVI_TACHES.md`](docs/SUIVI_TACHES.md)
 
-4. Sécurité, Sauvegarde et Conformité (Non-négociable)
-Le Raspberry Pi hébergeant la vie de l'entreprise, ces éléments sont vitaux :
+---
 
-Chiffrement : HTTPS obligatoire partout.
+## 🚀 Démarrage du projet (prochaines actions)
 
-Sauvegarde Règle des 3-2-1 : Script quotidien automatique (via Restic ou BorgBackup) sauvegardant la base de données et les fichiers. Envoi automatique de l'archive chiffrée sur un Cloud tiers (ex: Google Drive, AWS S3, ou NAS distant).
-
-Conformité : Pages de Mentions Légales et CGV/CGU. Case à cocher RGPD lors de la réservation et conservation limitée des données.
-
-Accès distant : Le back-office ne doit pas être indexé par les moteurs de recherche. Connexion via VPN (Tailscale/Wireguard) recommandée pour l'administration pure de l'OS.
-
-5. Feuille de Route du Déploiement
-Phase 1 — L'Infrastructure (Le socle de béton) : Installation OS, Docker, Reverse Proxy, configuration du nom de domaine et sécurisation du serveur. Mise en place des scripts de backup.
-
-Phase 2 — Le MVP Métier (Le produit minimum) : Déploiement de l'applicatif unifié. Création des pages statiques (Accueil, Tarifs, Galerie). Paramétrage strict du module de réservation (agenda, prestations, durée).
-
-Phase 3 — Administratif & CRM : Configuration de la facturation automatique, des modèles d'emails transactionnels (confirmations de rendez-vous) et des mentions légales.
-
-Phase 4 — Extension (Boutique & Paiement) : Activation du paiement en ligne (Stripe/PayPal) pour la prise d'acompte à la réservation et lancement du catalogue de produits annexes.
-
-Phase 5 — Exploitation : Tests de restauration à froid (simuler une panne du Pi et vérifier qu'on peut tout remonter en moins d'une heure).
+1. Valider l’architecture cible (WordPress tout‑en‑un vs Odoo).
+2. Préparer l’environnement Pi (OS, SSH, sécurité de base).
+3. Ajouter une base `docker-compose.yml` avec services minimaux.
+4. Mettre en place les premiers scripts de sauvegarde/restauration.
+5. Lancer un MVP : pages statiques + réservation.
