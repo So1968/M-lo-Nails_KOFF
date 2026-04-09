@@ -55,6 +55,17 @@ Construire un système unique avec un seul point d’entrée (back‑office) pou
 
 ---
 
+
+## 🌐 Première base du site vitrine
+
+Une première page de présentation statique a été ajoutée dans :
+
+- [`site-vitrine/index.html`](site-vitrine/index.html)
+- [`site-vitrine/styles.css`](site-vitrine/styles.css)
+
+Cette base est prévue pour être servie derrière le domaine **melo-nails.duckdns.org**.
+
+---
 ## 🗺️ Feuille de route
 
 La feuille de route détaillée est disponible ici :

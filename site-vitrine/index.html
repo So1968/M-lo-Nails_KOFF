@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Melo Nails | Prothésiste ongulaire</title>
+    <meta
+      name="description"
+      content="Melo Nails — beauté des ongles, nail art et soins. Réservez en ligne sur melo-nails.duckdns.org."
+    />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <header class="hero">
+      <nav class="topbar">
+        <p class="brand">Melo Nails</p>
+        <a href="#contact" class="btn btn-secondary">Contact</a>
+      </nav>
+
+      <section class="hero-content">
+        <p class="eyebrow">Site officiel</p>
+        <h1>Melo Nails vous accueille sur<br />melo-nails.duckdns.org</h1>
+        <p>
+          Prothésie ongulaire, pose gel, renfort, nail art et soins personnalisés.
+          Prenez rendez-vous rapidement et suivez vos réservations en ligne.
+        </p>
+        <div class="hero-actions">
+          <a href="#prestations" class="btn btn-primary">Voir les prestations</a>
+          <a href="#rdv" class="btn btn-secondary">Réserver un créneau</a>
+        </div>
+      </section>
+    </header>
+
+    <main>
+      <section id="prestations" class="section">
+        <h2>Prestations principales</h2>
+        <div class="cards">
+          <article class="card">
+            <h3>Pose complète gel</h3>
+            <p>Extension, mise en forme et finition brillante ou mate.</p>
+          </article>
+          <article class="card">
+            <h3>Remplissage</h3>
+            <p>Entretien professionnel pour garder une manucure impeccable.</p>
+          </article>
+          <article class="card">
+            <h3>Nail art</h3>
+            <p>Designs sur mesure : minimaliste, chic, ou créatif selon vos envies.</p>
+          </article>
+        </div>
+      </section>
+
+      <section id="rdv" class="section section-alt">
+        <h2>Réservation simple</h2>
+        <p>
+          Bientôt disponible : un module de réservation avec choix de prestation,
+          créneau, acompte et confirmation automatique.
+        </p>
+      </section>
+
+      <section id="contact" class="section">
+        <h2>Contact</h2>
+        <p>
+          Pour toute question : Instagram / WhatsApp / formulaire de contact (à intégrer
+          dans la prochaine itération).
+        </p>
+      </section>
+    </main>
+
+    <footer>
+      <p>© <span id="year"></span> Melo Nails — Tous droits réservés.</p>
+    </footer>
+
+    <script>
+      document.getElementById("year").textContent = new Date().getFullYear();
+    </script>
+  </body>
+</html>
