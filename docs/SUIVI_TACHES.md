@@ -43,6 +43,7 @@
 | INF-03 | Installer Docker + Compose | 1 | Haute | TODO | Codex + Owner | S1 | Vérifier versions |
 | INF-04 | Mettre en place reverse proxy + HTTPS | 1 | Haute | TODO | Codex + Owner | S2 | Domaine + certificats |
 | INF-05 | Activer sauvegarde chiffrée quotidienne | 1 | Haute | TODO | Codex + Owner | S2 | Règle 3‑2‑1 |
+| DOC-01 | Rédiger la doc complète d'installation Raspberry Pi + Docker | 1 | Haute | DONE | Codex | 2026-04-15 | Guide pas à pas + runbook ajoutés |
 | MVP-01 | Créer pages Accueil/Tarifs/Galerie/Contact | 2 | Haute | TODO | À définir | S3 | Contenus initiaux |
 | MVP-02 | Configurer prestations et agenda réservation | 2 | Haute | TODO | À définir | S3 | Durées + buffers |
 | MVP-03 | Activer emails de confirmation RDV | 2 | Moyenne | TODO | À définir | S4 | Template personnalisé |
@@ -65,6 +66,7 @@
 | 2026-04-09 | Codex | Structuration documentaire initiale | README amélioré + roadmap + suivi créés | Valider l’outil cible (WordPress/Odoo), puis démarrer INF-01 |
 | 2026-04-09 | Codex | Lancement exécution Phase 1 + mise à jour du suivi | Plan de sprint S1 ajouté, INF-01 passé en DOING, responsables clarifiés | Exécuter INF-01 puis enchaîner INF-02 |
 | 2026-04-10 | Codex | ARC-01 audit code complet + mise à jour doc | Incohérences d’architecture identifiées (Next.js + WordPress en parallèle), README/ROADMAP/SUIVI alignés | Exécuter ARC-02 (décision d’architecture), puis ARC-03 |
+| 2026-04-15 | Codex | Structuration déploiement Pi + stack Docker profils | `docker-compose.yml` réorganisé (`next`/`wordpress`), README refondu, guide d'installation complet ajouté | Valider la cible unique définitive puis démarrer INF-02 en réel sur le Pi |
 
 ---
 

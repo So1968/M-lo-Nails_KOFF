@@ -1,120 +1,98 @@
-# Melo Nails — MicroERP auto‑hébergé
+# 💅 Melo Nails — Plateforme auto-hébergée (Raspberry Pi + Docker)
 
-Projet de plateforme **tout‑en‑un** pour piloter une micro‑entreprise de prothésie ongulaire / esthétique, hébergée sur un **Raspberry Pi 5**.
+Projet de plateforme pour une activité de prothésie ongulaire / esthétique, avec un déploiement ciblé sur **Raspberry Pi 5**.
 
-## 🎯 Objectif
+## Pourquoi ce dépôt ?
 
-Construire un système unique avec un seul point d’entrée (back‑office) pour gérer :
+Objectif : disposer d'une base propre pour lancer rapidement une plateforme locale/auto-hébergée avec :
 
-- le site vitrine,
-- les réservations,
-- la relation client (CRM léger),
-- la facturation,
-- le suivi de stock,
-- la sécurité et les sauvegardes.
-
-> Mantra : **zéro friction**. Si une action prend plus de 3 clics, le système doit être simplifié.
+- une vitrine moderne,
+- un socle Docker exploitable,
+- une base documentaire claire pour l'installation et l'exploitation.
 
 ---
 
-## 📌 État actuel du dépôt (audit du 2026-04-10)
+## État actuel (analyse du dépôt)
 
-Le dépôt contient aujourd’hui **deux pistes techniques en parallèle** :
+Le dépôt contient **deux pistes techniques** :
 
-1. **Une vitrine Next.js (App Router)** dans `app/` avec une landing page moderne animée.
-2. **Une vitrine statique HTML/CSS** dans `site-vitrine/`.
-3. **Une stack Docker WordPress + MariaDB + Nginx Proxy Manager** dans `docker-compose.yml`.
+1. **Piste principale recommandée : Next.js**
+   - code dans `app/`
+   - Dockerfile de build/production déjà présent
+2. **Piste alternative : WordPress + MariaDB**
+   - disponible via Docker Compose pour validation métier rapide
 
-### Constats importants
+Pour éviter la confusion, le `docker-compose.yml` est maintenant organisé par **profils** :
 
-- Le code applicatif actif pour `npm run build` est la version **Next.js**.
-- La stack Docker vise une architecture **WordPress**, non branchée sur l’app Next.js.
-- Le périmètre “MicroERP” (CRM, réservations, facturation, stock) n’est pas encore implémenté dans le code.
-- Les variables d’environnement listées dans `.env.example` couvrent uniquement MariaDB (pas encore de variables Next.js documentées).
-
-👉 Décision à prendre rapidement : **conserver WordPress comme cible principale** ou **basculer full Next.js** pour éviter la dérive d’architecture.
+- `next` (recommandé)
+- `wordpress` (alternative)
 
 ---
 
-## 🧱 Périmètre fonctionnel cible
+## Stack technique
 
-### Front public (cliente)
-- Présentation des services
-- Galerie avant/après
-- FAQ et contact
-- Réservation en ligne (prestation + créneau)
-- Espace client (historique, factures, annulation/report)
+### Application
+- Next.js 15 (App Router)
+- React 19
+- Tailwind CSS v4
+- Framer Motion
 
-### Back‑office (gérante)
-- CRM client (profil, notes, historique)
-- Agenda (jour/semaine, indisponibilités, buffers)
-- Facturation / acomptes / suivi paiements
-- Stock simple + alertes de seuil
-- Tableau de bord d’activité (CA, RDV, paiements en attente)
+### Infrastructure Docker
+- Nginx Proxy Manager (reverse proxy + TLS)
+- App Next.js (profil `next`)
+- WordPress + MariaDB (profil `wordpress`)
 
 ---
 
-## ⚙️ Socle technique présent dans le repo
-
-### Application web
-- **Framework** : Next.js 15 (App Router)
-- **UI** : React 19, Tailwind CSS v4, Framer Motion, Lucide icons
-- **Build** : `output: 'standalone'` (compatible conteneur Node)
-
-### Option CMS/ERP (prototype infra)
-- **Reverse proxy** : Nginx Proxy Manager
-- **CMS** : WordPress latest
-- **Base de données** : MariaDB 10.11
-- **Orchestration** : Docker Compose
-
----
-
-## 🔐 Sécurité, sauvegarde et conformité (cible)
-
-- HTTPS obligatoire
-- Sauvegarde **3‑2‑1** (base + fichiers, sauvegarde chiffrée hors site)
-- Pages légales (mentions, CGV/CGU) + consentement RGPD
-- Back‑office non indexé + accès admin via VPN (Tailscale/WireGuard recommandé)
-
----
-
-## 🚀 Lancer le projet en local
-
-### Prérequis
-- Node.js 22+
-- npm 10+
-
-### Commandes
+## Démarrage rapide
 
 ```bash
-npm install
-npm run dev
+git clone <URL_DU_DEPOT> melo-nails
+cd melo-nails
+cp .env.example .env
 ```
 
-Build de production :
+### Lancer la piste Next.js (recommandée)
 
 ```bash
-npm run build
-npm run start
+docker compose --profile next up -d --build
 ```
 
-> Note : `npm run lint` nécessite une configuration ESLint initiale (assistant interactif Next.js non finalisé dans ce dépôt).
+### Lancer la piste WordPress (alternative)
+
+```bash
+docker compose --profile wordpress up -d
+```
+
+Interface Nginx Proxy Manager :
+- `http://<IP_DU_PI>:81`
 
 ---
 
-## 🌐 Ressources du projet
+## Documentation
 
-- Vitrine statique initiale :
-  - [`site-vitrine/index.html`](site-vitrine/index.html)
-  - [`site-vitrine/styles.css`](site-vitrine/styles.css)
+- **Guide complet Raspberry Pi** : [`docs/INSTALLATION_RASPBERRY_PI.md`](docs/INSTALLATION_RASPBERRY_PI.md)
 - Feuille de route : [`docs/ROADMAP.md`](docs/ROADMAP.md)
-- Suivi opérationnel : [`docs/SUIVI_TACHES.md`](docs/SUIVI_TACHES.md)
+- Suivi des tâches : [`docs/SUIVI_TACHES.md`](docs/SUIVI_TACHES.md)
 
 ---
 
-## 🧭 Priorités recommandées (prochaine session)
+## Commandes utiles
 
-1. Trancher l’architecture cible (**WordPress** vs **Next.js full custom**).
-2. Supprimer la piste non retenue (ou la passer explicitement en archive) pour réduire la dette de décision.
-3. Ajouter un document d’architecture exécutable (schéma + flux + responsabilités des services).
-4. Démarrer le MVP réservation sur la pile validée.
+```bash
+# État des conteneurs
+docker compose ps
+
+# Logs
+docker compose logs -f --tail=200
+
+# Redéploiement Next.js après update
+git pull
+docker compose --profile next up -d --build
+```
+
+---
+
+## Recommandation d'architecture
+
+Pour ce dépôt, la trajectoire la plus cohérente est de **prioriser Next.js** puis d'ajouter progressivement les modules métier (réservation, CRM, facturation, stock). La piste WordPress reste disponible comme solution temporaire de comparaison.

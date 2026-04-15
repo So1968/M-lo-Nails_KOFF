@@ -1,5 +1,12 @@
-# MicroERP Pi - Orchestration Docker Compose
-# Stack ARM64 optimisée pour Raspberry Pi 5 : proxy, base de données et application.
+# Melo Nails - Stack Docker Compose (Raspberry Pi 5 / ARM64)
+#
+# Profils disponibles :
+# - next       : application Next.js (recommandé pour ce dépôt)
+# - wordpress  : piste alternative WordPress + MariaDB
+#
+# Exemples :
+#   docker compose --profile next up -d --build
+#   docker compose --profile wordpress up -d
 
 services:
   # Reverse proxy + gestion TLS/Let's Encrypt
@@ -8,22 +15,39 @@ services:
     container_name: microerp_proxy
     restart: unless-stopped
     ports:
-      - "80:80"    # HTTP
-      - "443:443"  # HTTPS
-      - "81:81"    # Interface d'administration NPM (accès local conseillé)
+      - "80:80"     # HTTP
+      - "443:443"   # HTTPS
+      - "81:81"     # Interface admin NPM (restreindre l'accès)
     volumes:
       - proxy_data:/data
       - proxy_letsencrypt:/etc/letsencrypt
     networks:
       - microerp_network
 
-  # Base de données MariaDB (non exposée à l'hôte)
+  # Application Next.js (cible principale de ce dépôt)
+  app_next:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: melo-nails-next:latest
+    container_name: microerp_app_next
+    restart: unless-stopped
+    environment:
+      NODE_ENV: production
+      PORT: 3000
+    expose:
+      - "3000"
+    networks:
+      - microerp_network
+    profiles:
+      - next
+
+  # Base de données MariaDB (uniquement pour la piste WordPress)
   db:
     image: mariadb:10.11
     container_name: microerp_db
     restart: unless-stopped
     environment:
-      # Variables injectées depuis le fichier .env (aucun secret en dur)
       MARIADB_ROOT_PASSWORD: ${DB_ROOT_PASSWORD}
       MARIADB_DATABASE: ${DB_DATABASE}
       MARIADB_USER: ${DB_USER}
@@ -32,32 +56,35 @@ services:
       - db_data:/var/lib/mysql
     networks:
       - microerp_network
+    profiles:
+      - wordpress
 
-  # Application WordPress (accès uniquement via le reverse proxy)
-  app:
+  # Application WordPress (piste alternative)
+  app_wordpress:
     image: wordpress:latest
-    container_name: microerp_app
+    container_name: microerp_app_wordpress
     restart: unless-stopped
     depends_on:
       - db
     environment:
-      # Liaison WordPress -> MariaDB via les variables du fichier .env
       WORDPRESS_DB_HOST: db:3306
       WORDPRESS_DB_NAME: ${DB_DATABASE}
       WORDPRESS_DB_USER: ${DB_USER}
       WORDPRESS_DB_PASSWORD: ${DB_PASSWORD}
     volumes:
       - wp_data:/var/www/html
+    expose:
+      - "80"
     networks:
       - microerp_network
+    profiles:
+      - wordpress
 
-# Réseau privé dédié à la plateforme MicroERP Pi
 networks:
   microerp_network:
     name: microerp_network
     driver: bridge
 
-# Volumes nommés pour la persistance des données
 volumes:
   proxy_data:
     name: proxy_data
