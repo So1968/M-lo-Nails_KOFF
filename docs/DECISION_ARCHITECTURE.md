@@ -2,38 +2,36 @@
 
 ## Contexte
 
-Le projet Melo Nails est destiné à être déployé sur un Raspberry Pi 5, dans une logique de solution autonome, légère et maîtrisée.
+Le projet Melo Nails doit être exploitable rapidement sur Raspberry Pi 5 avec une administration simple pour une activité locale.
 
-Deux pistes techniques étaient initialement envisagées :
+Deux pistes ont été étudiées :
 
-* Next.js (application moderne)
-* WordPress + MariaDB (solution CMS)
+- Next.js sur mesure
+- WordPress + MariaDB
 
-## Décision
+## Décision (mise à jour du 2026-04-15)
 
-Le projet adopte officiellement l’architecture suivante :
-
-👉 **Next.js + Docker sur Raspberry Pi 5**
+👉 **WordPress + MariaDB + Nginx (Docker Compose)** devient la stack standard du projet.
 
 ## Justification
 
-Ce choix est motivé par :
-
-* une meilleure maîtrise du produit (pas de dépendance CMS)
-* une architecture plus évolutive
-* une cohérence avec un futur développement sur mesure
-* une meilleure intégration avec des outils comme n8n
-* une réduction des couches techniques inutiles
+- Mise en service plus rapide (CMS prêt à l’emploi)
+- Administration de contenu simplifiée
+- Écosystème plugins/thèmes mature
+- Exploitation Docker claire (3 services principaux)
+- Persistance explicite des images et données critiques
 
 ## Conséquences
 
-* Next.js devient la **base principale du projet**
-* WordPress est conservé uniquement comme **référence secondaire (archive)**
-* toutes les nouvelles fonctionnalités seront développées dans l’application Next.js
-* l’infrastructure Raspberry Pi sera optimisée pour cette pile
+- WordPress est la référence pour tous les déploiements.
+- La documentation est alignée sur le runbook WordPress.
+- Le reverse proxy standard est Nginx.
+- Les mots de passe forts deviennent un prérequis opérationnel.
+- La piste Next.js est conservée uniquement en archive technique (profil `next-archive`).
 
-## Prochaine étape
+## Exigences d’exploitation retenues
 
-Préparer l’environnement Raspberry Pi et valider le déploiement Docker de l’application Next.js.
-
----
+- Stockage persistant séparé : DB, cœur WP, uploads.
+- Secrets robustes dans `.env` (32+ caractères).
+- Reverse proxy frontal Nginx.
+- Plan de sauvegarde régulier + test de restauration.

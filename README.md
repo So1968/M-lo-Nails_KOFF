@@ -1,70 +1,54 @@
-# Melo Nails — Site vitrine & e-commerce (Next.js)
+# Melo Nails — Stack WordPress auto-hébergée (Docker)
 
-Socle applicatif moderne pour **Melo Nails**, pensé pour être auto-hébergé sur **Raspberry Pi 5** via Docker.
+Ce dépôt est désormais standardisé autour de **WordPress + MariaDB + Nginx** pour un déploiement simple sur Raspberry Pi 5.
 
 ## Stack retenue
 
-- **Framework** : Next.js (App Router) + TypeScript
-- **UI** : Tailwind CSS v4
-- **Animations** : Framer Motion
-- **Icônes** : Lucide React
-- **Containerisation** : Docker multi-stage (ARM64 friendly)
+- **CMS** : WordPress (image officielle)
+- **Base de données** : MariaDB
+- **Reverse proxy** : Nginx
+- **Containerisation** : Docker Compose
+- **Stockage persistant** : volumes dédiés (DB, core WordPress, uploads images, certificats et logs Nginx)
 
-## État d’avancement (2026-04-10)
+## Démarrage rapide
 
-- ✅ Architecture validée sur Next.js
-- ✅ Home premium mobile-first livrée
-- ⏳ MVP Réservation en préparation
-- ⏳ E-commerce + back-office à implémenter
-
-## Expérience visuelle
-
-La home est conçue en mode **mobile-first** avec une direction artistique premium :
-
-- Hero plein écran avec CTA vibrant
-- Cartes prestations en glassmorphism
-- Galerie asymétrique type Pinterest
-- Section “La Créatrice”
-- Footer orienté conversion (contact + prise de RDV)
-
-## Structure du projet
-
-```text
-melo-nails/
-├─ app/
-│  ├─ globals.css
-│  ├─ layout.tsx
-│  └─ page.tsx
-├─ docs/
-│  ├─ ROADMAP.md
-│  └─ SUIVI_TACHES.md
-├─ Dockerfile
-├─ docker-compose.yml
-└─ package.json
-```
-
-## Démarrage local
+1. Copier l’environnement :
 
 ```bash
-docker compose --profile next up -d --build
+cp .env.example .env
 ```
 
-Build production :
+2. Remplacer **tous** les mots de passe par des secrets robustes (32+ caractères).
+
+3. Lancer la stack :
 
 ```bash
-npm run lint
-npm run build
-npm run start
+docker compose up -d
 ```
 
-## Docker (production)
+4. Ouvrir :
+
+- Site WordPress : `http://IP_DU_SERVEUR`
+
+## Volumes persistants
+
+- `db_data` : données MariaDB
+- `wp_core` : fichiers WordPress
+- `wp_uploads` : médias (`wp-content/uploads`)
+- `nginx_certs` : certificats TLS
+- `nginx_logs` : logs reverse proxy
+
+## Profil archive (optionnel)
+
+Une ancienne piste Next.js reste disponible en archive technique :
 
 ```bash
-docker build -t melo-nails:latest .
-docker run --rm -p 3000:3000 melo-nails:latest
+docker compose --profile next-archive up -d --build
 ```
 
-## Documentation de pilotage
+## Documentation
 
-- Roadmap projet : [`docs/ROADMAP.md`](docs/ROADMAP.md)
-- Suivi opérationnel : [`docs/SUIVI_TACHES.md`](docs/SUIVI_TACHES.md)
+- Décision d’architecture : [`docs/DECISION_ARCHITECTURE.md`](docs/DECISION_ARCHITECTURE.md)
+- Installation Raspberry Pi : [`docs/INSTALLATION_RASPBERRY_PI.md`](docs/INSTALLATION_RASPBERRY_PI.md)
+- Roadmap : [`docs/ROADMAP.md`](docs/ROADMAP.md)
+- Suivi : [`docs/SUIVI_TACHES.md`](docs/SUIVI_TACHES.md)

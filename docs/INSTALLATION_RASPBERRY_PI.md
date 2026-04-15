@@ -1,6 +1,6 @@
-# Installation complète sur Raspberry Pi 5 (Docker)
+# Installation complète sur Raspberry Pi 5 (WordPress + Docker)
 
-Ce guide décrit une procédure **de bout en bout** pour déployer ce dépôt sur un Raspberry Pi 5 avec Docker.
+Ce guide décrit une procédure **de bout en bout** pour déployer Melo Nails sur Raspberry Pi 5 avec la stack standard : **WordPress + MariaDB + Nginx**.
 
 ---
 
@@ -25,7 +25,7 @@ Après redémarrage :
 
 ```bash
 sudo timedatectl set-timezone Europe/Paris
-sudo apt install -y ca-certificates curl git ufw fail2ban
+sudo apt install -y ca-certificates curl git ufw fail2ban openssl
 ```
 
 ### Sécurisation minimale
@@ -58,7 +58,7 @@ docker compose version
 
 ---
 
-## 4) Récupération du dépôt
+## 4) Récupération du dépôt + configuration des secrets
 
 ```bash
 git clone <URL_DU_DEPOT> melo-nails
@@ -66,84 +66,84 @@ cd melo-nails
 cp .env.example .env
 ```
 
-> Ajuster les mots de passe dans `.env` si vous activez le profil WordPress.
+Générer des mots de passe forts (32+ caractères) :
+
+```bash
+openssl rand -base64 36
+```
+
+Renseigner ensuite dans `.env` :
+- `DB_ROOT_PASSWORD`
+- `DB_PASSWORD`
 
 ---
 
-## 5) Choisir le mode de lancement
-
-Le dépôt fournit **2 profils Docker** :
-
-- `next` : application Next.js (recommandé)
-- `wordpress` : alternative WordPress + MariaDB
-
-### Option A (recommandée) : Next.js
+## 5) Lancement de la stack WordPress
 
 ```bash
-docker compose --profile next up -d --build
+docker compose up -d
 ```
 
 Services actifs :
-- `proxy` (Nginx Proxy Manager)
-- `app_next` (application Next.js)
-
-### Option B : WordPress
-
-```bash
-docker compose --profile wordpress up -d
-```
-
-Services actifs :
-- `proxy`
+- `nginx` (reverse proxy)
+- `wordpress` (CMS)
 - `db` (MariaDB)
-- `app_wordpress` (WordPress)
 
----
-
-## 6) Configuration du reverse proxy (Nginx Proxy Manager)
-
-1. Ouvrir `http://IP_DU_PI:81`
-2. Se connecter avec les identifiants initiaux NPM (à changer immédiatement)
-3. Ajouter un **Proxy Host** :
-   - Domaine : `app.votre-domaine.tld`
-   - Scheme : `http`
-   - Forward Hostname :
-     - `app_next` (profil `next`) et port `3000`, ou
-     - `app_wordpress` (profil `wordpress`) et port `80`
-4. Activer SSL + Let’s Encrypt + force SSL + HTTP/2
-
----
-
-## 7) Commandes d’exploitation (runbook)
-
-### État des services
+Vérifier l’état :
 
 ```bash
 docker compose ps
+```
+
+---
+
+## 6) Configuration reverse proxy Nginx
+
+Le fichier actif est :
+- `infra/nginx/conf.d/default.conf`
+
+Le proxy est préconfiguré pour router le trafic vers `wordpress:80`.
+
+### HTTPS (recommandé en production)
+
+- Monter vos certificats dans le volume `nginx_certs`
+- Adapter la conf Nginx pour écouter en `443 ssl`
+- Rediriger `80 -> 443`
+
+---
+
+## 7) Installation WordPress (premier boot)
+
+1. Ouvrir `http://IP_DU_PI`
+2. Suivre l’assistant WordPress
+3. Créer un compte admin avec mot de passe robuste
+4. Forcer le HTTPS dans les réglages une fois TLS activé
+
+---
+
+## 8) Commandes d’exploitation (runbook)
+
+### Logs
+
+```bash
 docker compose logs -f --tail=200
 ```
 
-### Mise à jour du dépôt + redéploiement
+### Mise à jour de la stack
 
 ```bash
 git pull
-docker compose --profile next up -d --build
+docker compose pull
+docker compose up -d
 ```
 
-### Arrêt / redémarrage
+### Redémarrage
 
 ```bash
-docker compose stop
-docker compose start
+docker compose restart
 ```
 
-### Redémarrer un service
-
-```bash
-docker compose restart app_next
-```
-
-### Nettoyage images non utilisées
+### Nettoyage images inutilisées
 
 ```bash
 docker image prune -f
@@ -151,36 +151,28 @@ docker image prune -f
 
 ---
 
-## 8) Sauvegardes minimales recommandées
+## 9) Sauvegardes minimales recommandées
 
 À sauvegarder :
-- volumes Docker (`proxy_data`, `proxy_letsencrypt`, et si WordPress: `db_data`, `wp_data`)
+- `db_data`
+- `wp_core`
+- `wp_uploads`
 - `.env`
-- dépôt Git (source)
 
-Exemple backup volume (tar) :
+Exemple backup d’un volume :
 
 ```bash
-docker run --rm -v proxy_data:/volume -v "$PWD":/backup alpine \
-  tar czf /backup/backup_proxy_data_$(date +%F).tar.gz -C /volume .
+docker run --rm -v wp_uploads:/volume -v "$PWD":/backup alpine \
+  tar czf /backup/backup_wp_uploads_$(date +%F).tar.gz -C /volume .
 ```
 
 ---
 
-## 9) Vérifications post-installation
+## 10) Checklist production
 
-- `docker compose ps` : tous les conteneurs sont `Up`
-- Accès `http://IP_DU_PI:81` OK
-- Domaine accessible en HTTPS sans alerte certificat
-- La page d’accueil de l’application répond correctement
-
----
-
-## 10) Checklist production (courte)
-
-- [ ] Mots de passe `.env` robustes
+- [ ] Mots de passe `.env` robustes (32+)
 - [ ] SSH par clé uniquement
+- [ ] HTTPS actif (certificat valide)
 - [ ] Sauvegarde planifiée (quotidienne)
 - [ ] Test de restauration mensuel
 - [ ] Mise à jour système mensuelle
-
