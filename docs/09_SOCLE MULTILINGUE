@@ -1,0 +1,170 @@
+# 09. Socle multilingue
+
+## 09.1. Objectif
+
+Le logiciel doit pouvoir être compris par des personnes qui ne sont pas toutes à l’aise avec le français écrit.
+
+Le multilinguisme ne doit pas être considéré comme un ajout secondaire.  
+Il fait partie de l’accessibilité du projet.
+
+L’objectif est que l’utilisateur puisse :
+
+- choisir une langue qu’il comprend mieux,
+- garder les mêmes repères visuels,
+- écouter les explications dans cette langue,
+- utiliser l’outil sans perdre la logique générale.
+
+---
+
+## 09.2. Principes de base
+
+Le projet doit être pensé dès le départ pour pouvoir accueillir plusieurs langues.
+
+Cela signifie que :
+
+- les textes ne doivent pas être écrits directement partout dans le code,
+- les traductions doivent être organisées proprement,
+- la structure de l’interface doit rester stable quelle que soit la langue,
+- les pictos doivent rester les mêmes,
+- les audios doivent être liés à la langue choisie.
+
+---
+
+## 09.3. Langues prioritaires
+
+### 09.3.1. Langues de départ
+- Français
+- Roumain
+
+### 09.3.2. Langues ou variantes à envisager ensuite
+- Romanes / Romani
+- variantes utiles au terrain, si cela est faisable
+- variantes validées avec des locuteurs concernés
+
+---
+
+## 09.4. Vigilance sur les variantes linguistiques
+
+Le projet ne doit pas faire semblant de maîtriser des variantes linguistiques sans validation réelle.
+
+Pour les variantes liées aux publics tsiganes, roms, sinti, manouches ou autres, il faudra :
+
+- éviter les approximations,
+- éviter les appellations posées sans concertation,
+- faire valider les formulations par des personnes concernées,
+- privilégier des contenus réellement compréhensibles sur le terrain.
+
+L’objectif n’est pas d’afficher une langue “symbolique”, mais d’offrir une compréhension réelle.
+
+---
+
+## 09.5. Ce qui doit être traduit
+
+Le projet doit distinguer plusieurs niveaux de traduction.
+
+### 09.5.1. Niveau 1 — Interface de base
+- titres
+- menus
+- boutons
+- rubriques
+- catégories
+- messages simples
+
+### 09.5.2. Niveau 2 — Explications utiles
+- consignes
+- aides contextuelles
+- messages de repères
+- messages liés aux projets
+- messages liés au budget
+- messages liés à la gestion
+
+### 09.5.3. Niveau 3 — Audio associé
+- lecture simple
+- lecture synchronisée
+- aides vocales
+- phrases clés
+
+---
+
+## 09.6. Socle minimal de traduction
+
+Le projet ne doit pas commencer par vouloir traduire tout le logiciel.
+
+Il faut d’abord construire un noyau de mots et de phrases essentiels.
+
+### 09.6.1. Mots-clés prioritaires
+- Mon activité
+- Ma vie
+- Mon budget
+- Mes projets
+- Mes repères
+- J’ai gagné de l’argent
+- J’ai eu une dépense
+- Travail
+- Maison
+- À déclarer
+- Il me reste
+- Prix conseillé
+- Mon devis
+- Écouter
+- Aide
+
+### 09.6.2. Phrases prioritaires
+- Cette dépense est-elle pour ton travail ou pour ta maison ?
+- Voilà ce qu’il te faudrait vendre pour faire un mois correct.
+- Ton activité est encore fragile.
+- Tu avances vers ton projet.
+- Il manque encore un peu.
+- Ton budget devient plus clair.
+- Ton activité devient plus régulière.
+
+---
+
+## 09.7. Règles de traduction
+
+Les traductions doivent rester :
+
+- simples,
+- adultes,
+- concrètes,
+- non administratives,
+- non infantilisantes.
+
+Il ne faut pas traduire mot à mot si cela rend la phrase lourde ou peu naturelle.
+
+Il faut privilégier une langue d’usage :
+- compréhensible,
+- parlée,
+- utile,
+- proche de la vie réelle.
+
+---
+
+## 09.8. Cohérence avec l’audio
+
+Le multilinguisme doit être pensé avec l’audio.
+
+Cela signifie que, pour chaque langue utilisée, il faut pouvoir prévoir :
+
+- le texte affiché,
+- la lecture audio simple,
+- la lecture audio synchronisée,
+- les aides vocales courtes.
+
+Le but est que l’utilisateur puisse :
+- lire,
+- écouter,
+- et suivre les mots dans sa langue.
+
+---
+
+## 09.9. Structure technique recommandée
+
+Le projet doit organiser les langues dans des fichiers séparés.
+
+### 09.9.1. Exemple de structure
+```txt
+/locales
+  fr.json
+  ro.json
+  rom.json
