@@ -1,0 +1,534 @@
+# 04. Modules métier
+
+## 04.1. Objectif
+
+Ce document présente les principaux modules fonctionnels du logiciel.
+
+L’objectif est de préciser :
+
+- ce que le logiciel doit permettre de faire,
+- à quoi sert chaque module,
+- ce que l’utilisateur doit pouvoir comprendre grâce à lui,
+- et comment chaque module s’articule avec les autres.
+
+Le projet ne doit pas être pensé comme un bloc unique.  
+Il doit être structuré en modules simples, lisibles et cohérents.
+
+---
+
+## 04.2. Logique générale
+
+Les modules métier doivent aider l’utilisateur à :
+
+- suivre son activité,
+- mieux gérer son budget,
+- mieux distinguer travail et maison,
+- fixer des prix plus justes,
+- faire des devis,
+- préparer ses déclarations,
+- et avancer vers ses projets.
+
+Chaque module doit rester :
+
+- simple,
+- visuel,
+- utile,
+- compréhensible,
+- relié à la vie réelle.
+
+---
+
+## 04.3. Module 1 — Saisie des gains
+
+### 04.3.1. Rôle
+Permettre à l’utilisateur de noter facilement l’argent qui entre.
+
+### 04.3.2. Ce que l’utilisateur doit pouvoir saisir
+- montant
+- date
+- catégorie
+- note facultative
+- photo facultative
+- origine de la somme
+
+### 04.3.3. Exemples
+- prestation
+- vente
+- service rendu
+- paiement reçu
+
+### 04.3.4. Ce que le module doit apporter
+- rendre visible ce qui est gagné
+- éviter l’oubli
+- permettre un suivi simple
+- nourrir les autres modules du logiciel
+
+### 04.3.5. Formulation simple
+> J’ai gagné de l’argent.
+
+---
+
+## 04.4. Module 2 — Saisie des dépenses
+
+### 04.4.1. Rôle
+Permettre à l’utilisateur de noter facilement l’argent qui sort.
+
+### 04.4.2. Ce que l’utilisateur doit pouvoir saisir
+- montant
+- date
+- catégorie
+- note facultative
+- photo facultative
+- nature de la dépense
+
+### 04.4.3. Exemples
+- achat de matériel
+- essence
+- nourriture
+- vêtements
+- téléphone
+- déplacement
+
+### 04.4.4. Ce que le module doit apporter
+- rendre visible les dépenses
+- éviter les oublis
+- aider à comprendre où part l’argent
+- alimenter le budget et les repères
+
+### 04.4.5. Formulation simple
+> J’ai eu une dépense.
+
+---
+
+## 04.5. Module 3 — Séparation activité / vie privée
+
+### 04.5.1. Rôle
+Aider l’utilisateur à distinguer clairement ce qui relève :
+
+- de son activité professionnelle,
+- de sa vie privée.
+
+### 04.5.2. Fonction centrale
+À chaque saisie, le logiciel doit demander :
+
+- 💼 Mon activité
+- 🏠 Ma vie privée
+
+### 04.5.3. Ce que le module doit apporter
+- empêcher le mélange constant des budgets
+- rendre l’activité plus lisible
+- aider l’utilisateur à apprendre à séparer les deux
+- soutenir la compréhension de la viabilité
+
+### 04.5.4. Ce que le logiciel peut montrer
+- dépenses encore très mélangées
+- séparation en progrès
+- meilleure distinction entre travail et maison
+
+### 04.5.5. Formulation simple
+> Cette somme concerne ton travail ou ta maison ?
+
+---
+
+## 04.6. Module 4 — Budget par enveloppes
+
+### 04.6.1. Rôle
+Permettre à l’utilisateur de voir ses dépenses par grands postes.
+
+### 04.6.2. Enveloppes possibles
+- 🍞 Nourriture
+- 👕 Vêtements
+- ⛽ Voiture
+- 📱 Téléphone
+- 🏠 Logement
+- 💡 Factures
+- 🎁 Loisirs
+- 🌴 Vacances
+- 💰 Économies
+- 🧴 Travail / matériel
+
+### 04.6.3. Ce que le module doit montrer
+- ce qui a été dépensé
+- ce qu’il reste
+- les dépassements éventuels
+- les enveloppes encore tenues
+
+### 04.6.4. Ce que le module doit apporter
+- meilleure lecture du budget
+- repères concrets
+- apprentissage progressif de la gestion
+- meilleure anticipation
+
+### 04.6.5. Formulation simple
+> Je vois où part mon argent.
+
+---
+
+## 04.7. Module 5 — Repères d’activité et viabilité
+
+### 04.7.1. Rôle
+Aider l’utilisateur à comprendre si son activité est :
+
+- fragile,
+- instable,
+- en progression,
+- ou plus solide.
+
+### 04.7.2. Ce que le module doit prendre en compte
+- revenus
+- régularité
+- dépenses
+- reste disponible
+- capacité à mettre de côté
+- niveau de mélange pro / perso
+
+### 04.7.3. Lecture simple possible
+- 🔴 activité fragile
+- 🟠 activité instable
+- 🟡 activité en progression
+- 🟢 activité plus solide
+
+### 04.7.4. Ce que le module doit apporter
+- une lecture simple de la santé de l’activité
+- des repères concrets
+- une aide à la décision
+- une meilleure compréhension de la réalité économique
+
+### 04.7.5. Formulation simple
+> Je vois si mon activité tient debout.
+
+---
+
+## 04.8. Module 6 — Objectif du mois et estimation des ventes
+
+### 04.8.1. Rôle
+Aider l’utilisateur à comprendre ce qu’il doit vendre pour avoir un mois correct.
+
+### 04.8.2. Ce que le module doit pouvoir relier
+- besoins du mois
+- frais de travail
+- montant à mettre de côté
+- projet en cours
+- nombre de prestations ou de produits à vendre
+
+### 04.8.3. Ce que le module doit montrer
+- objectif du mois
+- objectif de la semaine
+- prestations à réaliser
+- produits à vendre
+- objectif réaliste ou trop élevé
+
+### 04.8.4. Ce que le module doit apporter
+- traduction d’un objectif financier en actions concrètes
+- meilleure compréhension des besoins réels
+- aide au pilotage commercial
+
+### 04.8.5. Formulation simple
+> Pour faire un mois correct, voilà ce qu’il faudrait vendre.
+
+---
+
+## 04.9. Module 7 — Calculateur de prix de vente
+
+### 04.9.1. Rôle
+Aider l’utilisateur à fixer un prix plus juste.
+
+### 04.9.2. Ce que le module doit prendre en compte
+- coût des produits ou matières
+- temps de travail
+- frais liés à l’activité
+- marge ou gain souhaité
+- estimation simple des charges
+
+### 04.9.3. Ce que le module doit montrer
+- coût réel estimé
+- prix minimum conseillé
+- prix plus confortable
+- alerte si le prix est trop bas
+
+### 04.9.4. Ce que le module doit apporter
+- meilleure compréhension du prix
+- réduction du sous-pricing
+- protection de l’activité
+- apprentissage concret de la valeur du travail
+
+### 04.9.5. Formulation simple
+> Le logiciel m’aide à voir si mon prix est trop bas, juste, ou plus viable.
+
+---
+
+## 04.10. Module 8 — Devis intelligent
+
+### 04.10.1. Rôle
+Permettre à l’utilisateur de construire un devis cohérent à partir des paramètres réels de la prestation.
+
+### 04.10.2. Ce que le module doit pouvoir intégrer
+- prestation choisie
+- durée estimée
+- produits ou consommables
+- déplacement
+- kilomètres
+- options ou suppléments
+- marge souhaitée
+- estimation simple des charges
+
+### 04.10.3. Ce que le module doit proposer
+- coût estimé
+- prix minimum
+- prix conseillé
+- devis final simple
+
+### 04.10.4. Ce que le module doit apporter
+- sortir d’un prix posé au hasard
+- aider à construire des devis cohérents
+- protéger l’activité
+- professionnaliser la relation client
+
+### 04.10.5. Formulation simple
+> Le logiciel m’aide à faire un devis plus juste.
+
+---
+
+## 04.11. Module 9 — Devis imprimable
+
+### 04.11.1. Rôle
+Permettre à l’utilisateur de transformer son calcul en document utilisable.
+
+### 04.11.2. Le document doit pouvoir contenir
+- informations de l’entreprise
+- informations du client
+- date
+- numéro de devis
+- détail de la prestation
+- options éventuelles
+- déplacement
+- total
+- mention simple de validité
+
+### 04.11.3. Le devis doit pouvoir être
+- affiché
+- imprimé
+- exporté en PDF
+- transmis au client
+
+### 04.11.4. Ce que le module doit apporter
+- passage du calcul interne au document professionnel
+- simplicité
+- professionnalisation
+- traçabilité
+
+### 04.11.5. Formulation simple
+> Je peux faire un devis propre et l’imprimer.
+
+---
+
+## 04.12. Module 10 — Projets de vie
+
+### 04.12.1. Rôle
+Aider l’utilisateur à relier son activité et son budget à des projets concrets.
+
+### 04.12.2. Exemples de projets
+- 🏠 appartement
+- 🔑 location
+- 🛋️ installation
+- 🌳 terrain
+- 🏡 maison
+- 🚗 voiture
+- 🌴 vacances
+- 💰 économies
+- 🧰 matériel de travail
+- 🚐 véhicule professionnel
+
+### 04.12.3. Ce que l’utilisateur doit pouvoir indiquer
+- projet choisi
+- montant visé
+- somme déjà disponible
+- délai souhaité
+
+### 04.12.4. Ce que le module doit montrer
+- ce qu’il manque
+- progression
+- projet trop tôt / à préparer / possible
+- lien avec la situation réelle
+
+### 04.12.5. Ce que le module doit apporter
+- motivation
+- projection
+- mise en sens des chiffres
+- lecture des étapes intermédiaires
+
+### 04.12.6. Formulation simple
+> Je vois vers quoi je peux avancer.
+
+---
+
+## 04.13. Module 11 — Aides et équilibre global
+
+### 04.13.1. Rôle
+Rendre visible la place des aides dans l’équilibre global de la personne.
+
+### 04.13.2. Ce que le module doit pouvoir intégrer
+- RSA
+- APL
+- allocations
+- autres aides régulières
+- autres ressources connues
+
+### 04.13.3. Ce que le module doit montrer
+- part des aides dans le budget
+- part de l’activité
+- équilibre global
+- points de vigilance si les revenus évoluent
+
+### 04.13.4. Important
+Le module doit rester indicatif.  
+Il ne doit pas faire de promesses automatiques sur les droits.
+
+### 04.13.5. Ce que le module doit apporter
+- compréhension globale de la situation
+- meilleure visibilité
+- réflexion sur l’autonomie économique
+- repères sans jugement
+
+### 04.13.6. Formulation simple
+> Je comprends mieux de quoi je vis aujourd’hui.
+
+---
+
+## 04.14. Module 12 — Déclaration simplifiée
+
+### 04.14.1. Rôle
+Aider l’utilisateur à préparer ses déclarations sur une base plus claire.
+
+### 04.14.2. Ce que le module doit pouvoir montrer
+- période concernée
+- chiffre d’affaires
+- total à déclarer
+- estimation simple des charges
+- récapitulatif
+
+### 04.14.3. Important
+Le logiciel n’effectue pas automatiquement la déclaration officielle à la place de la personne.
+
+Il aide à :
+- préparer,
+- vérifier,
+- comprendre,
+- arriver plus sereinement au moment de déclarer.
+
+### 04.14.4. Ce que le module doit apporter
+- réduction de la peur administrative
+- meilleure fiabilité des chiffres
+- plus de lisibilité
+
+### 04.14.5. Formulation simple
+> Je vois plus clairement quoi déclarer.
+
+---
+
+## 04.15. Module 13 — Audio et lecture synchronisée
+
+### 04.15.1. Rôle
+Permettre l’écoute et le suivi visuel des informations importantes.
+
+### 04.15.2. Ce que le module doit proposer
+- lecture audio simple
+- lecture synchronisée de type karaoké
+- surlignage mot à mot
+- accès rapide depuis les rubriques importantes
+
+### 04.15.3. Ce que le module doit apporter
+- meilleure compréhension
+- accessibilité
+- autonomie
+- appui pour les personnes peu lectrices
+
+### 04.15.4. Formulation simple
+> Je peux écouter et suivre les mots en même temps.
+
+---
+
+## 04.16. Module 14 — Multilingue
+
+### 04.16.1. Rôle
+Permettre l’utilisation de l’outil dans plusieurs langues.
+
+### 04.16.2. Langues prioritaires
+- français
+- roumain
+
+### 04.16.3. Langues ou variantes à envisager ensuite
+- romanes / romani
+- variantes utiles au terrain, validées avec des locuteurs concernés
+
+### 04.16.4. Ce que le module doit apporter
+- meilleure compréhension
+- accessibilité accrue
+- ouverture à des publics plus larges
+- cohérence avec l’audio
+
+### 04.16.5. Formulation simple
+> Je peux utiliser le logiciel dans une langue que je comprends mieux.
+
+---
+
+## 04.17. Articulation entre les modules
+
+Les modules ne doivent pas fonctionner chacun dans leur coin.
+
+Ils doivent se nourrir les uns les autres.
+
+### 04.17.1. Exemples d’articulation
+- les gains et dépenses alimentent le budget
+- le budget alimente les repères
+- les repères influencent les projets
+- les coûts réels influencent les prix
+- les prix influencent les devis
+- l’activité alimente la déclaration
+- la séparation pro/perso améliore la lecture globale
+
+---
+
+## 04.18. Priorité MVP
+
+Tous les modules ne doivent pas être développés avec le même niveau de profondeur dès le départ.
+
+### 04.18.1. Modules prioritaires V1
+- saisie des gains
+- saisie des dépenses
+- séparation activité / vie privée
+- budget par enveloppes
+- repères d’activité
+- objectif du mois
+- calculateur de prix
+- devis simple et imprimable
+- projets de vie
+- audio simple
+
+### 04.18.2. Modules à approfondir ensuite
+- lecture synchronisée avancée
+- multilingue élargi
+- aides plus fines
+- repères d’autonomie plus détaillés
+- scénarios plus complexes
+
+---
+
+## 04.19. Résumé
+
+Les modules métier doivent permettre de passer :
+
+- de chiffres subis
+- à des chiffres compris,
+- de dépenses mélangées
+- à une lecture plus claire,
+- d’un travail peu piloté
+- à une activité mieux suivie,
+- et d’une situation floue
+- à des projets plus lisibles.
+
+---
+
+## 04.20. Phrase de synthèse
+
+> Les modules métier doivent transformer l’outil en compagnon concret de gestion, de compréhension et de projection.
