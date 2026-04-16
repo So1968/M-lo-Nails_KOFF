@@ -1,0 +1,302 @@
+
+---
+
+## `docs/10_PARCOURS_UTILISATEUR.md`
+
+```md
+# 10. Parcours utilisateur
+
+## 10.1. Objectif
+
+Le logiciel doit être simple à utiliser, même pour une personne :
+
+- peu à l’aise avec l’administratif,
+- peu lectrice,
+- peu habituée aux outils numériques,
+- ou en début d’activité.
+
+Le parcours utilisateur doit donc rester :
+
+- très lisible,
+- très guidé,
+- très concret,
+- centré sur des actions simples.
+
+---
+
+## 10.2. Principe général
+
+Le logiciel doit éviter de noyer la personne dans trop d’options d’un coup.
+
+Le parcours doit suivre une logique simple :
+
+1. je comprends où je suis,
+2. j’ajoute ce qui se passe,
+3. je vois ce que cela change,
+4. je comprends ce que je peux faire ensuite.
+
+---
+
+## 10.3. Parcours d’entrée dans l’outil
+
+### 10.3.1. Premier écran
+L’utilisateur arrive sur un écran simple avec :
+
+- le choix de la langue,
+- éventuellement un accès audio,
+- une présentation courte de l’outil,
+- un bouton pour commencer.
+
+### 10.3.2. Première compréhension
+L’utilisateur doit comprendre immédiatement que l’outil sert à :
+
+- noter ce qu’il gagne,
+- noter ce qu’il dépense,
+- distinguer travail et maison,
+- voir où il en est,
+- avancer vers ses projets.
+
+---
+
+## 10.4. Parcours principal du quotidien
+
+Le parcours quotidien doit être très simple.
+
+### 10.4.1. Action 1 — Ajouter un gain
+L’utilisateur appuie sur :
+
+- 💶 J’ai gagné de l’argent
+
+Puis il renseigne :
+- montant
+- date
+- catégorie
+- note facultative
+- photo facultative
+
+### 10.4.2. Action 2 — Ajouter une dépense
+L’utilisateur appuie sur :
+
+- 🧾 J’ai eu une dépense
+
+Puis il renseigne :
+- montant
+- date
+- catégorie
+- note facultative
+- photo facultative
+
+### 10.4.3. Action 3 — Choisir la nature de la somme
+À chaque saisie, le logiciel doit demander :
+
+- 💼 Mon activité
+- 🏠 Ma vie privée
+
+Cette étape est centrale dans l’apprentissage.
+
+---
+
+## 10.5. Parcours de consultation
+
+Après avoir saisi des informations, l’utilisateur doit pouvoir consulter simplement :
+
+- ce qui est entré,
+- ce qui est sorti,
+- ce qui relève du travail,
+- ce qui relève de la maison,
+- ce qu’il reste,
+- ce qui semble fragile ou plus solide.
+
+Le logiciel doit donc proposer un espace de lecture simple.
+
+---
+
+## 10.6. Parcours par grands blocs
+
+Le logiciel peut être organisé autour de grands blocs accessibles dès l’accueil.
+
+### 10.6.1. 💼 Mon activité
+L’utilisateur voit :
+- gains
+- dépenses professionnelles
+- prix
+- devis
+- objectif de vente
+- déclaration
+
+### 10.6.2. 🏠 Ma vie
+L’utilisateur voit :
+- dépenses personnelles
+- enveloppes budget
+- reste
+- économies
+- besoins du quotidien
+
+### 10.6.3. 🧩 Mes aides
+L’utilisateur voit :
+- aides perçues
+- place dans l’équilibre global
+- points de vigilance
+- progression possible
+
+### 10.6.4. 🎯 Mes projets
+L’utilisateur voit :
+- ses objectifs
+- ce qu’il a déjà
+- ce qu’il lui manque
+- si le projet est trop tôt, à préparer ou envisageable
+
+### 10.6.5. 📊 Mes repères
+L’utilisateur voit :
+- activité fragile ou plus solide
+- niveau de séparation pro/perso
+- capacité à mettre de côté
+- progression générale
+
+---
+
+## 10.7. Parcours pédagogique
+
+Le logiciel doit intégrer une pédagogie discrète dans le parcours.
+
+Cela veut dire qu’au fil de l’usage, il doit aider à comprendre :
+
+- ce qui est pour le travail,
+- ce qui est pour la maison,
+- ce qu’il reste vraiment,
+- si l’activité tient debout,
+- combien il faut vendre,
+- comment avancer vers un projet.
+
+Cette pédagogie doit être intégrée :
+- dans les messages,
+- dans les repères,
+- dans les questions,
+- dans les aides audio.
+
+---
+
+## 10.8. Parcours autour des prix et devis
+
+L’utilisateur doit pouvoir suivre un chemin simple :
+
+### 10.8.1. Calculer un prix
+Le logiciel aide à prendre en compte :
+- produits
+- temps
+- frais
+- charges
+- marge
+
+### 10.8.2. Vérifier le prix
+Le logiciel montre :
+- prix trop bas
+- prix minimum
+- prix conseillé
+
+### 10.8.3. Générer un devis
+Le logiciel transforme ensuite ce calcul en devis :
+
+- simple
+- clair
+- imprimable
+- exportable
+
+---
+
+## 10.9. Parcours autour des projets
+
+L’utilisateur doit pouvoir :
+
+1. choisir un projet,
+2. entrer un montant visé,
+3. dire ce qu’il a déjà,
+4. voir combien il manque,
+5. voir si le projet semble trop tôt, à préparer ou possible.
+
+Le logiciel doit rendre ce parcours motivant, mais réaliste.
+
+Il ne doit pas promettre.  
+Il doit aider à se repérer.
+
+---
+
+## 10.10. Parcours autour du budget
+
+L’utilisateur doit pouvoir voir :
+
+- ce qu’il a prévu,
+- ce qu’il a dépensé,
+- ce qu’il lui reste,
+- quelles enveloppes sont dépassées,
+- quelles enveloppes sont encore tenues.
+
+Ce parcours doit rendre le budget visible sans le rendre oppressant.
+
+---
+
+## 10.11. Parcours d’accessibilité
+
+L’utilisateur doit pouvoir, à tout moment :
+
+- écouter une rubrique,
+- écouter une consigne,
+- écouter une explication,
+- suivre une lecture synchronisée,
+- changer de langue si besoin.
+
+Ces fonctions doivent être faciles à trouver, sans compliquer l’interface.
+
+---
+
+## 10.12. Parcours de progression
+
+Le logiciel ne doit pas seulement servir une fois.
+
+Il doit permettre à la personne de sentir qu’elle progresse.
+
+Exemples de progression visibles :
+- je distingue mieux travail et maison,
+- je vois mieux mes dépenses,
+- je comprends davantage mes prix,
+- je prépare mieux mes mois,
+- je peux commencer à envisager certains projets.
+
+---
+
+## 10.13. Règles de conception du parcours
+
+Le parcours doit toujours rester :
+
+- simple,
+- direct,
+- visuel,
+- guidé,
+- adulte,
+- non jugeant.
+
+Il faut éviter :
+- les menus trop complexes,
+- les écrans surchargés,
+- les étapes inutiles,
+- les formulations trop techniques.
+
+---
+
+## 10.14. Résumé du parcours idéal
+
+Le bon parcours utilisateur est le suivant :
+
+1. j’entre dans l’outil sans me sentir perdu,
+2. je comprends rapidement à quoi il sert,
+3. je peux ajouter facilement un gain ou une dépense,
+4. je distingue travail et maison,
+5. je vois mes repères,
+6. je comprends mieux ma situation,
+7. je peux avancer vers mes projets.
+
+---
+
+## 10.15. Phrase de synthèse
+
+> Le parcours utilisateur doit rendre l’outil simple à utiliser, facile à comprendre et suffisamment guidant pour qu’une personne puisse s’en servir au quotidien sans se sentir dépassée.
