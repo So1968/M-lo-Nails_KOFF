@@ -3,7 +3,7 @@
 :root {
   --background: #f7f1ea;
   --foreground: #3f342b;
-  --surface: rgba(255, 255, 255, 0.78);
+  --surface: rgba(255, 255, 255, 0.82);
   --surface-border: rgba(191, 169, 146, 0.22);
 }
 
@@ -18,20 +18,20 @@ html {
 body {
   min-height: 100vh;
   background:
-    radial-gradient(circle at top, rgba(255, 255, 255, 0.92), transparent 34%),
-    radial-gradient(circle at 85% 12%, rgba(234, 221, 206, 0.7), transparent 28%),
-    radial-gradient(circle at 10% 85%, rgba(245, 235, 223, 0.8), transparent 26%),
+    radial-gradient(circle at top, rgba(255, 255, 255, 0.95), transparent 34%),
+    radial-gradient(circle at 85% 12%, rgba(234, 221, 206, 0.65), transparent 28%),
+    radial-gradient(circle at 10% 85%, rgba(245, 235, 223, 0.75), transparent 26%),
     linear-gradient(160deg, #fbf8f4 0%, #f5ede4 48%, #efe2d5 100%);
   color: var(--foreground);
   font-family: Inter, Poppins, 'Avenir Next', 'Segoe UI', ui-sans-serif, system-ui, sans-serif;
 }
 
 .font-serif-display {
-  font-family: 'Playfair Display', 'Cinzel', Georgia, 'Times New Roman', serif;
+  font-family: 'Playfair Display', Georgia, 'Times New Roman', serif;
 }
 
 .glass {
-  background: linear-gradient(145deg, rgba(255, 255, 255, 0.86) 0%, rgba(252, 247, 241, 0.74) 100%);
+  background: linear-gradient(145deg, rgba(255, 255, 255, 0.88) 0%, rgba(252, 247, 241, 0.78) 100%);
   border: 1px solid var(--surface-border);
   backdrop-filter: blur(14px);
   -webkit-backdrop-filter: blur(14px);
