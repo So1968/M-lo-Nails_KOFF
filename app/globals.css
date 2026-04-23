@@ -5,6 +5,12 @@
   --foreground: #3f342b;
   --surface: rgba(255, 255, 255, 0.82);
   --surface-border: rgba(191, 169, 146, 0.22);
+  --beige-1: #fbf8f4;
+  --beige-2: #f5ede4;
+  --beige-3: #efe2d5;
+  --beige-4: #e8ddd1;
+  --accent: #a88467;
+  --accent-soft: #f3e9dd;
 }
 
 * {
@@ -17,6 +23,7 @@ html {
 
 body {
   min-height: 100vh;
+  margin: 0;
   background:
     radial-gradient(circle at top, rgba(255, 255, 255, 0.95), transparent 34%),
     radial-gradient(circle at 85% 12%, rgba(234, 221, 206, 0.65), transparent 28%),
@@ -64,4 +71,10 @@ body {
 
 a {
   text-decoration: none;
+  color: inherit;
+}
+
+img {
+  display: block;
+  max-width: 100%;
 }
