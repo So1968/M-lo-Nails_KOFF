@@ -2,6 +2,7 @@
 
 import { useMemo, useState } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
+import ServicesInteractiveBlock from './components/ServicesInteractiveBlock';
 
 type ServiceKey =
   | 'semi'
