@@ -65,22 +65,22 @@ const prices = [
 
 const galleryImages = [
   {
-    src: 'https://source.unsplash.com/featured/900x1200/?nails,manicure,beige',
+    src: 'https://images.unsplash.com/photo-1604654894610-df63bc536371?auto=format&fit=crop&w=900&q=80',
     alt: 'Modèle d’ongles beige et soigné',
     label: 'Élégance nude'
   },
   {
-    src: 'https://source.unsplash.com/featured/901x1200/?french,manicure,nails',
+    src: 'https://images.unsplash.com/photo-1519014816548-bf5fe059798b?auto=format&fit=crop&w=900&q=80',
     alt: 'Modèle d’ongles french',
     label: 'French lumineuse'
   },
   {
-    src: 'https://source.unsplash.com/featured/902x1200/?gel,nails,beauty',
+    src: 'https://images.unsplash.com/photo-1632345031435-8727f6897d53?auto=format&fit=crop&w=900&q=80',
     alt: 'Modèle d’ongles gel',
     label: 'Pose gel'
   },
   {
-    src: 'https://source.unsplash.com/featured/903x1200/?nailart,hands,beauty',
+    src: 'https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?auto=format&fit=crop&w=900&q=80',
     alt: 'Modèle d’ongles nail art',
     label: 'Détails créatifs'
   }
@@ -148,10 +148,13 @@ export default function HomePage() {
         </div>
 
         <div className="rounded-[1.5rem] border border-[#e8ddd1] bg-[#f3e9dd] p-5 shadow-[0_12px_30px_rgba(120,98,73,0.07)]">
-          <p className="text-sm font-medium uppercase tracking-[0.2em] text-stone-500">Réservation</p>
-          <h3 className="mt-3 text-xl font-semibold text-stone-900">Simple et encadrée</h3>
+          <p className="text-sm font-medium uppercase tracking-[0.2em] text-stone-500">
+            Prise de rendez-vous facile
+          </p>
+          <h3 className="mt-3 text-xl font-semibold text-stone-900">Réservez votre créneau</h3>
           <p className="mt-3 text-sm leading-relaxed text-stone-600">
-            La cliente choisit son créneau, peut modifier son rendez-vous ou l’annuler dans le délai prévu.
+            Réservez facilement votre créneau et retrouvez toutes les informations utiles avant votre
+            rendez-vous.
           </p>
           <div className="mt-4 grid gap-3 text-sm text-stone-700">
             <div className="rounded-2xl border border-white/70 bg-white/80 px-4 py-3">Acompte demandé</div>
@@ -179,7 +182,7 @@ export default function HomePage() {
   return (
     <main className="overflow-hidden bg-[#f7f1ea] text-stone-800">
       <section className="relative isolate px-4 pb-14 pt-16 sm:px-6 md:pb-20 md:pt-20">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,_rgba(255,255,255,0.95),_rgba(245,237,227,0.88)_45%,_rgba(234,223,211,0.9)_100%)]" />
+        <div className="absolute inset-0 bg-[linear-gradient(180deg,#fbf8f4_0%,#f5ede4_48%,#efe2d5_100%)]" />
         <div className="absolute left-1/2 top-0 h-64 w-64 -translate-x-1/2 rounded-full bg-white/60 blur-3xl" />
 
         <motion.div
@@ -199,8 +202,8 @@ export default function HomePage() {
             </h1>
 
             <p className="mt-5 max-w-2xl text-base leading-relaxed text-stone-600 md:text-lg">
-              Des poses élégantes, un style doux et raffiné, et une présentation pensée pour aller à
-              l’essentiel : voir, choisir, réserver.
+              Des poses élégantes, un univers doux et raffiné, et des créations soignées pour sublimer
+              chaque style.
             </p>
 
             <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-center">
@@ -247,19 +250,18 @@ export default function HomePage() {
           <p className="mt-4 max-w-3xl leading-relaxed text-stone-600">
             Je m’appelle Mélodie Blanco, fondatrice de Mélo Nail. Passionnée par l’onglerie, j’aime le
             travail minutieux, créatif et soigné. Mon univers mêle originalité, élégance et tendance,
-            avec l’envie de proposer des ongles qui font plaisir et dans lesquels chaque cliente se sent
-            bien.
+            avec l’envie de proposer des poses qui mettent chaque cliente en valeur.
           </p>
 
           <div className="mt-6 grid gap-3 sm:grid-cols-3">
             <div className="rounded-[1.25rem] border border-[#ece3d8] bg-[#f9f5f0] px-4 py-4 text-sm text-stone-700">
-              Créative, tendance, élégante
+              Créative, élégante et soignée
             </div>
             <div className="rounded-[1.25rem] border border-[#ece3d8] bg-[#f9f5f0] px-4 py-4 text-sm text-stone-700">
-              Féminin mais sobre
+              Féminin, sobre et raffiné
             </div>
             <div className="rounded-[1.25rem] border border-[#ece3d8] bg-[#f9f5f0] px-4 py-4 text-sm text-stone-700">
-              Photos → prix → réservation
+              Le sens du détail
             </div>
           </div>
         </div>
@@ -268,7 +270,7 @@ export default function HomePage() {
       <section id="bloc-principal" className="mx-auto max-w-6xl px-4 py-16 sm:px-6 md:py-20">
         <div className="mb-8 flex items-center gap-3">
           <WandSparkles className="h-5 w-5 text-[#a88467]" />
-          <h2 className="text-3xl font-semibold text-stone-900 md:text-4xl">Essentiel</h2>
+          <h2 className="text-3xl font-semibold text-stone-900 md:text-4xl">Prestations, tarifs et réservation</h2>
         </div>
 
         <div className="rounded-[2rem] border border-[#e8ddd1] bg-[#fcfaf7] p-4 shadow-[0_18px_50px_rgba(120,98,73,0.08)] sm:p-5">
@@ -358,8 +360,8 @@ export default function HomePage() {
           <div>
             <p className="text-2xl font-semibold text-stone-900">Mélo Nail</p>
             <p className="mt-2 max-w-xl text-sm leading-relaxed text-stone-600">
-              Onglerie créative à Neyron, près de Lyon. Un univers chic, doux et soigné, pensé pour être
-              simple à comprendre et agréable à parcourir.
+              À Neyron, près de Lyon, Mélo Nail signe des poses soignées, élégantes et tendance dans un
+              univers doux et raffiné.
             </p>
           </div>
 
