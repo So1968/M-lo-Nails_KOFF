@@ -1,15 +1,19 @@
 @import 'tailwindcss';
 :root {
-  --background: #f7f1ea;
-  --foreground: #3f342b;
-  --surface: rgba(255, 255, 255, 0.82);
-  --surface-border: rgba(191, 169, 146, 0.22);
-  --beige-1: #fbf8f4;
-  --beige-2: #f5ede4;
-  --beige-3: #efe2d5;
-  --beige-4: #e8ddd1;
-  --accent: #a88467;
-  --accent-soft: #f3e9dd;
+  --background: #f8f3ed;
+  --surface: #fffdfa;
+  --surface-2: #fffaf6;
+  --foreground: #3f3228;
+  --text-soft: #7a685b;
+  --border: #e7d8ca;
+  --border-strong: #d9c3ad;
+  --accent: #c8a487;
+  --accent-strong: #b38b6d;
+  --accent-soft: #efe2d5;
+  --gold-soft: #d8c1a0;
+  --gold: #c9a46a;
+  --gold-deep: #b88b4a;
+  --surface-border: rgba(201, 164, 106, 0.2);
 }
 
 * {
@@ -25,9 +29,9 @@ body {
   margin: 0;
   background:
     radial-gradient(circle at top, rgba(255, 255, 255, 0.95), transparent 34%),
-    radial-gradient(circle at 85% 12%, rgba(234, 221, 206, 0.65), transparent 28%),
-    radial-gradient(circle at 10% 85%, rgba(245, 235, 223, 0.75), transparent 26%),
-    linear-gradient(160deg, #fbf8f4 0%, #f5ede4 48%, #efe2d5 100%);
+    radial-gradient(circle at 85% 12%, rgba(239, 226, 213, 0.7), transparent 28%),
+    radial-gradient(circle at 10% 85%, rgba(255, 250, 246, 0.82), transparent 26%),
+    linear-gradient(160deg, var(--background) 0%, var(--surface) 50%, var(--surface-2) 100%);
   color: var(--foreground);
   font-family: Inter, Poppins, 'Avenir Next', 'Segoe UI', ui-sans-serif, system-ui, sans-serif;
 }
@@ -37,7 +41,7 @@ body {
 }
 
 .glass {
-  background: linear-gradient(145deg, rgba(255, 255, 255, 0.88) 0%, rgba(252, 247, 241, 0.78) 100%);
+  background: linear-gradient(145deg, rgba(255, 253, 250, 0.92) 0%, rgba(255, 250, 246, 0.82) 100%);
   border: 1px solid var(--surface-border);
   backdrop-filter: blur(14px);
   -webkit-backdrop-filter: blur(14px);
@@ -49,22 +53,22 @@ body {
     linear-gradient(135deg, rgba(255, 255, 255, 0.72), rgba(239, 226, 213, 0.82)),
     repeating-linear-gradient(
       45deg,
-      rgba(191, 169, 146, 0.08),
-      rgba(191, 169, 146, 0.08) 12px,
+      rgba(201, 164, 106, 0.08),
+      rgba(201, 164, 106, 0.08) 12px,
       rgba(255, 255, 255, 0.12) 12px,
       rgba(255, 255, 255, 0.12) 24px
     );
 }
 
 .text-gradient {
-  background: linear-gradient(90deg, #8c6d56, #b39274 48%, #d6b899);
+  background: linear-gradient(90deg, var(--accent-strong), var(--gold) 48%, var(--gold-soft));
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
 }
 
 ::selection {
-  background: rgba(179, 146, 116, 0.22);
+  background: rgba(201, 164, 106, 0.22);
   color: #2f251e;
 }
 

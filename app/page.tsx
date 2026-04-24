@@ -263,21 +263,21 @@ export default function ServicesInteractiveBlock() {
   return (
     <section className="mx-auto max-w-6xl px-4 py-16 sm:px-6 md:py-20">
       <div className="mb-8">
-        <p className="text-sm font-medium uppercase tracking-[0.2em] text-[#a88467]">
+        <p className="text-sm font-medium uppercase tracking-[0.2em] text-[var(--gold-deep)]">
           Prestations détaillées
         </p>
-        <h2 className="mt-3 text-3xl font-semibold text-stone-900 md:text-4xl">
+        <h2 className="mt-3 text-3xl font-semibold text-[var(--foreground)] md:text-4xl">
           Choisir la prestation qui vous correspond
         </h2>
-        <p className="mt-3 max-w-3xl text-base leading-relaxed text-stone-600">
+        <p className="mt-3 max-w-3xl text-base leading-relaxed text-[var(--text-soft)]">
           Découvrez chaque prestation à travers une image, une explication simple et des conseils pour
           mieux préserver l’ongle.
         </p>
       </div>
 
       <div className="grid gap-8 lg:grid-cols-[0.9fr_1.1fr]">
-        <div className="rounded-[2rem] border border-[#e8ddd1] bg-white/90 p-5 shadow-[0_18px_50px_rgba(120,98,73,0.08)]">
-          <p className="mb-4 text-sm font-medium uppercase tracking-[0.2em] text-stone-500">
+        <div className="rounded-[2rem] border border-[var(--border)] bg-[var(--surface)]/95 p-5 shadow-[0_18px_50px_rgba(120,98,73,0.08)]">
+          <p className="mb-4 text-sm font-medium uppercase tracking-[0.2em] text-[var(--text-soft)]">
             Toutes les prestations
           </p>
 
@@ -295,16 +295,16 @@ export default function ServicesInteractiveBlock() {
                   }}
                   className={`rounded-[1.25rem] border px-4 py-4 text-left transition ${
                     isActive
-                      ? 'border-[#cdb79f] bg-[#f3e9dd] shadow-[0_8px_20px_rgba(120,98,73,0.08)]'
-                      : 'border-[#ece3d8] bg-white hover:bg-[#faf6f1]'
+                      ? 'border-[var(--border-strong)] bg-[var(--accent-soft)] shadow-[0_8px_20px_rgba(120,98,73,0.08)]'
+                      : 'border-[var(--border)] bg-[var(--surface)] hover:bg-[var(--surface-2)]'
                   }`}
                 >
                   <div className="flex items-center justify-between gap-3">
                     <div>
-                      <p className="text-sm font-semibold text-stone-900">{service.shortLabel}</p>
-                      <p className="mt-1 text-xs text-stone-500">{service.price}</p>
+                      <p className="text-sm font-semibold text-[var(--foreground)]">{service.shortLabel}</p>
+                      <p className="mt-1 text-xs text-[var(--text-soft)]">{service.price}</p>
                     </div>
-                    <span className="text-xs font-medium uppercase tracking-[0.18em] text-[#a88467]">
+                    <span className="text-xs font-medium uppercase tracking-[0.18em] text-[var(--gold)]">
                       Voir
                     </span>
                   </div>
@@ -314,7 +314,7 @@ export default function ServicesInteractiveBlock() {
           </div>
         </div>
 
-        <div className="rounded-[2rem] border border-[#e8ddd1] bg-white/90 p-5 shadow-[0_18px_50px_rgba(120,98,73,0.08)]">
+        <div className="rounded-[2rem] border border-[var(--border)] bg-[var(--surface)]/95 p-5 shadow-[0_18px_50px_rgba(120,98,73,0.08)]">
           <AnimatePresence mode="wait">
             <motion.div
               key={currentService.id}
@@ -323,7 +323,7 @@ export default function ServicesInteractiveBlock() {
               exit={{ opacity: 0, y: -8 }}
               transition={{ duration: 0.22 }}
             >
-              <div className="overflow-hidden rounded-[1.5rem] border border-[#ece3d8] bg-[#f8f3ed]">
+              <div className="overflow-hidden rounded-[1.5rem] border border-[var(--border)] bg-[var(--background)]">
                 <img
                   src={currentService.image}
                   alt={currentService.imageAlt}
@@ -334,8 +334,8 @@ export default function ServicesInteractiveBlock() {
               <div className="mt-5">
                 <div className="flex flex-wrap items-center justify-between gap-3">
                   <div>
-                    <h3 className="text-2xl font-semibold text-stone-900">{currentService.title}</h3>
-                    <p className="mt-1 text-sm font-medium text-[#a88467]">{currentService.price}</p>
+                    <h3 className="text-2xl font-semibold text-[var(--foreground)]">{currentService.title}</h3>
+                    <p className="mt-1 text-sm font-medium text-[var(--gold-deep)]">{currentService.price}</p>
                   </div>
                 </div>
 
@@ -345,8 +345,8 @@ export default function ServicesInteractiveBlock() {
                     onClick={() => setActiveInfoTab('discover')}
                     className={`rounded-full px-5 py-3 text-sm font-semibold transition ${
                       activeInfoTab === 'discover'
-                        ? 'bg-[#a88467] text-white'
-                        : 'border border-[#e2d6ca] bg-white text-stone-700 hover:bg-[#f6efe7]'
+                        ? 'border border-[var(--gold)] bg-[var(--accent)] text-white'
+                        : 'border border-[var(--border)] bg-[var(--surface)] text-[var(--text-soft)] hover:bg-[var(--surface-2)]'
                     }`}
                   >
                     Découvrir la prestation
@@ -357,21 +357,21 @@ export default function ServicesInteractiveBlock() {
                     onClick={() => setActiveInfoTab('care')}
                     className={`rounded-full px-5 py-3 text-sm font-semibold transition ${
                       activeInfoTab === 'care'
-                        ? 'bg-[#a88467] text-white'
-                        : 'border border-[#e2d6ca] bg-white text-stone-700 hover:bg-[#f6efe7]'
+                        ? 'border border-[var(--gold)] bg-[var(--accent)] text-white'
+                        : 'border border-[var(--border)] bg-[var(--surface)] text-[var(--text-soft)] hover:bg-[var(--surface-2)]'
                     }`}
                   >
                     Préserver l’ongle
                   </button>
                 </div>
 
-                <div className="mt-5 rounded-[1.5rem] border border-[#ece3d8] bg-[#fcfaf7] p-5">
+                <div className="mt-5 rounded-[1.5rem] border border-[var(--border)] bg-[var(--surface-2)] p-5">
                   {activeInfoTab === 'discover' ? (
                     <div>
-                      <p className="text-sm font-medium uppercase tracking-[0.2em] text-stone-500">
+                      <p className="text-sm font-medium uppercase tracking-[0.2em] text-[var(--gold-deep)]">
                         {currentService.discoverTitle}
                       </p>
-                      <div className="mt-4 space-y-3 text-sm leading-relaxed text-stone-700">
+                      <div className="mt-4 space-y-3 text-sm leading-relaxed text-[var(--text-soft)]">
                         {currentService.discoverText.map((paragraph) => (
                           <p key={paragraph}>{paragraph}</p>
                         ))}
@@ -379,13 +379,13 @@ export default function ServicesInteractiveBlock() {
                     </div>
                   ) : (
                     <div>
-                      <p className="text-sm font-medium uppercase tracking-[0.2em] text-stone-500">
+                      <p className="text-sm font-medium uppercase tracking-[0.2em] text-[var(--gold-deep)]">
                         {currentService.careTitle}
                       </p>
-                      <ul className="mt-4 space-y-3 text-sm leading-relaxed text-stone-700">
+                      <ul className="mt-4 space-y-3 text-sm leading-relaxed text-[var(--text-soft)]">
                         {currentService.careText.map((item) => (
                           <li key={item} className="flex gap-3">
-                            <span className="mt-[0.45rem] h-1.5 w-1.5 rounded-full bg-[#a88467]" />
+                            <span className="mt-[0.45rem] h-1.5 w-1.5 rounded-full bg-[var(--gold)]" />
                             <span>{item}</span>
                           </li>
                         ))}
