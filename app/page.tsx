@@ -1,3 +1,4 @@
+import ServicesInteractiveBlock from './components/ServicesInteractiveBlock';
 'use client';
 
 import { useState } from 'react';
