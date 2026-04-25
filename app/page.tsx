@@ -7,10 +7,8 @@ import {
   Clock3,
   Instagram,
   MapPin,
-  Palette,
   Phone,
   Sparkles,
-  Star,
   WandSparkles
 } from 'lucide-react';
 import ServicesInteractiveBlock from './components/ServicesInteractiveBlock';
@@ -22,234 +20,165 @@ const prices = [
   'Capsules américaines / Gel X — à partir de 30€'
 ];
 
+const heroImages = [
+  {
+    title: 'French bleue fleurie',
+    image: '/melo-french-bleue.jpeg'
+  },
+  {
+    title: 'Création chic et affirmée',
+    image: '/melo-kaki-blanc.jpeg'
+  },
+  {
+    title: 'Inspiration graphique',
+    image: '/melo-graphique-jaune.jpeg'
+  }
+];
+
 const galleryImages = [
   {
-    title: 'Nude lumineux',
-    subtitle: 'Élégance sobre et soignée',
-    image:
-      'https://images.unsplash.com/photo-1604654894610-df63bc536371?auto=format&fit=crop&w=1200&q=80'
+    title: 'French bleue fleurie',
+    image: '/melo-french-bleue.jpeg'
   },
   {
-    title: 'French raffinée',
-    subtitle: 'Un classique chic et intemporel',
-    image:
-      'https://images.unsplash.com/photo-1519014816548-bf5fe059798b?auto=format&fit=crop&w=1200&q=80'
+    title: 'Création chic et affirmée',
+    image: '/melo-kaki-blanc.jpeg'
   },
   {
-    title: 'Gel X tendance',
-    subtitle: 'Une pose dessinée avec finesse',
-    image:
-      'https://images.unsplash.com/photo-1632345031435-8727f6897d53?auto=format&fit=crop&w=1200&q=80'
+    title: 'Inspiration graphique',
+    image: '/melo-graphique-jaune.jpeg'
   },
   {
-    title: 'Détails créatifs',
-    subtitle: 'Une touche de personnalité',
-    image:
-      'https://images.unsplash.com/photo-1610992015732-2449b76344bc?auto=format&fit=crop&w=1200&q=80'
-  },
-  {
-    title: 'Pose chic',
-    subtitle: 'Des mains sublimées avec douceur',
-    image:
-      'https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?auto=format&fit=crop&w=1200&q=80'
-  },
-  {
-    title: 'Finition soignée',
-    subtitle: 'Précision et rendu net',
-    image:
-      'https://images.unsplash.com/photo-1607779097040-26e80aa4576d?auto=format&fit=crop&w=1200&q=80'
+    title: 'Blanc chic',
+    image: '/melo-french-bleue.jpeg'
   }
 ];
 
 const fadeUp = {
-  hidden: { opacity: 0, y: 28 },
+  hidden: { opacity: 0, y: 24 },
   visible: { opacity: 1, y: 0 }
 };
 
 export default function HomePage() {
   return (
     <main className="overflow-hidden bg-[var(--background)] text-[var(--foreground)]">
-      <section className="relative isolate px-4 pb-16 pt-16 sm:px-6 md:pb-24 md:pt-20">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,_rgba(255,255,255,0.96),_rgba(246,240,234,0.82)_46%,_rgba(239,224,209,0.7)_100%)]" />
+      <section className="relative isolate flex min-h-[100svh] items-center px-4 py-8 sm:px-6 md:py-10">
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,_rgba(255,255,255,0.96),_rgba(246,240,234,0.84)_48%,_rgba(239,224,209,0.68)_100%)]" />
+        <div className="absolute right-10 top-10 h-64 w-64 rounded-full bg-[var(--gold-soft)]/20 blur-3xl" />
+        <div className="absolute bottom-10 left-10 h-72 w-72 rounded-full bg-white/60 blur-3xl" />
 
         <motion.div
           initial="hidden"
           animate="visible"
           transition={{ staggerChildren: 0.12 }}
-          className="relative mx-auto grid max-w-6xl gap-8 lg:grid-cols-[1.2fr_0.8fr]"
+          className="relative mx-auto grid w-full max-w-6xl items-center gap-8 lg:grid-cols-[1.02fr_0.98fr]"
         >
           <motion.div
             variants={fadeUp}
-            className="rounded-[2.6rem] border border-[var(--border)] bg-[var(--surface)]/96 px-6 py-8 shadow-[0_20px_48px_rgba(88,66,49,0.08)] sm:px-10 sm:py-10"
+            className="rounded-[2.4rem] border border-[var(--border)] bg-[var(--surface)]/95 p-6 shadow-[0_24px_60px_rgba(88,66,49,0.10)] sm:p-8"
           >
             <div className="inline-flex items-center gap-2 rounded-full border border-[var(--border)] bg-[var(--surface-2)] px-4 py-2 text-xs uppercase tracking-[0.24em] text-[var(--gold-deep)]">
               <Sparkles className="h-4 w-4" />
-              Mélo Nail · Neyron
+              Mélo Nail · secteur Neyron
             </div>
 
-            <div className="mt-6 h-px w-16 bg-gradient-to-r from-transparent via-[var(--gold)] to-transparent" />
+            <div className="mt-6 h-px w-20 bg-gradient-to-r from-transparent via-[var(--gold)] to-transparent" />
 
             <p className="mt-6 text-sm uppercase tracking-[0.3em] text-[var(--text-soft)]">
-              Onglerie créative & élégante
+              Onglerie créative · poses soignées · réservation en ligne
             </p>
 
-            <h1 className="font-serif-display mt-4 max-w-3xl text-5xl leading-[0.95] tracking-[-0.05em] text-[var(--foreground)] sm:text-6xl">
-              Sublimer vos mains
-              <span className="mt-2 block text-gradient">avec douceur</span>
+            <h1 className="font-serif-display mt-4 max-w-3xl text-4xl leading-[0.98] tracking-[-0.05em] text-[var(--foreground)] sm:text-5xl md:text-6xl">
+              Des poses d’ongles
+              <span className="mt-2 block text-gradient">qui révèlent votre style</span>
             </h1>
 
             <p className="mt-6 max-w-2xl text-lg leading-relaxed text-[var(--text-soft)]">
-              Des poses soignées, féminines et actuelles, dans un univers lumineux pensé pour allier
-              élégance, confort et belles finitions.
+              Un univers doux, précis et créatif pour des mains soignées, élégantes et faciles à
+              porter au quotidien.
             </p>
 
             <div className="mt-8 flex flex-wrap gap-4">
               <Link
-                href="#reservation"
-                className="soft-button inline-flex items-center justify-center rounded-full px-7 py-4 text-sm font-semibold transition"
+                href="#prestations"
+                className="inline-flex items-center justify-center rounded-full border border-[var(--gold)] bg-[var(--accent-strong)] px-7 py-4 text-sm font-semibold text-[#fffaf6] shadow-[0_14px_28px_rgba(159,113,84,0.18)] transition hover:bg-[var(--gold-deep)]"
               >
-                Prendre rendez-vous
+                Découvrir les prestations
               </Link>
 
               <Link
                 href="#galerie"
-                className="soft-outline inline-flex items-center justify-center rounded-full px-7 py-4 text-sm font-semibold transition"
+                className="inline-flex items-center justify-center rounded-full border border-[var(--border-strong)] bg-[var(--surface)] px-7 py-4 text-sm font-semibold text-[var(--foreground)] transition hover:bg-[var(--surface-2)]"
               >
                 Voir les réalisations
               </Link>
             </div>
+
+            <div className="mt-8 rounded-[1.8rem] border border-[var(--border)] bg-[var(--accent-soft)]/70 p-5">
+              <div className="flex items-start gap-3">
+                <WandSparkles className="mt-1 h-5 w-5 shrink-0 text-[var(--gold-deep)]" />
+                <div>
+                  <p className="font-serif-display text-2xl leading-tight text-[var(--foreground)]">
+                    Une pose pensée pour vous mettre en valeur.
+                  </p>
+                  <p className="mt-2 text-sm leading-relaxed text-[var(--text-soft)]">
+                    Mélo Nail accompagne chaque rendez-vous avec soin, écoute et précision, pour un
+                    résultat élégant qui reste fidèle à votre style.
+                  </p>
+                </div>
+              </div>
+            </div>
           </motion.div>
 
-          <div className="grid gap-4">
-            <motion.article
-              variants={fadeUp}
-              className="rounded-[2rem] border border-[var(--border)] bg-[var(--accent-soft)] p-7 shadow-[0_14px_32px_rgba(120,98,73,0.06)]"
-            >
-              <p className="text-sm uppercase tracking-[0.22em] text-[var(--gold-deep)]">
-                L’univers Mélo Nail
-              </p>
-              <h2 className="font-serif-display mt-4 text-3xl leading-tight text-[var(--foreground)]">
-                Doux, chic et raffiné
-              </h2>
-              <p className="mt-3 text-base leading-relaxed text-[var(--text-soft)]">
-                Un style pensé pour mettre en valeur la main avec précision, délicatesse et élégance.
-              </p>
-            </motion.article>
+          <motion.div variants={fadeUp} className="rounded-[2.4rem] border border-[var(--border)] bg-[var(--surface)]/92 p-3 shadow-[0_24px_60px_rgba(88,66,49,0.12)]">
+            <div className="grid gap-3">
+              <div className="overflow-hidden rounded-[2rem]">
+                <img
+                  src={heroImages[0].image}
+                  alt={heroImages[0].title}
+                  className="h-[300px] w-full object-cover sm:h-[330px] md:h-[350px]"
+                />
+              </div>
 
-            <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-1 xl:grid-cols-2">
-              <motion.article
-                variants={fadeUp}
-                className="rounded-[1.8rem] border border-[var(--border)] bg-[var(--surface)] p-6 shadow-[0_12px_28px_rgba(120,98,73,0.05)]"
-              >
-                <Palette className="h-5 w-5 text-[var(--gold-deep)]" />
-                <h3 className="mt-5 text-xl font-semibold text-[var(--foreground)]">Style signature</h3>
-                <p className="mt-3 text-base leading-relaxed text-[var(--text-soft)]">
-                  Des poses fines, lumineuses et actuelles, avec une vraie attention portée aux détails.
-                </p>
-              </motion.article>
-
-              <motion.article
-                variants={fadeUp}
-                className="rounded-[1.8rem] border border-[var(--border)] bg-[var(--surface)] p-6 shadow-[0_12px_28px_rgba(120,98,73,0.05)]"
-              >
-                <Star className="h-5 w-5 text-[var(--gold-deep)]" />
-                <h3 className="mt-5 text-xl font-semibold text-[var(--foreground)]">Ce qui compte</h3>
-                <p className="mt-3 text-base leading-relaxed text-[var(--text-soft)]">
-                  Vous proposer une pose qui vous ressemble, dans un cadre rassurant, doux et soigné.
-                </p>
-              </motion.article>
+              <div className="grid gap-3 sm:grid-cols-2">
+                {heroImages.slice(1).map((item) => (
+                  <div
+                    key={item.title}
+                    className="overflow-hidden rounded-[1.6rem] border border-[var(--border)] bg-[var(--surface-2)]"
+                  >
+                    <img
+                      src={item.image}
+                      alt={item.title}
+                      className="h-36 w-full object-cover sm:h-40"
+                    />
+                    <p className="px-4 py-3 text-sm font-medium text-[var(--foreground)]">
+                      {item.title}
+                    </p>
+                  </div>
+                ))}
+              </div>
             </div>
-          </div>
+          </motion.div>
         </motion.div>
       </section>
 
-      <section className="mx-auto max-w-6xl px-4 py-16 sm:px-6 md:py-20">
-        <div className="grid gap-6 lg:grid-cols-[1fr_1.15fr]">
-          <motion.article
-            initial={{ opacity: 0, y: 22 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.2 }}
-            className="glass rounded-[2rem] p-8 sm:p-9"
-          >
-            <div className="mb-4 flex items-center gap-3">
-              <WandSparkles className="h-5 w-5 text-[var(--gold-deep)]" />
-              <p className="text-sm uppercase tracking-[0.24em] text-[var(--gold-deep)]">
-                Présentation
-              </p>
-            </div>
-            <h2 className="font-serif-display text-4xl tracking-[-0.04em] text-[var(--foreground)]">
-              Mélo Nail
-            </h2>
-            <p className="mt-5 text-lg leading-relaxed text-[var(--text-soft)]">
-              Je m’appelle Mélodie Blanco, fondatrice de Mélo Nail. Passionnée par l’onglerie, j’aime
-              le travail minutieux, créatif et soigné. Mon univers mêle originalité, élégance et
-              tendance, avec l’envie de proposer des ongles qui font plaisir et dans lesquels chaque
-              cliente se sent bien.
-            </p>
-          </motion.article>
-
-          <div className="grid gap-6 sm:grid-cols-2">
-            <motion.article
-              initial={{ opacity: 0, y: 22 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.2 }}
-              className="rounded-[2rem] border border-[var(--border)] bg-[var(--accent-soft)]/80 p-6"
-            >
-              <p className="text-sm uppercase tracking-[0.22em] text-[var(--gold-deep)]">
-                Positionnement
-              </p>
-              <h3 className="font-serif-display mt-4 text-3xl text-[var(--foreground)]">
-                Créative et élégante
-              </h3>
-              <p className="mt-4 text-base leading-relaxed text-[var(--text-soft)]">
-                Des poses originales et soignées, avec une vraie sensibilité au détail.
-              </p>
-            </motion.article>
-
-            <motion.article
-              initial={{ opacity: 0, y: 22 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.2 }}
-              className="rounded-[2rem] border border-[var(--border)] bg-[var(--surface)] p-6"
-            >
-              <p className="text-sm uppercase tracking-[0.22em] text-[var(--gold-deep)]">
-                Ambiance
-              </p>
-              <h3 className="font-serif-display mt-4 text-3xl text-[var(--foreground)]">
-                Douce et professionnelle
-              </h3>
-              <p className="mt-4 text-base leading-relaxed text-[var(--text-soft)]">
-                Un accueil sur rendez-vous dans un cadre clair, rassurant et organisé.
-              </p>
-            </motion.article>
-
-            <motion.article
-              initial={{ opacity: 0, y: 22 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.2 }}
-              className="rounded-[2rem] border border-[var(--border)] bg-[var(--surface)] p-6 sm:col-span-2"
-            >
-              <p className="text-sm uppercase tracking-[0.22em] text-[var(--gold-deep)]">Objectif</p>
-              <h3 className="font-serif-display mt-4 text-3xl text-[var(--foreground)]">
-                Montrer, rassurer, puis réserver
-              </h3>
-              <p className="mt-4 text-base leading-relaxed text-[var(--text-soft)]">
-                Le site est pensé pour faire découvrir l’univers de Mélo Nail, mettre en valeur les
-                prestations et permettre une prise de rendez-vous simple.
-              </p>
-            </motion.article>
-          </div>
-        </div>
+      <section id="prestations">
+        <ServicesInteractiveBlock />
       </section>
 
-      <ServicesInteractiveBlock />
-
       <section id="galerie" className="mx-auto max-w-6xl px-4 py-16 sm:px-6 md:py-20">
-        <div className="mb-10 flex items-center gap-3">
-          <span className="gold-line" />
-          <h2 className="font-serif-display text-4xl tracking-[-0.03em] text-[var(--foreground)]">
-            Quelques réalisations
-          </h2>
+        <div className="mb-10 flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
+          <div>
+            <div className="mb-4 flex items-center gap-3">
+              <span className="gold-line" />
+              <p className="text-sm uppercase tracking-[0.24em] text-[var(--gold-deep)]">
+                Réalisations
+              </p>
+            </div>
+            <h2 className="font-serif-display text-4xl tracking-[-0.04em] text-[var(--foreground)] md:text-5xl">
+              Quelques réalisations Mélo Nail
+            </h2>
+          </div>
         </div>
 
         <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
@@ -269,7 +198,6 @@ export default function HomePage() {
                 />
                 <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-[rgba(47,41,37,0.78)] via-[rgba(47,41,37,0.2)] to-transparent p-5">
                   <p className="font-serif-display text-2xl text-white">{item.title}</p>
-                  <p className="mt-1 text-sm text-white/85">{item.subtitle}</p>
                 </div>
               </div>
             </motion.article>
@@ -292,6 +220,10 @@ export default function HomePage() {
               </p>
             </div>
 
+            <h2 className="font-serif-display mb-6 text-4xl tracking-[-0.04em] text-[var(--foreground)]">
+              Repères tarifs
+            </h2>
+
             <div className="grid gap-3">
               {prices.map((price) => (
                 <div
@@ -313,7 +245,7 @@ export default function HomePage() {
             initial={{ opacity: 0, y: 22 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.2 }}
-            className="rounded-[2rem] border border-[var(--border)] bg-[var(--accent-soft)]/82 p-8 shadow-[0_16px_36px_rgba(120,98,73,0.06)]"
+            className="rounded-[2rem] border border-[var(--gold)] bg-[var(--accent-soft)]/82 p-8 shadow-[0_16px_36px_rgba(120,98,73,0.08)]"
           >
             <div className="mb-4 flex items-center gap-3">
               <Clock3 className="h-5 w-5 text-[var(--gold-deep)]" />
@@ -323,12 +255,13 @@ export default function HomePage() {
             </div>
 
             <h2 className="font-serif-display text-4xl tracking-[-0.03em] text-[var(--foreground)]">
-              Prendre rendez-vous simplement
+              Réserver simplement
             </h2>
 
             <p className="mt-4 text-lg leading-relaxed text-[var(--text-soft)]">
-              Les rendez-vous se réservent en ligne. Un pré-paiement sécurisé permet de confirmer le
-              créneau et de préparer la prestation dans les meilleures conditions.
+              Les rendez-vous se réservent en ligne. Le pré-paiement sécurisé confirme votre
+              créneau et permet de consacrer le rendez-vous uniquement à votre accueil et à votre
+              prestation.
             </p>
 
             <div className="mt-6 grid gap-3 sm:grid-cols-2">
@@ -354,16 +287,16 @@ export default function HomePage() {
             <div className="mt-8 flex flex-wrap gap-4">
               <Link
                 href="#contacts"
-                className="soft-button inline-flex items-center justify-center rounded-full px-7 py-4 text-sm font-semibold transition"
+                className="inline-flex items-center justify-center rounded-full border border-[var(--gold)] bg-[var(--accent-strong)] px-7 py-4 text-sm font-semibold text-[#fffaf6] shadow-[0_14px_28px_rgba(159,113,84,0.18)] transition hover:bg-[var(--gold-deep)]"
               >
                 Voir les contacts
               </Link>
 
               <Link
-                href="#galerie"
-                className="soft-outline inline-flex items-center justify-center rounded-full px-7 py-4 text-sm font-semibold transition"
+                href="#prestations"
+                className="inline-flex items-center justify-center rounded-full border border-[var(--border-strong)] bg-[var(--surface)] px-7 py-4 text-sm font-semibold text-[var(--foreground)] transition hover:bg-[var(--surface-2)]"
               >
-                Revoir les réalisations
+                Revoir les prestations
               </Link>
             </div>
           </motion.article>
