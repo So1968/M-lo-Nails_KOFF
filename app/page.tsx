@@ -23,34 +23,34 @@ const prices = [
 const heroImages = [
   {
     title: 'French bleue fleurie',
-    image: '/images/melo-french-bleue.jpeg'
+    image: '/images/melo-blanc-bleu.png'
   },
   {
     title: 'Création chic et affirmée',
-    image: '/images/melo-kaki-blanc.jpeg'
+    image: '/images/melo-kaki-blanc-1.png'
   },
   {
     title: 'Inspiration graphique',
-    image: '/images/melo-graphique-jaune.jpeg'
+    image: '/images/melo-kaki-blanc-2.png'
   }
 ];
 
 const galleryImages = [
   {
     title: 'French bleue fleurie',
-    image: '/images/melo-french-bleue.jpeg'
+    image: '/images/melo-telephone.png'
   },
   {
     title: 'Création chic et affirmée',
-    image: '/images/melo-kaki-blanc.jpeg'
+    image: '/images/melo-kaki-blanc-1.png'
   },
   {
     title: 'Inspiration graphique',
-    image: '/images/melo-graphique-jaune.jpeg'
+    image: '/images/melo-kaki-blanc-2.png'
   },
   {
     title: 'Blanc chic',
-    image: '/images/melo-french-bleue.jpeg'
+    image: '/images/melo-telephone.png'
   }
 ];
 
