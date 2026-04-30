@@ -89,9 +89,13 @@ export default function HomePage() {
             </p>
 
             <h1 className="font-serif-display mt-4 max-w-3xl text-4xl leading-[0.98] tracking-[-0.05em] text-[var(--foreground)] sm:text-5xl md:text-6xl">
-              Des poses d’ongles
+              Des ongles
               <span className="mt-2 block text-gradient">qui révèlent votre style</span>
             </h1>
+
+            <p className="mt-4 inline-flex items-center gap-2 rounded-full bg-[var(--surface-2)] px-4 py-2 text-sm font-medium text-[var(--gold-deep)]">
+              Neyron • Sur rendez-vous uniquement
+            </p>
 
             <p className="mt-6 max-w-2xl text-lg leading-relaxed text-[var(--text-soft)]">
               Un univers doux, précis et créatif pour des mains soignées, élégantes et faciles à
@@ -136,7 +140,7 @@ export default function HomePage() {
                 <img
                   src={heroImages[0].image}
                   alt={heroImages[0].title}
-                  className="h-[300px] w-full object-cover sm:h-[330px] md:h-[350px]"
+                  className="h-[300px] w-full scale-105 object-cover object-center brightness-[1.04] contrast-[1.08] saturate-[1.08] transition duration-700 hover:scale-110 sm:h-[330px] md:h-[350px]"
                 />
               </div>
 
@@ -149,7 +153,7 @@ export default function HomePage() {
                     <img
                       src={item.image}
                       alt={item.title}
-                      className="h-36 w-full object-cover sm:h-40"
+                      className="h-36 w-full scale-105 object-cover object-center brightness-[1.05] contrast-[1.1] saturate-[1.08] transition duration-700 hover:scale-110 sm:h-40"
                     />
                     <p className="px-4 py-3 text-sm font-medium text-[var(--foreground)]">
                       {item.title}
@@ -194,7 +198,7 @@ export default function HomePage() {
                 <img
                   src={item.image}
                   alt={item.title}
-                  className="h-72 w-full object-cover transition duration-700 group-hover:scale-105"
+                  className="h-72 w-full scale-105 object-cover object-center brightness-[1.04] contrast-[1.08] saturate-[1.08] transition duration-700 group-hover:scale-110"
                 />
                 <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-[rgba(47,41,37,0.78)] via-[rgba(47,41,37,0.2)] to-transparent p-5">
                   <p className="font-serif-display text-2xl text-white">{item.title}</p>
