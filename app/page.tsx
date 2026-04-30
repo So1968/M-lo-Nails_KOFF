@@ -1,4 +1,4 @@
-﻿'use client';
+'use client';
 
 import Link from 'next/link';
 import { motion } from 'framer-motion';
@@ -14,19 +14,19 @@ import {
 import ServicesInteractiveBlock from './components/ServicesInteractiveBlock';
 
 const prices = [
-  'Semi-permanent sur ongle naturel â€” Ã  partir de 20â‚¬',
-  'Pose gel â€” Ã  partir de 25â‚¬',
-  'Gainage â€” Ã  partir de 25â‚¬',
-  'Capsules amÃ©ricaines / Gel X â€” Ã  partir de 30â‚¬'
+  'Semi-permanent sur ongle naturel — à partir de 20€',
+  'Pose gel — à partir de 25€',
+  'Gainage — à partir de 25€',
+  'Capsules américaines / Gel X — à partir de 30€'
 ];
 
 const heroImages = [
   {
     title: 'French bleue fleurie',
-    image: '/images/melo-telephone.png'
+    image: '/images/melo-blanc-bleu.png'
   },
   {
-    title: 'CrÃ©ation chic et affirmÃ©e',
+    title: 'Création chic et affirmée',
     image: '/images/melo-kaki-blanc-1.png'
   },
   {
@@ -41,7 +41,7 @@ const galleryImages = [
     image: '/images/melo-telephone.png'
   },
   {
-    title: 'CrÃ©ation chic et affirmÃ©e',
+    title: 'Création chic et affirmée',
     image: '/images/melo-kaki-blanc-1.png'
   },
   {
@@ -79,26 +79,26 @@ export default function HomePage() {
           >
             <div className="inline-flex items-center gap-2 rounded-full border border-[var(--border)] bg-[var(--surface-2)] px-4 py-2 text-xs uppercase tracking-[0.24em] text-[var(--gold-deep)]">
               <Sparkles className="h-4 w-4" />
-              MÃ©lo Nail Â· secteur Neyron
+              Mélo Nail · secteur Neyron
             </div>
 
             <div className="mt-6 h-px w-20 bg-gradient-to-r from-transparent via-[var(--gold)] to-transparent" />
 
             <p className="mt-6 text-sm uppercase tracking-[0.3em] text-[var(--text-soft)]">
-              Onglerie crÃ©ative Â· poses soignÃ©es Â· rÃ©servation en ligne
+              Onglerie créative · poses soignées · réservation en ligne
             </p>
 
             <h1 className="font-serif-display mt-4 max-w-3xl text-4xl leading-[0.98] tracking-[-0.05em] text-[var(--foreground)] sm:text-5xl md:text-6xl">
               Des ongles
-              <span className="mt-2 block text-gradient">qui rÃ©vÃ¨lent votre style</span>
+              <span className="mt-2 block text-gradient">qui révèlent votre style</span>
             </h1>
 
             <p className="mt-4 inline-flex items-center gap-2 rounded-full bg-[var(--surface-2)] px-4 py-2 text-sm font-medium text-[var(--gold-deep)]">
-              Neyron â€¢ Sur rendez-vous uniquement
+              Neyron • Sur rendez-vous uniquement
             </p>
 
             <p className="mt-6 max-w-2xl text-lg leading-relaxed text-[var(--text-soft)]">
-              Un univers doux, prÃ©cis et crÃ©atif pour des mains soignÃ©es, Ã©lÃ©gantes et faciles Ã 
+              Un univers doux, précis et créatif pour des mains soignées, élégantes et faciles à
               porter au quotidien.
             </p>
 
@@ -107,14 +107,14 @@ export default function HomePage() {
                 href="#prestations"
                 className="inline-flex items-center justify-center rounded-full border border-[var(--gold)] bg-[var(--accent-strong)] px-7 py-4 text-sm font-semibold text-[#fffaf6] shadow-[0_14px_28px_rgba(159,113,84,0.18)] transition hover:bg-[var(--gold-deep)]"
               >
-                DÃ©couvrir les prestations
+                Découvrir les prestations
               </Link>
 
               <Link
                 href="#galerie"
                 className="inline-flex items-center justify-center rounded-full border border-[var(--border-strong)] bg-[var(--surface)] px-7 py-4 text-sm font-semibold text-[var(--foreground)] transition hover:bg-[var(--surface-2)]"
               >
-                Voir les rÃ©alisations
+                Voir les réalisations
               </Link>
             </div>
 
@@ -123,11 +123,11 @@ export default function HomePage() {
                 <WandSparkles className="mt-1 h-5 w-5 shrink-0 text-[var(--gold-deep)]" />
                 <div>
                   <p className="font-serif-display text-2xl leading-tight text-[var(--foreground)]">
-                    Une pose pensÃ©e pour vous mettre en valeur.
+                    Une pose pensée pour vous mettre en valeur.
                   </p>
                   <p className="mt-2 text-sm leading-relaxed text-[var(--text-soft)]">
-                    MÃ©lo Nail accompagne chaque rendez-vous avec soin, Ã©coute et prÃ©cision, pour un
-                    rÃ©sultat Ã©lÃ©gant qui reste fidÃ¨le Ã  votre style.
+                    Mélo Nail accompagne chaque rendez-vous avec soin, écoute et précision, pour un
+                    résultat élégant qui reste fidèle à votre style.
                   </p>
                 </div>
               </div>
@@ -176,11 +176,11 @@ export default function HomePage() {
             <div className="mb-4 flex items-center gap-3">
               <span className="gold-line" />
               <p className="text-sm uppercase tracking-[0.24em] text-[var(--gold-deep)]">
-                RÃ©alisations
+                Réalisations
               </p>
             </div>
             <h2 className="font-serif-display text-4xl tracking-[-0.04em] text-[var(--foreground)] md:text-5xl">
-              Quelques rÃ©alisations MÃ©lo Nail
+              Quelques réalisations Mélo Nail
             </h2>
           </div>
         </div>
@@ -220,12 +220,12 @@ export default function HomePage() {
             <div className="mb-4 flex items-center gap-3">
               <CalendarDays className="h-5 w-5 text-[var(--gold-deep)]" />
               <p className="text-sm uppercase tracking-[0.22em] text-[var(--gold-deep)]">
-                Tarifs de dÃ©part
+                Tarifs de départ
               </p>
             </div>
 
             <h2 className="font-serif-display mb-6 text-4xl tracking-[-0.04em] text-[var(--foreground)]">
-              RepÃ¨res tarifs
+              Repères tarifs
             </h2>
 
             <div className="grid gap-3">
@@ -240,8 +240,8 @@ export default function HomePage() {
             </div>
 
             <p className="mt-6 text-sm leading-relaxed text-[var(--text-soft)]">
-              Les tarifs peuvent varier selon la longueur, le niveau de dÃ©tail, les dÃ©corations et le
-              temps de rÃ©alisation.
+              Les tarifs peuvent varier selon la longueur, le niveau de détail, les décorations et le
+              temps de réalisation.
             </p>
           </motion.article>
 
@@ -254,38 +254,38 @@ export default function HomePage() {
             <div className="mb-4 flex items-center gap-3">
               <Clock3 className="h-5 w-5 text-[var(--gold-deep)]" />
               <p className="text-sm uppercase tracking-[0.22em] text-[var(--gold-deep)]">
-                RÃ©servation
+                Réservation
               </p>
             </div>
 
             <h2 className="font-serif-display text-4xl tracking-[-0.03em] text-[var(--foreground)]">
-              RÃ©server simplement
+              Réserver simplement
             </h2>
 
             <p className="mt-4 text-lg leading-relaxed text-[var(--text-soft)]">
-              Les rendez-vous se rÃ©servent en ligne. Le prÃ©-paiement sÃ©curisÃ© confirme votre
-              crÃ©neau et permet de consacrer le rendez-vous uniquement Ã  votre accueil et Ã  votre
+              Les rendez-vous se réservent en ligne. Le pré-paiement sécurisé confirme votre
+              créneau et permet de consacrer le rendez-vous uniquement à votre accueil et à votre
               prestation.
             </p>
 
             <div className="mt-6 grid gap-3 sm:grid-cols-2">
               <div className="rounded-[1.2rem] bg-[var(--surface)] px-4 py-4 text-[var(--foreground)]">
-                Lundi Ã  vendredi
+                Lundi à vendredi
               </div>
               <div className="rounded-[1.2rem] bg-[var(--surface)] px-4 py-4 text-[var(--foreground)]">
-                8hâ€“12h / 14hâ€“19h
+                8h–12h / 14h–19h
               </div>
               <div className="rounded-[1.2rem] bg-[var(--surface)] px-4 py-4 text-[var(--foreground)]">
-                1h30 Ã  3h selon la pose
+                1h30 à 3h selon la pose
               </div>
               <div className="rounded-[1.2rem] bg-[var(--surface)] px-4 py-4 text-[var(--foreground)]">
-                PrÃ©-paiement sÃ©curisÃ©
+                Pré-paiement sécurisé
               </div>
             </div>
 
             <p className="mt-6 text-sm leading-relaxed text-[var(--text-soft)]">
-              En cas dâ€™imprÃ©vu, lâ€™annulation ou le dÃ©placement du rendez-vous reste possible dans le
-              dÃ©lai indiquÃ© lors de la rÃ©servation.
+              En cas d’imprévu, l’annulation ou le déplacement du rendez-vous reste possible dans le
+              délai indiqué lors de la réservation.
             </p>
 
             <div className="mt-8 flex flex-wrap gap-4">
@@ -311,18 +311,18 @@ export default function HomePage() {
         <div className="mx-auto grid max-w-6xl gap-8 px-4 py-12 sm:px-6 md:grid-cols-[1.2fr_0.8fr]">
           <div>
             <h2 className="font-serif-display text-4xl tracking-[-0.04em] text-[var(--foreground)]">
-              MÃ©lo Nail
+              Mélo Nail
             </h2>
             <p className="mt-4 max-w-xl text-base leading-relaxed text-[var(--text-soft)]">
-              Onglerie crÃ©ative Ã  Neyron. Un univers chic, doux et soignÃ©, centrÃ© sur lâ€™Ã©lÃ©gance des
-              poses et une rÃ©servation simple.
+              Onglerie créative à Neyron. Un univers chic, doux et soigné, centré sur l’élégance des
+              poses et une réservation simple.
             </p>
           </div>
 
           <div className="space-y-4 text-base text-[var(--foreground)]">
             <div className="flex items-center gap-3">
               <MapPin className="h-5 w-5 text-[var(--gold-deep)]" />
-              <span>Neyron â€¢ 01700</span>
+              <span>Neyron • 01700</span>
             </div>
 
             <div className="flex items-center gap-3">
@@ -332,7 +332,7 @@ export default function HomePage() {
 
             <div className="flex items-center gap-3">
               <Phone className="h-5 w-5 text-[var(--gold-deep)]" />
-              <span>TÃ©lÃ©phone en complÃ©ment si besoin</span>
+              <span>Téléphone en complément si besoin</span>
             </div>
           </div>
         </div>
@@ -340,4 +340,3 @@ export default function HomePage() {
     </main>
   );
 }
-
