@@ -22,16 +22,16 @@ const prices = [
 
 const heroImages = [
   {
+    title: 'La pose préférée de Mélo',
+    image: '/images/melo-telephone.png'
+  },
+  {
     title: 'French bleue fleurie',
     image: '/images/melo-blanc-bleu.png'
   },
   {
-    title: 'Création chic et affirmée',
+    title: 'Création kaki chic',
     image: '/images/melo-kaki-blanc-1.png'
-  },
-  {
-    title: 'Inspiration graphique',
-    image: '/images/melo-kaki-blanc-2.png'
   }
 ];
 
