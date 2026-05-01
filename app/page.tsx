@@ -37,20 +37,20 @@ const heroImages = [
 
 const galleryImages = [
   {
-    title: 'French bleue fleurie',
+    title: 'Création signature au téléphone',
     image: '/images/melo-telephone.png'
   },
   {
-    title: 'Création chic et affirmée',
+    title: 'Kaki blanc élégant',
     image: '/images/melo-kaki-blanc-1.png'
   },
   {
-    title: 'Inspiration graphique',
-    image: '/images/melo-kaki-blanc-2.png'
+    title: 'Blanc bleu raffiné',
+    image: '/images/melo-blanc-bleu.png'
   },
   {
-    title: 'Blanc chic',
-    image: '/images/melo-telephone.png'
+    title: 'Kaki blanc graphique',
+    image: '/images/melo-kaki-blanc-2.png'
   }
 ];
 
