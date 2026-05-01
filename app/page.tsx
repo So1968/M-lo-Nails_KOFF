@@ -3,7 +3,6 @@
 import Link from 'next/link';
 import { motion } from 'framer-motion';
 import {
-  CalendarDays,
   Clock3,
   Instagram,
   MapPin,
@@ -12,13 +11,6 @@ import {
   WandSparkles
 } from 'lucide-react';
 import ServicesInteractiveBlock from './components/ServicesInteractiveBlock';
-
-const prices = [
-  'Semi-permanent sur ongle naturel — à partir de 20€',
-  'Pose gel — à partir de 25€',
-  'Gainage — à partir de 25€',
-  'Capsules américaines / Gel X — à partir de 30€'
-];
 
 const heroImages = [
   {
@@ -116,6 +108,13 @@ export default function HomePage() {
               >
                 Voir les réalisations
               </Link>
+
+              <Link
+                href="#reservation"
+                className="inline-flex items-center justify-center rounded-full border border-[var(--border-strong)] bg-[var(--surface)] px-7 py-4 text-sm font-semibold text-[var(--foreground)] transition hover:bg-[var(--surface-2)]"
+              >
+                Prendre rendez-vous
+              </Link>
             </div>
 
             <div className="mt-8 rounded-[1.8rem] border border-[var(--border)] bg-[var(--accent-soft)]/70 p-5">
@@ -183,6 +182,12 @@ export default function HomePage() {
               Quelques réalisations Mélo Nail
             </h2>
           </div>
+          <Link
+            href="#reservation"
+            className="inline-flex w-fit items-center justify-center rounded-full border border-[var(--gold)] bg-[var(--accent-strong)] px-6 py-3 text-sm font-semibold text-[#fffaf6] shadow-[0_14px_28px_rgba(159,113,84,0.16)] transition hover:bg-[var(--gold-deep)]"
+          >
+            Prendre rendez-vous
+          </Link>
         </div>
 
         <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
@@ -210,101 +215,62 @@ export default function HomePage() {
       </section>
 
       <section id="reservation" className="mx-auto max-w-6xl px-4 pb-20 pt-6 sm:px-6 md:pb-24">
-        <div className="grid gap-6 lg:grid-cols-2">
-          <motion.article
-            initial={{ opacity: 0, y: 22 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.2 }}
-            className="rounded-[2rem] border border-[var(--border)] bg-[var(--surface)] p-8 shadow-[0_16px_36px_rgba(120,98,73,0.06)]"
-          >
-            <div className="mb-4 flex items-center gap-3">
-              <CalendarDays className="h-5 w-5 text-[var(--gold-deep)]" />
-              <p className="text-sm uppercase tracking-[0.22em] text-[var(--gold-deep)]">
-                Tarifs de départ
+        <motion.article
+          initial={{ opacity: 0, y: 22 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.2 }}
+          className="rounded-[2.4rem] border border-[var(--gold)] bg-[var(--accent-soft)]/82 p-8 shadow-[0_16px_36px_rgba(120,98,73,0.08)] md:p-10"
+        >
+          <div className="mb-4 flex items-center gap-3">
+            <Clock3 className="h-5 w-5 text-[var(--gold-deep)]" />
+            <p className="text-sm uppercase tracking-[0.22em] text-[var(--gold-deep)]">
+              Réservation
+            </p>
+          </div>
+
+          <div className="grid gap-8 lg:grid-cols-[1fr_0.9fr] lg:items-center">
+            <div>
+              <h2 className="font-serif-display text-4xl tracking-[-0.03em] text-[var(--foreground)] md:text-5xl">
+                Prendre rendez-vous simplement
+              </h2>
+
+              <p className="mt-4 text-lg leading-relaxed text-[var(--text-soft)]">
+                Choisissez la prestation qui vous correspond, puis réservez votre créneau en ligne. Le rendez-vous est pensé pour prendre le temps de vous accueillir, comprendre votre envie et réaliser une pose soignée.
               </p>
-            </div>
 
-            <h2 className="font-serif-display mb-6 text-4xl tracking-[-0.04em] text-[var(--foreground)]">
-              Repères tarifs
-            </h2>
-
-            <div className="grid gap-3">
-              {prices.map((price) => (
-                <div
-                  key={price}
-                  className="rounded-[1.2rem] border border-[var(--border)] bg-[var(--surface-2)] px-4 py-4 text-base text-[var(--foreground)]"
+              <div className="mt-8 flex flex-wrap gap-4">
+                <Link
+                  href="#contacts"
+                  className="inline-flex items-center justify-center rounded-full border border-[var(--gold)] bg-[var(--accent-strong)] px-7 py-4 text-sm font-semibold text-[#fffaf6] shadow-[0_14px_28px_rgba(159,113,84,0.18)] transition hover:bg-[var(--gold-deep)]"
                 >
-                  {price}
-                </div>
-              ))}
-            </div>
+                  Voir les contacts
+                </Link>
 
-            <p className="mt-6 text-sm leading-relaxed text-[var(--text-soft)]">
-              Les tarifs peuvent varier selon la longueur, le niveau de détail, les décorations et le
-              temps de réalisation.
-            </p>
-          </motion.article>
-
-          <motion.article
-            initial={{ opacity: 0, y: 22 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.2 }}
-            className="rounded-[2rem] border border-[var(--gold)] bg-[var(--accent-soft)]/82 p-8 shadow-[0_16px_36px_rgba(120,98,73,0.08)]"
-          >
-            <div className="mb-4 flex items-center gap-3">
-              <Clock3 className="h-5 w-5 text-[var(--gold-deep)]" />
-              <p className="text-sm uppercase tracking-[0.22em] text-[var(--gold-deep)]">
-                Réservation
-              </p>
-            </div>
-
-            <h2 className="font-serif-display text-4xl tracking-[-0.03em] text-[var(--foreground)]">
-              Réserver simplement
-            </h2>
-
-            <p className="mt-4 text-lg leading-relaxed text-[var(--text-soft)]">
-              Les rendez-vous se réservent en ligne. Le pré-paiement sécurisé confirme votre
-              créneau et permet de consacrer le rendez-vous uniquement à votre accueil et à votre
-              prestation.
-            </p>
-
-            <div className="mt-6 grid gap-3 sm:grid-cols-2">
-              <div className="rounded-[1.2rem] bg-[var(--surface)] px-4 py-4 text-[var(--foreground)]">
-                Lundi à vendredi
-              </div>
-              <div className="rounded-[1.2rem] bg-[var(--surface)] px-4 py-4 text-[var(--foreground)]">
-                8h–12h / 14h–19h
-              </div>
-              <div className="rounded-[1.2rem] bg-[var(--surface)] px-4 py-4 text-[var(--foreground)]">
-                1h30 à 3h selon la pose
-              </div>
-              <div className="rounded-[1.2rem] bg-[var(--surface)] px-4 py-4 text-[var(--foreground)]">
-                Pré-paiement sécurisé
+                <Link
+                  href="#prestations"
+                  className="inline-flex items-center justify-center rounded-full border border-[var(--border-strong)] bg-[var(--surface)] px-7 py-4 text-sm font-semibold text-[var(--foreground)] transition hover:bg-[var(--surface-2)]"
+                >
+                  Revoir les prestations
+                </Link>
               </div>
             </div>
 
-            <p className="mt-6 text-sm leading-relaxed text-[var(--text-soft)]">
-              En cas d’imprévu, l’annulation ou le déplacement du rendez-vous reste possible dans le
-              délai indiqué lors de la réservation.
-            </p>
-
-            <div className="mt-8 flex flex-wrap gap-4">
-              <Link
-                href="#contacts"
-                className="inline-flex items-center justify-center rounded-full border border-[var(--gold)] bg-[var(--accent-strong)] px-7 py-4 text-sm font-semibold text-[#fffaf6] shadow-[0_14px_28px_rgba(159,113,84,0.18)] transition hover:bg-[var(--gold-deep)]"
-              >
-                Voir les contacts
-              </Link>
-
-              <Link
-                href="#prestations"
-                className="inline-flex items-center justify-center rounded-full border border-[var(--border-strong)] bg-[var(--surface)] px-7 py-4 text-sm font-semibold text-[var(--foreground)] transition hover:bg-[var(--surface-2)]"
-              >
-                Revoir les prestations
-              </Link>
+            <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-1">
+              <div className="rounded-[1.3rem] bg-[var(--surface)] px-4 py-4 text-[var(--foreground)]">
+                Sur rendez-vous uniquement
+              </div>
+              <div className="rounded-[1.3rem] bg-[var(--surface)] px-4 py-4 text-[var(--foreground)]">
+                Lundi à vendredi · 8h–12h / 14h–19h
+              </div>
+              <div className="rounded-[1.3rem] bg-[var(--surface)] px-4 py-4 text-[var(--foreground)]">
+                Prévoir 1h30 à 3h selon la pose
+              </div>
+              <div className="rounded-[1.3rem] bg-[var(--surface)] px-4 py-4 text-[var(--foreground)]">
+                Pré-paiement sécurisé pour confirmer le créneau
+              </div>
             </div>
-          </motion.article>
-        </div>
+          </div>
+        </motion.article>
       </section>
 
       <footer id="contacts" className="border-t border-[var(--border)] bg-[var(--surface)]/88">
