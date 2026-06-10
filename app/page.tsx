@@ -77,14 +77,25 @@ export default function HomePage() {
     <main className="overflow-hidden bg-[var(--background)] pt-[82px] text-[var(--foreground)]">
       <header className="fixed inset-x-0 top-0 z-[100] border-b border-[var(--border)] bg-[rgba(255,250,246,0.96)] shadow-[0_12px_30px_rgba(88,66,49,0.08)] backdrop-blur">
         <div className="mx-auto flex max-w-6xl items-center justify-between gap-3 px-4 py-3 sm:px-6">
-          <Link href="/" className="leading-tight">
-            <span className="block font-serif-display text-2xl tracking-[-0.04em] text-[var(--foreground)]">
-              Mélo Nail
-            </span>
-            <span className="hidden text-xs uppercase tracking-[0.18em] text-[var(--text-soft)] sm:block">
-              Prothésiste ongulaire · Neyron
-            </span>
-          </Link>
+          <div className="flex items-start gap-2">
+            <Link href="/" className="leading-tight">
+              <span className="block font-serif-display text-2xl tracking-[-0.04em] text-[var(--foreground)]">
+                Mélo Nail
+              </span>
+              <span className="hidden text-xs uppercase tracking-[0.18em] text-[var(--text-soft)] sm:block">
+                Prothésiste ongulaire · Neyron
+              </span>
+            </Link>
+
+            <Link
+              href="/acces-bureau"
+              aria-label="Accès réservé"
+              title=""
+              className="mt-1 inline-flex h-5 w-5 items-center justify-center rounded-full text-[13px] text-[var(--gold-deep)] opacity-35 transition hover:opacity-80 focus:opacity-80 focus:outline-none focus:ring-2 focus:ring-[var(--gold)]"
+            >
+              ✦
+            </Link>
+          </div>
 
           <nav className="hidden items-center gap-5 text-sm font-semibold text-[var(--text-soft)] md:flex">
             <Link href="#prestations" className="transition hover:text-[var(--gold-deep)]">
@@ -243,12 +254,6 @@ export default function HomePage() {
               Quelques réalisations Mélo Nail
             </h2>
           </div>
-          <Link
-            href="#reservation"
-            className="inline-flex w-fit items-center justify-center rounded-full border border-[var(--gold)] bg-[var(--accent-strong)] px-6 py-3 text-sm font-semibold text-[#fffaf6] shadow-[0_14px_28px_rgba(159,113,84,0.16)] transition hover:bg-[var(--gold-deep)]"
-          >
-            Prendre rendez-vous
-          </Link>
         </div>
 
         <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
