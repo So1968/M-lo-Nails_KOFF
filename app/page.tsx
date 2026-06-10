@@ -1,5 +1,6 @@
 'use client';
 
+import { useState } from 'react';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
 import {
@@ -30,19 +31,38 @@ const heroImages = [
 const galleryImages = [
   {
     title: 'Création signature au téléphone',
+    category: 'Pose signature',
     image: '/images/melo-telephone.png'
   },
   {
     title: 'Kaki blanc élégant',
+    category: 'Gel / style chic',
     image: '/images/melo-kaki-blanc-1.png'
   },
   {
     title: 'Blanc bleu raffiné',
+    category: 'French couleur',
     image: '/images/melo-blanc-bleu.png'
   },
   {
     title: 'Kaki blanc graphique',
+    category: 'Nail art graphique',
     image: '/images/melo-kaki-blanc-2.png'
+  },
+  {
+    title: 'Blanc chic',
+    category: 'Pose élégante',
+    image: '/images/melo-blanc-chic.jpeg'
+  },
+  {
+    title: 'French bleue',
+    category: 'French moderne',
+    image: '/images/melo-french-bleue.jpeg'
+  },
+  {
+    title: 'Graphique jaune',
+    category: 'Nail art coloré',
+    image: '/images/melo-graphique-jaune.jpeg'
   }
 ];
 
@@ -52,8 +72,58 @@ const fadeUp = {
 };
 
 export default function HomePage() {
+  const [selectedImageIndex, setSelectedImageIndex] = useState<number | null>(null);
+  const selectedImage =
+    selectedImageIndex === null ? null : galleryImages[selectedImageIndex];
+
+  function showPreviousImage() {
+    if (selectedImageIndex === null) return;
+    setSelectedImageIndex(
+      (selectedImageIndex - 1 + galleryImages.length) % galleryImages.length
+    );
+  }
+
+  function showNextImage() {
+    if (selectedImageIndex === null) return;
+    setSelectedImageIndex((selectedImageIndex + 1) % galleryImages.length);
+  }
+
   return (
     <main className="overflow-hidden bg-[var(--background)] text-[var(--foreground)]">
+      <header className="sticky top-0 z-50 border-b border-[var(--border)] bg-[rgba(255,250,246,0.94)] shadow-[0_12px_30px_rgba(88,66,49,0.08)] backdrop-blur">
+        <div className="mx-auto flex max-w-6xl items-center justify-between gap-3 px-4 py-3 sm:px-6">
+          <Link href="/" className="leading-tight">
+            <span className="block font-serif-display text-2xl tracking-[-0.04em] text-[var(--foreground)]">
+              Mélo Nail
+            </span>
+            <span className="hidden text-xs uppercase tracking-[0.18em] text-[var(--text-soft)] sm:block">
+              Prothésiste ongulaire · Neyron
+            </span>
+          </Link>
+
+          <nav className="hidden items-center gap-5 text-sm font-semibold text-[var(--text-soft)] md:flex">
+            <Link href="#prestations" className="transition hover:text-[var(--gold-deep)]">
+              Prestations
+            </Link>
+            <Link href="#galerie" className="transition hover:text-[var(--gold-deep)]">
+              Réalisations
+            </Link>
+            <Link href="#reservation" className="transition hover:text-[var(--gold-deep)]">
+              Réservation
+            </Link>
+            <Link href="#contacts" className="transition hover:text-[var(--gold-deep)]">
+              Contact
+            </Link>
+          </nav>
+
+          <Link
+            href="#reservation"
+            className="inline-flex items-center justify-center rounded-full border border-[var(--gold)] bg-[var(--accent-strong)] px-5 py-3 text-sm font-semibold text-[#fffaf6] shadow-[0_12px_24px_rgba(159,113,84,0.18)] transition hover:bg-[var(--gold-deep)]"
+          >
+            Prendre rendez-vous
+          </Link>
+        </div>
+      </header>
       <section className="relative isolate flex min-h-[100svh] items-center px-4 py-8 sm:px-6 md:py-10">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,_rgba(255,255,255,0.96),_rgba(246,240,234,0.84)_48%,_rgba(239,224,209,0.68)_100%)]" />
         <div className="absolute right-10 top-10 h-64 w-64 rounded-full bg-[var(--gold-soft)]/20 blur-3xl" />
@@ -135,19 +205,25 @@ export default function HomePage() {
 
           <motion.div variants={fadeUp} className="rounded-[2.4rem] border border-[var(--border)] bg-[var(--surface)]/92 p-3 shadow-[0_24px_60px_rgba(88,66,49,0.12)]">
             <div className="grid gap-3">
-              <div className="overflow-hidden rounded-[2rem]">
+              <button
+                type="button"
+                onClick={() => setSelectedImageIndex(0)}
+                className="overflow-hidden rounded-[2rem] text-left"
+              >
                 <img
                   src={heroImages[0].image}
                   alt={heroImages[0].title}
                   className="h-[300px] w-full scale-105 object-cover object-center brightness-[1.04] contrast-[1.08] saturate-[1.08] transition duration-700 hover:scale-110 sm:h-[330px] md:h-[350px]"
                 />
-              </div>
+              </button>
 
               <div className="grid gap-3 sm:grid-cols-2">
-                {heroImages.slice(1).map((item) => (
-                  <div
+                {heroImages.slice(1).map((item, index) => (
+                  <button
                     key={item.title}
-                    className="overflow-hidden rounded-[1.6rem] border border-[var(--border)] bg-[var(--surface-2)]"
+                    type="button"
+                    onClick={() => setSelectedImageIndex(index + 1)}
+                    className="overflow-hidden rounded-[1.6rem] border border-[var(--border)] bg-[var(--surface-2)] text-left"
                   >
                     <img
                       src={item.image}
@@ -157,7 +233,7 @@ export default function HomePage() {
                     <p className="px-4 py-3 text-sm font-medium text-[var(--foreground)]">
                       {item.title}
                     </p>
-                  </div>
+                  </button>
                 ))}
               </div>
             </div>
@@ -192,12 +268,14 @@ export default function HomePage() {
 
         <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
           {galleryImages.map((item, index) => (
-            <motion.article
+            <motion.button
               key={`${item.title}-${index}`}
+              type="button"
+              onClick={() => setSelectedImageIndex(index)}
               initial={{ opacity: 0, y: 18 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0.2 }}
-              className="group overflow-hidden rounded-[2rem] border border-[var(--border)] bg-[var(--surface)] shadow-[0_16px_36px_rgba(120,98,73,0.08)]"
+              className="group overflow-hidden rounded-[2rem] border border-[var(--border)] bg-[var(--surface)] text-left shadow-[0_16px_36px_rgba(120,98,73,0.08)]"
             >
               <div className="relative overflow-hidden">
                 <img
@@ -207,12 +285,66 @@ export default function HomePage() {
                 />
                 <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-[rgba(47,41,37,0.78)] via-[rgba(47,41,37,0.2)] to-transparent p-5">
                   <p className="font-serif-display text-2xl text-white">{item.title}</p>
+                  <p className="mt-1 text-sm font-medium text-white/80">{item.category}</p>
                 </div>
               </div>
-            </motion.article>
+            </motion.button>
           ))}
         </div>
       </section>
+
+
+      {selectedImage && (
+        <div
+          className="fixed inset-0 z-[80] flex items-center justify-center bg-black/82 p-4"
+          role="dialog"
+          aria-modal="true"
+        >
+          <button
+            type="button"
+            onClick={() => setSelectedImageIndex(null)}
+            className="absolute right-4 top-4 rounded-full bg-white px-5 py-3 text-sm font-bold text-[var(--foreground)] shadow-lg"
+          >
+            Fermer
+          </button>
+
+          <button
+            type="button"
+            onClick={showPreviousImage}
+            className="absolute left-4 top-1/2 hidden -translate-y-1/2 rounded-full bg-white px-5 py-4 text-2xl font-bold text-[var(--foreground)] shadow-lg md:block"
+            aria-label="Photo précédente"
+          >
+            ←
+          </button>
+
+          <div className="max-h-[92vh] w-full max-w-5xl overflow-hidden rounded-[2rem] bg-[var(--surface)] shadow-2xl">
+            <div className="flex h-[72vh] items-center justify-center bg-[#120d0a]">
+              <img
+                src={selectedImage.image}
+                alt={selectedImage.title}
+                className="max-h-full max-w-full object-contain"
+              />
+            </div>
+            <div className="border-t border-[var(--border)] p-5">
+              <p className="font-serif-display text-3xl tracking-[-0.04em] text-[var(--foreground)]">
+                {selectedImage.title}
+              </p>
+              <p className="mt-1 text-sm font-semibold uppercase tracking-[0.18em] text-[var(--gold-deep)]">
+                {selectedImage.category}
+              </p>
+            </div>
+          </div>
+
+          <button
+            type="button"
+            onClick={showNextImage}
+            className="absolute right-4 top-1/2 hidden -translate-y-1/2 rounded-full bg-white px-5 py-4 text-2xl font-bold text-[var(--foreground)] shadow-lg md:block"
+            aria-label="Photo suivante"
+          >
+            →
+          </button>
+        </div>
+      )}
 
       <section id="reservation" className="mx-auto max-w-6xl px-4 pb-20 pt-6 sm:px-6 md:pb-24">
         <motion.article
@@ -274,7 +406,7 @@ export default function HomePage() {
       </section>
 
       <footer id="contacts" className="border-t border-[var(--border)] bg-[var(--surface)]/88">
-        <div className="mx-auto grid max-w-6xl gap-8 px-4 py-12 sm:px-6 md:grid-cols-[1.2fr_0.8fr]">
+        <div className="mx-auto grid max-w-6xl gap-8 px-4 py-12 sm:px-6 md:grid-cols-[1.2fr_0.8fr_0.7fr]">
           <div>
             <h2 className="font-serif-display text-4xl tracking-[-0.04em] text-[var(--foreground)]">
               Mélo Nail
@@ -300,6 +432,18 @@ export default function HomePage() {
               <Phone className="h-5 w-5 text-[var(--gold-deep)]" />
               <span>Téléphone en complément si besoin</span>
             </div>
+          </div>
+
+          <div className="space-y-3 text-sm text-[var(--text-soft)]">
+            <p className="text-xs uppercase tracking-[0.24em] text-[var(--gold-deep)]">
+              Informations
+            </p>
+            <Link href="/mentions-legales" className="block transition hover:text-[var(--gold-deep)]">
+              Mentions légales
+            </Link>
+            <Link href="/politique-confidentialite" className="block transition hover:text-[var(--gold-deep)]">
+              Politique de confidentialité
+            </Link>
           </div>
         </div>
       </footer>
