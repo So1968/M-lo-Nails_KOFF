@@ -74,8 +74,8 @@ export default function HomePage() {
   }
 
   return (
-    <main className="overflow-hidden bg-[var(--background)] text-[var(--foreground)]">
-      <header className="sticky top-0 z-50 border-b border-[var(--border)] bg-[rgba(255,250,246,0.94)] shadow-[0_12px_30px_rgba(88,66,49,0.08)] backdrop-blur">
+    <main className="overflow-hidden bg-[var(--background)] pt-[82px] text-[var(--foreground)]">
+      <header className="fixed inset-x-0 top-0 z-[100] border-b border-[var(--border)] bg-[rgba(255,250,246,0.96)] shadow-[0_12px_30px_rgba(88,66,49,0.08)] backdrop-blur">
         <div className="mx-auto flex max-w-6xl items-center justify-between gap-3 px-4 py-3 sm:px-6">
           <Link href="/" className="leading-tight">
             <span className="block font-serif-display text-2xl tracking-[-0.04em] text-[var(--foreground)]">
