@@ -15,34 +15,29 @@ import ServicesInteractiveBlock from './components/ServicesInteractiveBlock';
 
 const heroImages = [
   {
-    title: 'La pose préférée de Mélo',
-    image: '/images/melo-telephone.png'
-  },
-  {
-    title: 'French bleue fleurie',
+    title: 'Blanc bleu raffiné',
     image: '/images/melo-blanc-bleu.png'
   },
   {
-    title: 'Création kaki chic',
+    title: 'Kaki blanc élégant',
     image: '/images/melo-kaki-blanc-1.png'
+  },
+  {
+    title: 'Kaki blanc graphique',
+    image: '/images/melo-kaki-blanc-2.png'
   }
 ];
 
 const galleryImages = [
   {
-    title: 'Création signature au téléphone',
-    category: 'Pose signature',
-    image: '/images/melo-telephone.png'
+    title: 'Blanc bleu raffiné',
+    category: 'French couleur',
+    image: '/images/melo-blanc-bleu.png'
   },
   {
     title: 'Kaki blanc élégant',
     category: 'Gel / style chic',
     image: '/images/melo-kaki-blanc-1.png'
-  },
-  {
-    title: 'Blanc bleu raffiné',
-    category: 'French couleur',
-    image: '/images/melo-blanc-bleu.png'
   },
   {
     title: 'Kaki blanc graphique',
@@ -53,16 +48,6 @@ const galleryImages = [
     title: 'Blanc chic',
     category: 'Pose élégante',
     image: '/images/melo-blanc-chic.jpeg'
-  },
-  {
-    title: 'French bleue',
-    category: 'French moderne',
-    image: '/images/melo-french-bleue.jpeg'
-  },
-  {
-    title: 'Graphique jaune',
-    category: 'Nail art coloré',
-    image: '/images/melo-graphique-jaune.jpeg'
   }
 ];
 
