@@ -6,3 +6,6 @@ yarn-debug.log*
 yarn-error.log*
 pnpm-debug.log*
 .env*.local
+data/*.sqlite
+data/*.sqlite-shm
+data/*.sqlite-wal
