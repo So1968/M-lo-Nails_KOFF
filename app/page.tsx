@@ -104,7 +104,7 @@ export default function HomePage() {
             <Link href="#galerie" className="transition hover:text-[var(--gold-deep)]">
               Réalisations
             </Link>
-            <Link href="#reservation" className="transition hover:text-[var(--gold-deep)]">
+            <Link href="/reservation" className="transition hover:text-[var(--gold-deep)]">
               Réservation
             </Link>
             <Link href="#contacts" className="transition hover:text-[var(--gold-deep)]">
@@ -113,7 +113,7 @@ export default function HomePage() {
           </nav>
 
           <Link
-            href="#reservation"
+            href="/reservation"
             className="inline-flex items-center justify-center rounded-full border border-[var(--gold)] bg-[var(--accent-strong)] px-5 py-3 text-sm font-semibold text-[#fffaf6] shadow-[0_12px_24px_rgba(159,113,84,0.18)] transition hover:bg-[var(--gold-deep)]"
           >
             Prendre rendez-vous
@@ -176,7 +176,7 @@ export default function HomePage() {
               </Link>
 
               <Link
-                href="#reservation"
+                href="/reservation"
                 className="inline-flex items-center justify-center rounded-full border border-[var(--border-strong)] bg-[var(--surface)] px-7 py-4 text-sm font-semibold text-[var(--foreground)] transition hover:bg-[var(--surface-2)]"
               >
                 Prendre rendez-vous
