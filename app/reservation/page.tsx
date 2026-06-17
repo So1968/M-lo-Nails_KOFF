@@ -47,6 +47,16 @@ function getCalendarDays(monthDate: Date) {
   return days;
 }
 
+function chunkByWeek(days: Array<Date | null>) {
+  const weeks: Array<Array<Date | null>> = [];
+
+  for (let index = 0; index < days.length; index += 7) {
+    weeks.push(days.slice(index, index + 7));
+  }
+
+  return weeks;
+}
+
 export default function ReservationPage() {
   const availableDates = useMemo(() => getAvailableDates(120), []);
   const [serviceId, setServiceId] = useState(meloServices[0]?.id ?? "");
@@ -79,6 +89,8 @@ export default function ReservationPage() {
     () => getCalendarDays(visibleMonth),
     [visibleMonth]
   );
+
+  const calendarWeeks = useMemo(() => chunkByWeek(calendarDays), [calendarDays]);
 
   const availableDateSet = useMemo(
     () => new Set(availableDates.map((date) => toISODate(date))),
@@ -170,13 +182,12 @@ export default function ReservationPage() {
           </p>
 
           <h1 className="font-serif-display mt-4 max-w-3xl text-4xl tracking-[-0.04em] sm:text-5xl">
-            Choisissez une prestation, une date, puis un horaire
+            Choisissez une prestation, puis ouvrez une date
           </h1>
 
           <p className="mt-5 max-w-3xl text-base leading-8 text-[var(--text-soft)]">
-            Sélectionnez d’abord le soin souhaité. Le calendrier affiche ensuite
-            les journées disponibles : cliquez sur une date pour voir les
-            créneaux horaires proposés.
+            Cliquez sur une journée disponible : les horaires s’ouvrent
+            directement sous le calendrier, avec le formulaire juste en dessous.
           </p>
 
           <div className="mt-10 grid gap-8 lg:grid-cols-[1.25fr_0.75fr]">
@@ -218,7 +229,7 @@ export default function ReservationPage() {
                   <div>
                     <h2 className="text-lg font-bold">2. Choisir une date</h2>
                     <p className="mt-1 text-sm text-[var(--text-soft)]">
-                      Les jours disponibles sont indiqués dans le calendrier.
+                      Les jours disponibles affichent le nombre de dispos.
                     </p>
                   </div>
 
@@ -252,165 +263,165 @@ export default function ReservationPage() {
                     ))}
                   </div>
 
-                  <div className="mt-3 grid grid-cols-7 gap-2">
-                    {calendarDays.map((date, index) => {
-                      if (!date) {
-                        return (
-                          <div
-                            key={`empty-${index}`}
-                            className="min-h-14 rounded-2xl bg-[var(--surface)] opacity-50"
-                          />
-                        );
-                      }
-
-                      const dateISO = toISODate(date);
-                      const slots = getSlotsForDate(
-                        dateISO,
-                        selectedService.durationMinutes
+                  <div className="mt-3 space-y-2">
+                    {calendarWeeks.map((week, weekIndex) => {
+                      const selectedDateIsInWeek = week.some(
+                        (date) => date && toISODate(date) === selectedDateISO
                       );
-                      const hasSlots =
-                        availableDateSet.has(dateISO) && slots.length > 0;
-                      const isSelected = selectedDateISO === dateISO;
 
                       return (
-                        <button
-                          key={dateISO}
-                          type="button"
-                          disabled={!hasSlots}
-                          onClick={() => {
-                            setSelectedDateISO(dateISO);
-                            setSelectedSlot("");
-                            setStatus("idle");
-                          }}
-                          className={`min-h-14 rounded-2xl border px-2 py-2 text-center transition ${
-                            isSelected
-                              ? "border-[var(--gold-deep)] bg-[var(--accent-strong)] text-[#fffaf6]"
-                              : hasSlots
-                                ? "border-[var(--border)] bg-[var(--surface-2)] hover:border-[var(--gold-deep)]"
-                                : "border-transparent bg-[var(--surface)] text-[var(--text-soft)] opacity-45"
-                          }`}
-                        >
-                          <span className="block text-sm font-bold">
-                            {date.getDate()}
-                          </span>
-                          {hasSlots && (
-                            <span className="mt-1 block text-[0.65rem] font-semibold">
-                              {slots.length} créneau{slots.length > 1 ? "x" : ""}
-                            </span>
+                        <div key={`week-${weekIndex}`}>
+                          <div className="grid grid-cols-7 gap-2">
+                            {week.map((date, index) => {
+                              if (!date) {
+                                return (
+                                  <div
+                                    key={`empty-${weekIndex}-${index}`}
+                                    className="min-h-14 rounded-2xl bg-[var(--surface)] opacity-50"
+                                  />
+                                );
+                              }
+
+                              const dateISO = toISODate(date);
+                              const slots = getSlotsForDate(
+                                dateISO,
+                                selectedService.durationMinutes
+                              );
+                              const hasSlots =
+                                availableDateSet.has(dateISO) && slots.length > 0;
+                              const isSelected = selectedDateISO === dateISO;
+
+                              return (
+                                <button
+                                  key={dateISO}
+                                  type="button"
+                                  disabled={!hasSlots}
+                                  onClick={() => {
+                                    setSelectedDateISO(dateISO);
+                                    setSelectedSlot("");
+                                    setStatus("idle");
+                                  }}
+                                  className={`min-h-14 rounded-2xl border px-2 py-2 text-center transition ${
+                                    isSelected
+                                      ? "border-[var(--gold-deep)] bg-[var(--accent-strong)] text-[#fffaf6]"
+                                      : hasSlots
+                                        ? "border-[var(--border)] bg-[var(--surface-2)] hover:border-[var(--gold-deep)]"
+                                        : "border-transparent bg-[var(--surface)] text-[var(--text-soft)] opacity-45"
+                                  }`}
+                                >
+                                  <span className="block text-sm font-bold">
+                                    {date.getDate()}
+                                  </span>
+                                  {hasSlots && (
+                                    <span className="mt-1 block text-[0.65rem] font-semibold">
+                                      {slots.length} dispo{slots.length > 1 ? "s" : ""}
+                                    </span>
+                                  )}
+                                </button>
+                              );
+                            })}
+                          </div>
+
+                          {selectedDateIsInWeek && selectedDate && (
+                            <div className="mt-3 rounded-[1.4rem] border border-[var(--gold)] bg-[var(--surface-2)] p-5 shadow-[0_14px_34px_rgba(159,113,84,0.12)]">
+                              <div className="flex flex-wrap items-center justify-between gap-3">
+                                <div>
+                                  <p className="text-xs uppercase tracking-[0.18em] text-[var(--gold-deep)]">
+                                    Horaires disponibles
+                                  </p>
+                                  <h3 className="mt-1 font-bold capitalize">
+                                    {formatFrenchDate(selectedDate)}
+                                  </h3>
+                                </div>
+
+                                <p className="rounded-full bg-white px-4 py-2 text-xs font-bold text-[var(--text-soft)]">
+                                  {selectedDaySlots.length} dispo
+                                  {selectedDaySlots.length > 1 ? "s" : ""}
+                                </p>
+                              </div>
+
+                              <div className="mt-4 flex flex-wrap gap-3">
+                                {selectedDaySlots.map((slot) => {
+                                  const end = addMinutesToTime(
+                                    slot,
+                                    selectedService.durationMinutes
+                                  );
+                                  const isSelected = selectedSlot === slot;
+
+                                  return (
+                                    <button
+                                      key={`${selectedDateISO}-${slot}`}
+                                      type="button"
+                                      onClick={() => {
+                                        setSelectedSlot(slot);
+                                        setStatus("idle");
+                                      }}
+                                      className={`rounded-full border px-5 py-3 text-sm font-bold transition ${
+                                        isSelected
+                                          ? "border-[var(--gold-deep)] bg-[var(--accent-strong)] text-[#fffaf6]"
+                                          : "border-[var(--border)] bg-white hover:bg-[var(--surface)]"
+                                      }`}
+                                    >
+                                      {slot} - {end}
+                                    </button>
+                                  );
+                                })}
+                              </div>
+
+                              <div className="mt-6 border-t border-[var(--border)] pt-5">
+                                <h4 className="font-bold">Vos coordonnées</h4>
+
+                                <div className="mt-4 grid gap-4 sm:grid-cols-2">
+                                  <label className="block">
+                                    <span className="mb-2 block text-sm font-semibold">
+                                      Prénom / nom
+                                    </span>
+                                    <input
+                                      value={clientName}
+                                      onChange={(event) => {
+                                        setClientName(event.target.value);
+                                        setStatus("idle");
+                                      }}
+                                      className="w-full rounded-2xl border border-[var(--border)] bg-white px-4 py-3 outline-none focus:border-[var(--gold-deep)]"
+                                      placeholder="Votre nom"
+                                    />
+                                  </label>
+
+                                  <label className="block">
+                                    <span className="mb-2 block text-sm font-semibold">
+                                      Téléphone ou Instagram
+                                    </span>
+                                    <input
+                                      value={clientContact}
+                                      onChange={(event) => {
+                                        setClientContact(event.target.value);
+                                        setStatus("idle");
+                                      }}
+                                      className="w-full rounded-2xl border border-[var(--border)] bg-white px-4 py-3 outline-none focus:border-[var(--gold-deep)]"
+                                      placeholder="Votre contact"
+                                    />
+                                  </label>
+                                </div>
+
+                                <label className="mt-4 block">
+                                  <span className="mb-2 block text-sm font-semibold">
+                                    Message facultatif
+                                  </span>
+                                  <textarea
+                                    value={message}
+                                    onChange={(event) => setMessage(event.target.value)}
+                                    className="min-h-28 w-full rounded-2xl border border-[var(--border)] bg-white px-4 py-3 outline-none focus:border-[var(--gold-deep)]"
+                                    placeholder="Couleur, nail art souhaité, contrainte horaire..."
+                                  />
+                                </label>
+                              </div>
+                            </div>
                           )}
-                        </button>
+                        </div>
                       );
                     })}
                   </div>
                 </div>
-              </section>
-
-              <section>
-                <h2 className="text-lg font-bold">3. Choisir un horaire</h2>
-
-                {!selectedDate && (
-                  <div className="mt-4 rounded-[1.6rem] border border-dashed border-[var(--border)] bg-white p-5 text-sm leading-7 text-[var(--text-soft)]">
-                    Cliquez sur une date disponible dans le calendrier pour
-                    afficher les créneaux horaires.
-                  </div>
-                )}
-
-                {selectedDate && (
-                  <div className="mt-4 rounded-[1.6rem] border border-[var(--border)] bg-white p-5">
-                    <div className="flex flex-wrap items-center justify-between gap-3">
-                      <h3 className="font-bold capitalize">
-                        {formatFrenchDate(selectedDate)}
-                      </h3>
-                      <p className="text-xs uppercase tracking-[0.18em] text-[var(--text-soft)]">
-                        {selectedDaySlots.length} créneau
-                        {selectedDaySlots.length > 1 ? "x" : ""}
-                      </p>
-                    </div>
-
-                    {selectedDaySlots.length > 0 ? (
-                      <div className="mt-4 flex flex-wrap gap-3">
-                        {selectedDaySlots.map((slot) => {
-                          const end = addMinutesToTime(
-                            slot,
-                            selectedService.durationMinutes
-                          );
-                          const isSelected = selectedSlot === slot;
-
-                          return (
-                            <button
-                              key={`${selectedDateISO}-${slot}`}
-                              type="button"
-                              onClick={() => {
-                                setSelectedSlot(slot);
-                                setStatus("idle");
-                              }}
-                              className={`rounded-full border px-5 py-3 text-sm font-bold transition ${
-                                isSelected
-                                  ? "border-[var(--gold-deep)] bg-[var(--accent-strong)] text-[#fffaf6]"
-                                  : "border-[var(--border)] bg-[var(--surface)] hover:bg-[var(--surface-2)]"
-                              }`}
-                            >
-                              {slot} - {end}
-                            </button>
-                          );
-                        })}
-                      </div>
-                    ) : (
-                      <p className="mt-4 text-sm leading-7 text-[var(--text-soft)]">
-                        Aucun créneau disponible ce jour-là pour cette
-                        prestation.
-                      </p>
-                    )}
-                  </div>
-                )}
-              </section>
-
-              <section>
-                <h2 className="text-lg font-bold">4. Vos coordonnées</h2>
-
-                <div className="mt-4 grid gap-4 sm:grid-cols-2">
-                  <label className="block">
-                    <span className="mb-2 block text-sm font-semibold">
-                      Prénom / nom
-                    </span>
-                    <input
-                      value={clientName}
-                      onChange={(event) => {
-                        setClientName(event.target.value);
-                        setStatus("idle");
-                      }}
-                      className="w-full rounded-2xl border border-[var(--border)] bg-white px-4 py-3 outline-none focus:border-[var(--gold-deep)]"
-                      placeholder="Votre nom"
-                    />
-                  </label>
-
-                  <label className="block">
-                    <span className="mb-2 block text-sm font-semibold">
-                      Téléphone ou Instagram
-                    </span>
-                    <input
-                      value={clientContact}
-                      onChange={(event) => {
-                        setClientContact(event.target.value);
-                        setStatus("idle");
-                      }}
-                      className="w-full rounded-2xl border border-[var(--border)] bg-white px-4 py-3 outline-none focus:border-[var(--gold-deep)]"
-                      placeholder="Votre contact"
-                    />
-                  </label>
-                </div>
-
-                <label className="mt-4 block">
-                  <span className="mb-2 block text-sm font-semibold">
-                    Message facultatif
-                  </span>
-                  <textarea
-                    value={message}
-                    onChange={(event) => setMessage(event.target.value)}
-                    className="min-h-28 w-full rounded-2xl border border-[var(--border)] bg-white px-4 py-3 outline-none focus:border-[var(--gold-deep)]"
-                    placeholder="Couleur, nail art souhaité, contrainte horaire..."
-                  />
-                </label>
               </section>
             </div>
 
@@ -431,7 +442,7 @@ export default function ReservationPage() {
                   {selectedDate ? formatFrenchDate(selectedDate) : "À choisir"}
                 </p>
                 <p>
-                  <strong>Créneau :</strong>{" "}
+                  <strong>Horaire :</strong>{" "}
                   {selectedSlot
                     ? `${selectedSlot} - ${selectedEndTime}`
                     : "À choisir"}
@@ -470,13 +481,13 @@ export default function ReservationPage() {
 
               {status === "error" && (
                 <div className="mt-5 rounded-3xl border border-red-200 bg-red-50 p-5 text-sm leading-7 text-red-700">
-                  Vérifiez que vous avez choisi un créneau et rempli vos
+                  Vérifiez que vous avez choisi un horaire et rempli vos
                   coordonnées.
                 </div>
               )}
 
               <p className="mt-4 text-xs leading-6 text-[var(--text-soft)]">
-                Le créneau tient compte de la durée prévue. La confirmation
+                L’horaire tient compte de la durée prévue. La confirmation
                 définitive reste faite par Mélo.
               </p>
             </aside>
