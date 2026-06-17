@@ -3,6 +3,7 @@ import { NextResponse } from "next/server";
 import {
   createReservationRequest,
   getReservationRequests,
+  upsertClient,
 } from "@/lib/reservation-db";
 
 export const dynamic = "force-dynamic";
@@ -16,7 +17,7 @@ export async function POST(request: Request) {
     !body.dateISO ||
     !body.slot ||
     !body.clientName ||
-    !body.clientContact
+    !body.clientPhone
   ) {
     return NextResponse.json(
       { error: "Informations manquantes." },
@@ -24,19 +25,26 @@ export async function POST(request: Request) {
     );
   }
 
+  const client = upsertClient({
+    fullName: String(body.clientName),
+    phone: String(body.clientPhone ?? ""),
+    email: String(body.clientEmail ?? ""),
+    instagram: String(body.clientInstagram ?? ""),
+    address: String(body.clientAddress ?? ""),
+  });
+
   const newRequest = createReservationRequest({
+    clientId: client.id,
     service: String(body.service),
     durationMinutes: Number(body.durationMinutes ?? 0),
     dateISO: String(body.dateISO),
     dateLabel: String(body.dateLabel ?? ""),
     slot: String(body.slot),
     endTime: String(body.endTime ?? ""),
-    clientName: String(body.clientName),
-    clientContact: String(body.clientContact),
     message: String(body.message ?? ""),
   });
 
-  return NextResponse.json({ success: true, request: newRequest });
+  return NextResponse.json({ success: true, client, request: newRequest });
 }
 
 export async function GET() {
