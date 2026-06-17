@@ -19,7 +19,7 @@ export default function ReservationPage() {
   const [clientName, setClientName] = useState("");
   const [clientContact, setClientContact] = useState("");
   const [message, setMessage] = useState("");
-  const [copied, setCopied] = useState(false);
+  const [status, setStatus] = useState<"idle" | "sending" | "sent" | "error">("idle");
 
   const selectedService =
     meloServices.find((service) => service.id === serviceId) ?? meloServices[0];
@@ -33,28 +33,38 @@ export default function ReservationPage() {
       ? addMinutesToTime(selectedSlot, selectedService.durationMinutes)
       : "";
 
-  const requestText = [
-    "Bonjour Mélo,",
-    "",
-    "Je souhaite demander un rendez-vous.",
-    selectedService ? `Prestation : ${selectedService.name}` : "",
-    selectedDate ? `Date souhaitée : ${formatFrenchDate(selectedDate)}` : "",
-    selectedSlot
-      ? `Créneau souhaité : ${selectedSlot} - ${selectedEndTime}`
-      : "",
-    clientName ? `Nom : ${clientName}` : "",
-    clientContact ? `Contact : ${clientContact}` : "",
-    message ? `Message : ${message}` : "",
-    "",
-    "Merci de me confirmer si ce créneau est possible.",
-  ]
-    .filter(Boolean)
-    .join("\n");
+  async function sendRequest() {
+    if (!selectedService || !selectedDate || !selectedSlot || !clientName || !clientContact) {
+      setStatus("error");
+      return;
+    }
 
-  async function copyRequest() {
-    await navigator.clipboard.writeText(requestText);
-    setCopied(true);
-    setTimeout(() => setCopied(false), 2500);
+    setStatus("sending");
+
+    const response = await fetch("/api/reservation-requests", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        service: selectedService.name,
+        durationMinutes: selectedService.durationMinutes,
+        dateISO: selectedDateISO,
+        dateLabel: formatFrenchDate(selectedDate),
+        slot: selectedSlot,
+        endTime: selectedEndTime,
+        clientName,
+        clientContact,
+        message,
+      }),
+    });
+
+    if (!response.ok) {
+      setStatus("error");
+      return;
+    }
+
+    setStatus("sent");
   }
 
   return (
@@ -83,9 +93,8 @@ export default function ReservationPage() {
           </h1>
 
           <p className="mt-5 max-w-3xl text-base leading-8 text-[var(--text-soft)]">
-            Les horaires proposés tiennent compte de la durée de la prestation.
-            Un gainage bloque plus longtemps qu’une dépose, pour laisser à Mélo
-            le temps nécessaire.
+            Les créneaux proposés tiennent compte de la durée de la prestation.
+            Mélo confirmera ensuite le rendez-vous.
           </p>
 
           <div className="mt-10 grid gap-8 lg:grid-cols-[1.25fr_0.75fr]">
@@ -102,6 +111,7 @@ export default function ReservationPage() {
                         setServiceId(service.id);
                         setSelectedDateISO("");
                         setSelectedSlot("");
+                        setStatus("idle");
                       }}
                       className={`rounded-3xl border p-5 text-left transition ${
                         serviceId === service.id
@@ -173,6 +183,7 @@ export default function ReservationPage() {
                                 onClick={() => {
                                   setSelectedDateISO(dateISO);
                                   setSelectedSlot(slot);
+                                  setStatus("idle");
                                 }}
                                 className={`rounded-full border px-5 py-3 text-sm font-bold transition ${
                                   isSelected
@@ -201,7 +212,10 @@ export default function ReservationPage() {
                     </span>
                     <input
                       value={clientName}
-                      onChange={(event) => setClientName(event.target.value)}
+                      onChange={(event) => {
+                        setClientName(event.target.value);
+                        setStatus("idle");
+                      }}
                       className="w-full rounded-2xl border border-[var(--border)] bg-white px-4 py-3 outline-none focus:border-[var(--gold-deep)]"
                       placeholder="Votre nom"
                     />
@@ -213,7 +227,10 @@ export default function ReservationPage() {
                     </span>
                     <input
                       value={clientContact}
-                      onChange={(event) => setClientContact(event.target.value)}
+                      onChange={(event) => {
+                        setClientContact(event.target.value);
+                        setStatus("idle");
+                      }}
                       className="w-full rounded-2xl border border-[var(--border)] bg-white px-4 py-3 outline-none focus:border-[var(--gold-deep)]"
                       placeholder="Votre contact"
                     />
@@ -260,23 +277,43 @@ export default function ReservationPage() {
 
               <button
                 type="button"
-                onClick={copyRequest}
-                disabled={!selectedSlot || !clientName || !clientContact}
+                onClick={sendRequest}
+                disabled={
+                  status === "sending" ||
+                  !selectedSlot ||
+                  !clientName ||
+                  !clientContact
+                }
                 className="mt-6 w-full rounded-full bg-[var(--accent-strong)] px-6 py-4 text-sm font-bold uppercase tracking-[0.16em] text-[#fffaf6] transition hover:bg-[var(--gold-deep)] disabled:cursor-not-allowed disabled:opacity-45"
               >
-                {copied ? "Demande copiée" : "Copier la demande"}
+                {status === "sending"
+                  ? "Envoi en cours..."
+                  : status === "sent"
+                    ? "Demande envoyée"
+                    : "Demander ce rendez-vous"}
               </button>
+
+              {status === "sent" && (
+                <div className="mt-5 rounded-3xl border border-[var(--gold)] bg-[var(--surface-2)] p-5 text-sm leading-7">
+                  <p className="font-bold text-[var(--gold-deep)]">
+                    Votre demande a bien été envoyée.
+                  </p>
+                  <p className="mt-2 text-[var(--text-soft)]">
+                    Mélo devra confirmer le rendez-vous avant qu’il soit définitif.
+                  </p>
+                </div>
+              )}
+
+              {status === "error" && (
+                <div className="mt-5 rounded-3xl border border-red-200 bg-red-50 p-5 text-sm leading-7 text-red-700">
+                  Vérifiez que vous avez choisi un créneau et rempli vos coordonnées.
+                </div>
+              )}
 
               <p className="mt-4 text-xs leading-6 text-[var(--text-soft)]">
                 Le créneau tient compte de la durée prévue. La confirmation
                 définitive reste faite par Mélo.
               </p>
-
-              <textarea
-                readOnly
-                value={requestText}
-                className="mt-5 min-h-64 w-full rounded-2xl border border-[var(--border)] bg-[var(--surface)] p-4 text-sm leading-6 text-[var(--foreground)]"
-              />
             </aside>
           </div>
         </div>
