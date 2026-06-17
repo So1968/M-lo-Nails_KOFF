@@ -11,15 +11,57 @@ import {
   toISODate,
 } from "@/lib/melo-rendez-vous";
 
+const weekDays = ["lun.", "mar.", "mer.", "jeu.", "ven.", "sam.", "dim."];
+
+function getMonthLabel(date: Date) {
+  return new Intl.DateTimeFormat("fr-FR", {
+    month: "long",
+    year: "numeric",
+  }).format(date);
+}
+
+function getMonthKey(date: Date) {
+  return `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, "0")}`;
+}
+
+function getCalendarDays(monthDate: Date) {
+  const year = monthDate.getFullYear();
+  const month = monthDate.getMonth();
+  const firstDay = new Date(year, month, 1, 12, 0, 0);
+  const lastDay = new Date(year, month + 1, 0, 12, 0, 0);
+  const firstDayOffset = (firstDay.getDay() + 6) % 7;
+
+  const days: Array<Date | null> = Array.from(
+    { length: firstDayOffset },
+    () => null
+  );
+
+  for (let day = 1; day <= lastDay.getDate(); day += 1) {
+    days.push(new Date(year, month, day, 12, 0, 0));
+  }
+
+  while (days.length % 7 !== 0) {
+    days.push(null);
+  }
+
+  return days;
+}
+
 export default function ReservationPage() {
-  const availableDates = useMemo(() => getAvailableDates(30), []);
+  const availableDates = useMemo(() => getAvailableDates(120), []);
   const [serviceId, setServiceId] = useState(meloServices[0]?.id ?? "");
   const [selectedDateISO, setSelectedDateISO] = useState("");
   const [selectedSlot, setSelectedSlot] = useState("");
   const [clientName, setClientName] = useState("");
   const [clientContact, setClientContact] = useState("");
   const [message, setMessage] = useState("");
-  const [status, setStatus] = useState<"idle" | "sending" | "sent" | "error">("idle");
+  const [status, setStatus] = useState<"idle" | "sending" | "sent" | "error">(
+    "idle"
+  );
+  const [visibleMonth, setVisibleMonth] = useState(() => {
+    const today = new Date();
+    return new Date(today.getFullYear(), today.getMonth(), 1, 12, 0, 0);
+  });
 
   const selectedService =
     meloServices.find((service) => service.id === serviceId) ?? meloServices[0];
@@ -32,6 +74,45 @@ export default function ReservationPage() {
     selectedSlot && selectedService
       ? addMinutesToTime(selectedSlot, selectedService.durationMinutes)
       : "";
+
+  const calendarDays = useMemo(
+    () => getCalendarDays(visibleMonth),
+    [visibleMonth]
+  );
+
+  const availableDateSet = useMemo(
+    () => new Set(availableDates.map((date) => toISODate(date))),
+    [availableDates]
+  );
+
+  const selectedDaySlots = selectedDateISO
+    ? getSlotsForDate(selectedDateISO, selectedService.durationMinutes)
+    : [];
+
+  const firstMonthKey = getMonthKey(new Date());
+  const lastAvailableDate = availableDates[availableDates.length - 1] ?? new Date();
+  const lastMonthKey = getMonthKey(lastAvailableDate);
+  const visibleMonthKey = getMonthKey(visibleMonth);
+
+  const canGoPrevious = visibleMonthKey > firstMonthKey;
+  const canGoNext = visibleMonthKey < lastMonthKey;
+
+  function changeMonth(direction: -1 | 1) {
+    setVisibleMonth(
+      (currentMonth) =>
+        new Date(
+          currentMonth.getFullYear(),
+          currentMonth.getMonth() + direction,
+          1,
+          12,
+          0,
+          0
+        )
+    );
+    setSelectedDateISO("");
+    setSelectedSlot("");
+    setStatus("idle");
+  }
 
   async function sendRequest() {
     if (!selectedService || !selectedDate || !selectedSlot || !clientName || !clientContact) {
@@ -89,12 +170,13 @@ export default function ReservationPage() {
           </p>
 
           <h1 className="font-serif-display mt-4 max-w-3xl text-4xl tracking-[-0.04em] sm:text-5xl">
-            Choisissez votre prestation, puis cliquez sur un créneau
+            Choisissez une prestation, une date, puis un horaire
           </h1>
 
           <p className="mt-5 max-w-3xl text-base leading-8 text-[var(--text-soft)]">
-            Les créneaux proposés tiennent compte de la durée de la prestation.
-            Mélo confirmera ensuite le rendez-vous.
+            Sélectionnez d’abord le soin souhaité. Le calendrier affiche ensuite
+            les journées disponibles : cliquez sur une date pour voir les
+            créneaux horaires proposés.
           </p>
 
           <div className="mt-10 grid gap-8 lg:grid-cols-[1.25fr_0.75fr]">
@@ -132,78 +214,159 @@ export default function ReservationPage() {
               </section>
 
               <section>
-                <h2 className="text-lg font-bold">
-                  2. Choisir directement un créneau disponible
-                </h2>
+                <div className="flex flex-wrap items-center justify-between gap-4">
+                  <div>
+                    <h2 className="text-lg font-bold">2. Choisir une date</h2>
+                    <p className="mt-1 text-sm text-[var(--text-soft)]">
+                      Les jours disponibles sont indiqués dans le calendrier.
+                    </p>
+                  </div>
 
-                <div className="mt-4 grid gap-4">
-                  {availableDates.map((date) => {
-                    const dateISO = toISODate(date);
-                    const slots = getSlotsForDate(
-                      dateISO,
-                      selectedService.durationMinutes
-                    );
+                  <div className="flex items-center gap-2">
+                    <button
+                      type="button"
+                      onClick={() => changeMonth(-1)}
+                      disabled={!canGoPrevious}
+                      className="rounded-full border border-[var(--border)] bg-white px-4 py-2 text-sm font-bold transition hover:bg-[var(--surface-2)] disabled:cursor-not-allowed disabled:opacity-35"
+                    >
+                      ←
+                    </button>
+                    <p className="min-w-36 text-center text-sm font-bold capitalize">
+                      {getMonthLabel(visibleMonth)}
+                    </p>
+                    <button
+                      type="button"
+                      onClick={() => changeMonth(1)}
+                      disabled={!canGoNext}
+                      className="rounded-full border border-[var(--border)] bg-white px-4 py-2 text-sm font-bold transition hover:bg-[var(--surface-2)] disabled:cursor-not-allowed disabled:opacity-35"
+                    >
+                      →
+                    </button>
+                  </div>
+                </div>
 
-                    if (slots.length === 0) {
-                      return null;
-                    }
+                <div className="mt-5 rounded-[1.6rem] border border-[var(--border)] bg-white p-4">
+                  <div className="grid grid-cols-7 gap-2 text-center text-[0.7rem] font-bold uppercase tracking-[0.12em] text-[var(--text-soft)]">
+                    {weekDays.map((day) => (
+                      <div key={day}>{day}</div>
+                    ))}
+                  </div>
 
-                    return (
-                      <article
-                        key={dateISO}
-                        className={`rounded-[1.6rem] border p-5 transition ${
-                          selectedDateISO === dateISO
-                            ? "border-[var(--gold-deep)] bg-[var(--surface-2)]"
-                            : "border-[var(--border)] bg-white"
-                        }`}
-                      >
-                        <div className="flex flex-wrap items-center justify-between gap-3">
-                          <h3 className="font-bold capitalize">
-                            {formatFrenchDate(date)}
-                          </h3>
-                          <p className="text-xs uppercase tracking-[0.18em] text-[var(--text-soft)]">
-                            {slots.length} créneau{slots.length > 1 ? "x" : ""}
-                          </p>
-                        </div>
+                  <div className="mt-3 grid grid-cols-7 gap-2">
+                    {calendarDays.map((date, index) => {
+                      if (!date) {
+                        return (
+                          <div
+                            key={`empty-${index}`}
+                            className="min-h-14 rounded-2xl bg-[var(--surface)] opacity-50"
+                          />
+                        );
+                      }
 
-                        <div className="mt-4 flex flex-wrap gap-3">
-                          {slots.map((slot) => {
-                            const end = addMinutesToTime(
-                              slot,
-                              selectedService.durationMinutes
-                            );
-                            const isSelected =
-                              selectedDateISO === dateISO &&
-                              selectedSlot === slot;
+                      const dateISO = toISODate(date);
+                      const slots = getSlotsForDate(
+                        dateISO,
+                        selectedService.durationMinutes
+                      );
+                      const hasSlots =
+                        availableDateSet.has(dateISO) && slots.length > 0;
+                      const isSelected = selectedDateISO === dateISO;
 
-                            return (
-                              <button
-                                key={`${dateISO}-${slot}`}
-                                type="button"
-                                onClick={() => {
-                                  setSelectedDateISO(dateISO);
-                                  setSelectedSlot(slot);
-                                  setStatus("idle");
-                                }}
-                                className={`rounded-full border px-5 py-3 text-sm font-bold transition ${
-                                  isSelected
-                                    ? "border-[var(--gold-deep)] bg-[var(--accent-strong)] text-[#fffaf6]"
-                                    : "border-[var(--border)] bg-[var(--surface)] hover:bg-[var(--surface-2)]"
-                                }`}
-                              >
-                                {slot} - {end}
-                              </button>
-                            );
-                          })}
-                        </div>
-                      </article>
-                    );
-                  })}
+                      return (
+                        <button
+                          key={dateISO}
+                          type="button"
+                          disabled={!hasSlots}
+                          onClick={() => {
+                            setSelectedDateISO(dateISO);
+                            setSelectedSlot("");
+                            setStatus("idle");
+                          }}
+                          className={`min-h-14 rounded-2xl border px-2 py-2 text-center transition ${
+                            isSelected
+                              ? "border-[var(--gold-deep)] bg-[var(--accent-strong)] text-[#fffaf6]"
+                              : hasSlots
+                                ? "border-[var(--border)] bg-[var(--surface-2)] hover:border-[var(--gold-deep)]"
+                                : "border-transparent bg-[var(--surface)] text-[var(--text-soft)] opacity-45"
+                          }`}
+                        >
+                          <span className="block text-sm font-bold">
+                            {date.getDate()}
+                          </span>
+                          {hasSlots && (
+                            <span className="mt-1 block text-[0.65rem] font-semibold">
+                              {slots.length} créneau{slots.length > 1 ? "x" : ""}
+                            </span>
+                          )}
+                        </button>
+                      );
+                    })}
+                  </div>
                 </div>
               </section>
 
               <section>
-                <h2 className="text-lg font-bold">3. Vos coordonnées</h2>
+                <h2 className="text-lg font-bold">3. Choisir un horaire</h2>
+
+                {!selectedDate && (
+                  <div className="mt-4 rounded-[1.6rem] border border-dashed border-[var(--border)] bg-white p-5 text-sm leading-7 text-[var(--text-soft)]">
+                    Cliquez sur une date disponible dans le calendrier pour
+                    afficher les créneaux horaires.
+                  </div>
+                )}
+
+                {selectedDate && (
+                  <div className="mt-4 rounded-[1.6rem] border border-[var(--border)] bg-white p-5">
+                    <div className="flex flex-wrap items-center justify-between gap-3">
+                      <h3 className="font-bold capitalize">
+                        {formatFrenchDate(selectedDate)}
+                      </h3>
+                      <p className="text-xs uppercase tracking-[0.18em] text-[var(--text-soft)]">
+                        {selectedDaySlots.length} créneau
+                        {selectedDaySlots.length > 1 ? "x" : ""}
+                      </p>
+                    </div>
+
+                    {selectedDaySlots.length > 0 ? (
+                      <div className="mt-4 flex flex-wrap gap-3">
+                        {selectedDaySlots.map((slot) => {
+                          const end = addMinutesToTime(
+                            slot,
+                            selectedService.durationMinutes
+                          );
+                          const isSelected = selectedSlot === slot;
+
+                          return (
+                            <button
+                              key={`${selectedDateISO}-${slot}`}
+                              type="button"
+                              onClick={() => {
+                                setSelectedSlot(slot);
+                                setStatus("idle");
+                              }}
+                              className={`rounded-full border px-5 py-3 text-sm font-bold transition ${
+                                isSelected
+                                  ? "border-[var(--gold-deep)] bg-[var(--accent-strong)] text-[#fffaf6]"
+                                  : "border-[var(--border)] bg-[var(--surface)] hover:bg-[var(--surface-2)]"
+                              }`}
+                            >
+                              {slot} - {end}
+                            </button>
+                          );
+                        })}
+                      </div>
+                    ) : (
+                      <p className="mt-4 text-sm leading-7 text-[var(--text-soft)]">
+                        Aucun créneau disponible ce jour-là pour cette
+                        prestation.
+                      </p>
+                    )}
+                  </div>
+                )}
+              </section>
+
+              <section>
+                <h2 className="text-lg font-bold">4. Vos coordonnées</h2>
 
                 <div className="mt-4 grid gap-4 sm:grid-cols-2">
                   <label className="block">
@@ -299,14 +462,16 @@ export default function ReservationPage() {
                     Votre demande a bien été envoyée.
                   </p>
                   <p className="mt-2 text-[var(--text-soft)]">
-                    Mélo devra confirmer le rendez-vous avant qu’il soit définitif.
+                    Mélo devra confirmer le rendez-vous avant qu’il soit
+                    définitif.
                   </p>
                 </div>
               )}
 
               {status === "error" && (
                 <div className="mt-5 rounded-3xl border border-red-200 bg-red-50 p-5 text-sm leading-7 text-red-700">
-                  Vérifiez que vous avez choisi un créneau et rempli vos coordonnées.
+                  Vérifiez que vous avez choisi un créneau et rempli vos
+                  coordonnées.
                 </div>
               )}
 
