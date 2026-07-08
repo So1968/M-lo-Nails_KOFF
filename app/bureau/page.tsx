@@ -84,9 +84,9 @@ const businessCards = [
 
 export default function BureauMeloNail() {
   return (
-    <main className="min-h-screen bg-[var(--background)] px-4 py-6 text-[var(--foreground)] sm:px-6 lg:py-10">
-      <section className="mx-auto max-w-6xl">
-        <div className="relative overflow-hidden rounded-[2.3rem] border border-[var(--border)] bg-[var(--surface)] p-6 shadow-[0_22px_55px_rgba(88,66,49,0.10)] sm:p-8">
+    <main className="site-page px-4 py-10 text-[var(--foreground)] sm:px-6">
+      <section className="site-container">
+        <div className="site-panel relative overflow-hidden rounded-[2.3rem] p-6 sm:p-8">
           <div className="absolute -right-16 -top-16 h-48 w-48 rounded-full bg-[var(--gold-soft)]/25 blur-3xl" />
           <div className="absolute -bottom-16 left-12 h-44 w-44 rounded-full bg-white/70 blur-3xl" />
 
@@ -185,7 +185,7 @@ function BureauCard({
   return (
     <Link
       href={href}
-      className="group rounded-[1.6rem] border border-[var(--border)] bg-[var(--surface)] p-4 shadow-[0_12px_28px_rgba(120,98,73,0.06)] transition hover:-translate-y-1 hover:border-[var(--gold)] hover:shadow-[0_18px_36px_rgba(120,98,73,0.10)]"
+      className="group site-card rounded-[1.6rem] p-4 transition hover:-translate-y-1 hover:border-[var(--gold)] hover:shadow-[0_18px_36px_rgba(120,98,73,0.10)]"
     >
       <div className="flex items-start justify-between gap-3">
         <div className="flex h-11 w-11 items-center justify-center rounded-2xl bg-[var(--accent-soft)] text-[var(--gold-deep)]">
@@ -204,7 +204,7 @@ function BureauCard({
 
 function StatusCard({ label, value, icon: Icon }: { label: string; value: string; icon: typeof Activity }) {
   return (
-    <div className="rounded-[1.4rem] border border-[var(--border)] bg-[var(--surface)] p-4 shadow-sm">
+    <div className="site-card rounded-[1.4rem] p-4">
       <div className="flex items-center gap-3">
         <div className="flex h-10 w-10 items-center justify-center rounded-2xl bg-[var(--surface-2)] text-[var(--gold-deep)]">
           <Icon className="h-5 w-5" />
