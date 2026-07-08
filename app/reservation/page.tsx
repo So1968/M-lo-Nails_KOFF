@@ -14,6 +14,7 @@ import {
 export default function ReservationPage() {
   const availableDates = useMemo(() => getAvailableDates(30), []);
   const [serviceId, setServiceId] = useState(meloServices[0]?.id ?? "");
+  const [visibleMonthIndex, setVisibleMonthIndex] = useState(0);
   const [selectedDateISO, setSelectedDateISO] = useState("");
   const [selectedSlot, setSelectedSlot] = useState("");
   const [clientName, setClientName] = useState("");
@@ -116,6 +117,16 @@ export default function ReservationPage() {
     });
   }, [availableDates, selectedService.durationMinutes]);
 
+  const visibleMonth = calendarMonths[visibleMonthIndex] ?? calendarMonths[0];
+  const canGoToPreviousMonth = visibleMonthIndex > 0;
+  const canGoToNextMonth = visibleMonthIndex < calendarMonths.length - 1;
+  const selectedDateBelongsToVisibleMonth =
+    Boolean(visibleMonth) && selectedDateISO.startsWith(visibleMonth.key);
+  const slotsForSelectedDate =
+    selectedDateBelongsToVisibleMonth && selectedDateISO
+      ? getSlotsForDate(selectedDateISO, selectedService.durationMinutes)
+      : [];
+
   async function sendRequest() {
     if (!selectedService || !selectedDate || !selectedSlot || !clientName || !clientPhone) {
       setStatus("error");
@@ -195,6 +206,7 @@ export default function ReservationPage() {
                       type="button"
                       onClick={() => {
                         setServiceId(service.id);
+                        setVisibleMonthIndex(0);
                         setSelectedDateISO("");
                         setSelectedSlot("");
                         setStatus("idle");
@@ -226,124 +238,141 @@ export default function ReservationPage() {
                   Cliquez sur une date disponible, puis choisissez le créneau de cette journée.
                 </p>
 
-                <div className="mt-4 grid gap-5">
-                  {calendarMonths.map((month) => {
-                    const selectedDateBelongsToMonth =
-                      selectedDateISO.startsWith(month.key);
-                    const slotsForSelectedDate =
-                      selectedDateBelongsToMonth && selectedDateISO
-                        ? getSlotsForDate(
-                            selectedDateISO,
-                            selectedService.durationMinutes
-                          )
-                        : [];
-
-                    return (
-                      <article
-                        key={month.key}
-                        className="rounded-[1.8rem] border border-[var(--border)] bg-white p-4 sm:p-5"
+                {visibleMonth && (
+                  <article className="mt-4 rounded-[1.8rem] border border-[var(--border)] bg-white p-4 sm:p-5">
+                    <div className="flex items-center justify-between gap-3">
+                      <button
+                        type="button"
+                        disabled={!canGoToPreviousMonth}
+                        onClick={() => {
+                          setVisibleMonthIndex((currentIndex) => Math.max(currentIndex - 1, 0));
+                          setSelectedDateISO("");
+                          setSelectedSlot("");
+                          setStatus("idle");
+                        }}
+                        className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-[var(--border)] bg-[var(--surface)] text-lg font-bold transition hover:bg-[var(--surface-2)] disabled:cursor-not-allowed disabled:opacity-30"
+                        aria-label="Afficher le mois précédent"
                       >
-                        <h3 className="font-serif-display text-2xl capitalize tracking-[-0.03em] text-[var(--gold-deep)]">
-                          {month.label}
-                        </h3>
+                        ←
+                      </button>
 
-                        <div className="mt-4 grid grid-cols-7 gap-2 text-center text-[0.65rem] font-bold uppercase tracking-[0.14em] text-[var(--text-soft)]">
-                          {["lun", "mar", "mer", "jeu", "ven", "sam", "dim"].map(
-                            (dayLabel) => (
-                              <span key={`${month.key}-${dayLabel}`}>
-                                {dayLabel}
+                      <h3 className="font-serif-display text-center text-2xl capitalize tracking-[-0.03em] text-[var(--gold-deep)]">
+                        {visibleMonth.label}
+                      </h3>
+
+                      <button
+                        type="button"
+                        disabled={!canGoToNextMonth}
+                        onClick={() => {
+                          setVisibleMonthIndex((currentIndex) =>
+                            Math.min(currentIndex + 1, calendarMonths.length - 1)
+                          );
+                          setSelectedDateISO("");
+                          setSelectedSlot("");
+                          setStatus("idle");
+                        }}
+                        className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-[var(--border)] bg-[var(--surface)] text-lg font-bold transition hover:bg-[var(--surface-2)] disabled:cursor-not-allowed disabled:opacity-30"
+                        aria-label="Afficher le mois suivant"
+                      >
+                        →
+                      </button>
+                    </div>
+
+                    <div className="mt-4 grid grid-cols-7 gap-2 text-center text-[0.65rem] font-bold uppercase tracking-[0.14em] text-[var(--text-soft)]">
+                      {["lun", "mar", "mer", "jeu", "ven", "sam", "dim"].map(
+                        (dayLabel) => (
+                          <span key={`${visibleMonth.key}-${dayLabel}`}>
+                            {dayLabel}
+                          </span>
+                        )
+                      )}
+                    </div>
+
+                    <div className="mt-2 grid grid-cols-7 gap-2">
+                      {visibleMonth.days.map((day, index) => {
+                        if (!day) {
+                          return (
+                            <span
+                              key={`${visibleMonth.key}-empty-${index}`}
+                              className="min-h-12 rounded-2xl"
+                            />
+                          );
+                        }
+
+                        const isSelected = selectedDateISO === day.iso;
+
+                        return (
+                          <button
+                            key={day.iso}
+                            type="button"
+                            disabled={!day.isAvailable}
+                            onClick={() => {
+                              setSelectedDateISO(day.iso);
+                              setSelectedSlot("");
+                              setStatus("idle");
+                            }}
+                            className={`min-h-12 rounded-2xl border px-2 py-2 text-center text-sm font-bold transition ${
+                              isSelected
+                                ? "border-[var(--gold-deep)] bg-[var(--accent-strong)] text-[#fffaf6]"
+                                : day.isAvailable
+                                  ? "border-[var(--border)] bg-[var(--surface)] hover:bg-[var(--surface-2)]"
+                                  : "border-transparent bg-transparent text-[var(--text-soft)] opacity-30"
+                            }`}
+                            aria-label={`Choisir le ${formatFrenchDate(day.date)}`}
+                          >
+                            <span>{day.dayNumber}</span>
+                            {day.isAvailable && (
+                              <span className="mt-1 block text-[0.6rem] font-semibold">
+                                {day.slotsCount} cr.
                               </span>
-                            )
-                          )}
-                        </div>
+                            )}
+                          </button>
+                        );
+                      })}
+                    </div>
 
-                        <div className="mt-2 grid grid-cols-7 gap-2">
-                          {month.days.map((day, index) => {
-                            if (!day) {
-                              return (
-                                <span
-                                  key={`${month.key}-empty-${index}`}
-                                  className="min-h-12 rounded-2xl"
-                                />
+                    {selectedDateBelongsToVisibleMonth &&
+                      selectedDateISO &&
+                      slotsForSelectedDate.length > 0 && (
+                        <div className="mt-5 rounded-[1.4rem] border border-[var(--gold-deep)] bg-[var(--surface-2)] p-4">
+                          <p className="text-sm font-semibold text-[var(--text-soft)]">
+                            Créneaux disponibles le{" "}
+                            <span className="font-bold text-[var(--foreground)]">
+                              {selectedDate ? formatFrenchDate(selectedDate) : ""}
+                            </span>
+                          </p>
+
+                          <div className="mt-3 flex flex-wrap gap-3">
+                            {slotsForSelectedDate.map((slot) => {
+                              const end = addMinutesToTime(
+                                slot,
+                                selectedService.durationMinutes
                               );
-                            }
+                              const isSelected = selectedSlot === slot;
 
-                            const isSelected = selectedDateISO === day.iso;
-
-                            return (
-                              <button
-                                key={day.iso}
-                                type="button"
-                                disabled={!day.isAvailable}
-                                onClick={() => {
-                                  setSelectedDateISO(day.iso);
-                                  setSelectedSlot("");
-                                  setStatus("idle");
-                                }}
-                                className={`min-h-12 rounded-2xl border px-2 py-2 text-center text-sm font-bold transition ${
-                                  isSelected
-                                    ? "border-[var(--gold-deep)] bg-[var(--accent-strong)] text-[#fffaf6]"
-                                    : day.isAvailable
-                                      ? "border-[var(--border)] bg-[var(--surface)] hover:bg-[var(--surface-2)]"
-                                      : "border-transparent bg-transparent text-[var(--text-soft)] opacity-30"
-                                }`}
-                                aria-label={`Choisir le ${formatFrenchDate(day.date)}`}
-                              >
-                                <span>{day.dayNumber}</span>
-                                {day.isAvailable && (
-                                  <span className="mt-1 block text-[0.6rem] font-semibold">
-                                    {day.slotsCount} cr.
-                                  </span>
-                                )}
-                              </button>
-                            );
-                          })}
+                              return (
+                                <button
+                                  key={`${selectedDateISO}-${slot}`}
+                                  type="button"
+                                  onClick={() => {
+                                    setSelectedSlot(slot);
+                                    setStatus("idle");
+                                  }}
+                                  className={`rounded-full border px-5 py-3 text-sm font-bold transition ${
+                                    isSelected
+                                      ? "border-[var(--gold-deep)] bg-[var(--accent-strong)] text-[#fffaf6]"
+                                      : "border-[var(--border)] bg-white hover:bg-[var(--surface)]"
+                                  }`}
+                                >
+                                  {slot} - {end}
+                                </button>
+                              );
+                            })}
+                          </div>
                         </div>
-
-                        {selectedDateBelongsToMonth &&
-                          selectedDateISO &&
-                          slotsForSelectedDate.length > 0 && (
-                            <div className="mt-5 rounded-[1.4rem] border border-[var(--gold-deep)] bg-[var(--surface-2)] p-4">
-                              <p className="text-sm font-semibold text-[var(--text-soft)]">
-                                Créneaux disponibles le{" "}
-                                <span className="font-bold text-[var(--foreground)]">
-                                  {selectedDate ? formatFrenchDate(selectedDate) : ""}
-                                </span>
-                              </p>
-
-                              <div className="mt-3 flex flex-wrap gap-3">
-                                {slotsForSelectedDate.map((slot) => {
-                                  const end = addMinutesToTime(
-                                    slot,
-                                    selectedService.durationMinutes
-                                  );
-                                  const isSelected = selectedSlot === slot;
-
-                                  return (
-                                    <button
-                                      key={`${selectedDateISO}-${slot}`}
-                                      type="button"
-                                      onClick={() => {
-                                        setSelectedSlot(slot);
-                                        setStatus("idle");
-                                      }}
-                                      className={`rounded-full border px-5 py-3 text-sm font-bold transition ${
-                                        isSelected
-                                          ? "border-[var(--gold-deep)] bg-[var(--accent-strong)] text-[#fffaf6]"
-                                          : "border-[var(--border)] bg-white hover:bg-[var(--surface)]"
-                                      }`}
-                                    >
-                                      {slot} - {end}
-                                    </button>
-                                  );
-                                })}
-                              </div>
-                            </div>
-                          )}
-                      </article>
-                    );
-                  })}
-                </div>
+                      )}
+                  </article>
+                )}
               </section>
 
               <section>
