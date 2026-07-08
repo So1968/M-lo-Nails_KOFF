@@ -129,7 +129,14 @@ export default function ReservationPage() {
       : [];
 
   async function sendRequest() {
-    if (!selectedService || !selectedDate || !selectedSlot || !clientName || !clientPhone) {
+    if (
+      !selectedService ||
+      !selectedDate ||
+      !selectedSlot ||
+      !clientName ||
+      !clientPhone ||
+      !clientEmail
+    ) {
       setStatus("error");
       return;
     }
@@ -424,11 +431,15 @@ export default function ReservationPage() {
 
                   <label className="block">
                     <span className="mb-2 block text-sm font-semibold">
-                      Email
+                      Email *
                     </span>
                     <input
+                      type="email"
                       value={clientEmail}
-                      onChange={(event) => setClientEmail(event.target.value)}
+                      onChange={(event) => {
+                        setClientEmail(event.target.value);
+                        setStatus("idle");
+                      }}
                       className="w-full rounded-2xl border border-[var(--border)] bg-white px-4 py-3 outline-none focus:border-[var(--gold-deep)]"
                       placeholder="votre@email.fr"
                     />
@@ -492,7 +503,8 @@ export default function ReservationPage() {
                   status === "sending" ||
                   !selectedSlot ||
                   !clientName ||
-                  !clientPhone
+                  !clientPhone ||
+                  !clientEmail
                 }
                 className="mt-6 w-full rounded-full bg-[var(--accent-strong)] px-6 py-4 text-sm font-bold uppercase tracking-[0.16em] text-[#fffaf6] transition hover:bg-[var(--gold-deep)] disabled:cursor-not-allowed disabled:opacity-45"
               >
@@ -516,7 +528,7 @@ export default function ReservationPage() {
 
               {status === "error" && (
                 <div className="mt-5 rounded-3xl border border-red-200 bg-red-50 p-5 text-sm leading-7 text-red-700">
-                  Choisissez un créneau et renseignez au minimum votre nom et téléphone.
+                  Choisissez un créneau et renseignez au minimum votre nom, votre téléphone et votre email.
                 </div>
               )}
 
