@@ -10,7 +10,7 @@ export default function ReservationLayout({
     <>
       <SiteHeader />
       <div className="flex w-full justify-center pt-[82px]">
-        <div className="w-full max-w-6xl">
+        <div className="w-full max-w-5xl">
           {children}
         </div>
       </div>
