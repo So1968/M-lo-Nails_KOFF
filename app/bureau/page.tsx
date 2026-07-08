@@ -3,6 +3,7 @@ import {
   Activity,
   CalendarDays,
   ClipboardList,
+  GraduationCap,
   HeartPulse,
   Landmark,
   PiggyBank,
@@ -20,6 +21,13 @@ const dailyCards = [
     href: '/bureau/sante',
     icon: HeartPulse,
     badge: 'CPAM'
+  },
+  {
+    title: 'Formation adaptée',
+    text: 'Avancer sans cadre scolaire lourd : esthétique, pose d’ongles, stages courts et rythme sécurisant.',
+    href: '/bureau/formation',
+    icon: GraduationCap,
+    badge: 'Parcours'
   },
   {
     title: 'Rendez-vous perso',
@@ -109,14 +117,14 @@ export default function BureauMeloNail() {
 
         <div className="mt-6 grid gap-4 md:grid-cols-3">
           <StatusCard label="Aujourd’hui" value="Choisir une priorité" icon={Activity} />
-          <StatusCard label="À surveiller" value="URSSAF / santé / argent" icon={ReceiptText} />
-          <StatusCard label="Objectif" value="Tenir sans s’épuiser" icon={HeartPulse} />
+          <StatusCard label="À surveiller" value="Formation / santé / argent" icon={ReceiptText} />
+          <StatusCard label="Objectif" value="Se former sans s’épuiser" icon={HeartPulse} />
         </div>
 
         <DashboardSection
           eyebrow="Vie quotidienne"
           title="Mon quotidien"
-          text="Pour prendre soin de Mélo : santé, papiers, rendez-vous personnels, énergie et organisation."
+          text="Pour prendre soin de Mélo : santé, formation adaptée, papiers, rendez-vous personnels, énergie et organisation."
           cards={dailyCards}
         />
 
@@ -129,9 +137,9 @@ export default function BureauMeloNail() {
 
         <div className="mt-8 rounded-[2rem] border border-[var(--border)] bg-[var(--accent-soft)]/75 p-5 shadow-[0_14px_34px_rgba(120,98,73,0.07)]">
           <p className="text-sm uppercase tracking-[0.22em] text-[var(--gold-deep)]">Prochaine priorité</p>
-          <h2 className="font-serif-display mt-2 text-3xl tracking-[-0.04em]">Rendre chaque page aussi claire que cette entrée.</h2>
+          <h2 className="font-serif-display mt-2 text-3xl tracking-[-0.04em]">Construire un parcours réaliste, doux et professionnel.</h2>
           <p className="mt-3 max-w-3xl text-sm leading-relaxed text-[var(--text-soft)]">
-            Les modules sont volontairement courts au départ. On ajoute ensuite les vrais calculs, rappels, formulaires et documents sans transformer le bureau en usine à gaz.
+            Le bureau privé doit aider Mélo à avancer par petites marches : apprendre, pratiquer, organiser, puis seulement ensuite développer son activité.
           </p>
         </div>
       </section>
