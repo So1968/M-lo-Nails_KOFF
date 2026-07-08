@@ -33,18 +33,18 @@ export default function AccesBureauPage() {
   }
 
   return (
-    <main className="min-h-screen bg-[var(--background)] px-4 py-16 text-[var(--foreground)] sm:px-6">
-      <section className="mx-auto flex min-h-[70vh] max-w-3xl items-center justify-center">
-        <div className="w-full rounded-[2rem] border border-[var(--border)] bg-[var(--surface)] p-8 shadow-[0_18px_45px_rgba(88,66,49,0.10)]">
+    <main className="site-page flex min-h-screen items-center justify-center px-4 py-12 text-[var(--foreground)] sm:px-6">
+      <section className="w-full max-w-3xl">
+        <div className="site-panel rounded-[2.2rem] p-7 sm:p-9">
           <p className="text-sm uppercase tracking-[0.24em] text-[var(--gold-deep)]">
             Bureau privé
           </p>
 
-          <h1 className="font-serif-display mt-4 text-4xl tracking-[-0.04em]">
+          <h1 className="font-serif-display mt-4 text-4xl tracking-[-0.04em] sm:text-5xl">
             Accès au bureau Mélo Nail
           </h1>
 
-          <p className="mt-4 text-[var(--text-soft)]">
+          <p className="mt-4 leading-relaxed text-[var(--text-soft)]">
             Cet espace est réservé à Mélo et aux personnes autorisées.
           </p>
 
