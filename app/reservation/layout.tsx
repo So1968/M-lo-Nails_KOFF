@@ -1,9 +1,10 @@
+import type { ReactNode } from "react";
 import Link from "next/link";
 
 export default function ReservationLayout({
   children,
 }: Readonly<{
-  children: React.ReactNode;
+  children: ReactNode;
 }>) {
   return (
     <>
@@ -42,7 +43,7 @@ export default function ReservationLayout({
         </div>
       </header>
 
-      <div className="flex justify-center pt-[82px]">
+      <div className="flex w-full justify-center pt-[82px]">
         <div className="w-full max-w-6xl">
           {children}
         </div>
