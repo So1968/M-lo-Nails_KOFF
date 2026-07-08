@@ -120,8 +120,9 @@ export default function ReservationPage() {
   const visibleMonth = calendarMonths[visibleMonthIndex] ?? calendarMonths[0];
   const canGoToPreviousMonth = visibleMonthIndex > 0;
   const canGoToNextMonth = visibleMonthIndex < calendarMonths.length - 1;
-  const selectedDateBelongsToVisibleMonth =
-    Boolean(visibleMonth) && selectedDateISO.startsWith(visibleMonth.key);
+  const selectedDateBelongsToVisibleMonth = visibleMonth
+    ? selectedDateISO.startsWith(visibleMonth.key)
+    : false;
   const slotsForSelectedDate =
     selectedDateBelongsToVisibleMonth && selectedDateISO
       ? getSlotsForDate(selectedDateISO, selectedService.durationMinutes)
