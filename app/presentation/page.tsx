@@ -53,7 +53,14 @@ export default function PresentationPage() {
       <SiteHeader />
       <main className="site-page px-4 pb-16 pt-[112px] sm:px-6">
         <section className="site-container-narrow">
-          <div className="site-panel overflow-hidden rounded-[2.3rem] p-6 sm:p-9">
+          <div className="site-panel relative overflow-hidden rounded-[2.3rem] p-6 sm:p-9">
+            <div aria-hidden="true" className="absolute right-8 top-5 text-6xl text-[var(--gold)]/15">
+              ✦
+            </div>
+            <div aria-hidden="true" className="absolute -bottom-8 -left-3 rotate-[-10deg] text-7xl font-serif-display tracking-[0.25em] text-[var(--gold-deep)]/10">
+              ⌁
+            </div>
+
             <p className="text-sm uppercase tracking-[0.24em] text-[var(--gold-deep)]">
               Présentation
             </p>
@@ -129,38 +136,60 @@ export default function PresentationPage() {
             </div>
           </div>
 
-          <div id="contact" className="mt-6 site-panel rounded-[2rem] p-6 sm:p-8">
-            <p className="text-sm uppercase tracking-[0.24em] text-[var(--gold-deep)]">
-              Contact
-            </p>
-            <h2 className="font-serif-display mt-3 text-3xl tracking-[-0.04em] text-[var(--foreground)]">
-              Contacter Mélo Nail
-            </h2>
-            <p className="mt-3 max-w-3xl text-sm leading-7 text-[var(--text-soft)]">
-              Pour le moment, les coordonnées professionnelles sont en préparation. Aucun numéro personnel n’est affiché. Les champs ci-dessous sont prévus pour être complétés dès que Mélo aura une ligne professionnelle, une adresse mail dédiée et un compte Instagram séparé de son compte personnel.
-            </p>
-
-            <div className="mt-6 grid gap-4 sm:grid-cols-2">
-              {contactItems.map((item) => (
-                <div key={item.label} className="rounded-[1.5rem] border border-[var(--border)] bg-[var(--surface-2)] p-5">
-                  <p className="text-xs uppercase tracking-[0.2em] text-[var(--gold-deep)]">
-                    {item.label}
-                  </p>
-                  <p className="mt-2 text-lg font-semibold text-[var(--foreground)]">
-                    {item.value}
+          <div className="mt-6 grid gap-6 lg:grid-cols-[0.85fr_1.15fr]">
+            <div className="site-panel rounded-[2rem] p-6 sm:p-8">
+              <p className="text-sm uppercase tracking-[0.24em] text-[var(--gold-deep)]">
+                Photo familiale
+              </p>
+              <div className="placeholder-media mt-5 flex aspect-[4/5] items-center justify-center rounded-[1.7rem] border border-dashed border-[var(--border-strong)] p-6 text-center">
+                <div>
+                  <p className="font-serif-display text-4xl text-[var(--gold-deep)]">✦</p>
+                  <p className="mt-3 text-sm font-semibold text-[var(--foreground)]">
+                    Photo à ajouter
                   </p>
                   <p className="mt-2 text-sm leading-6 text-[var(--text-soft)]">
-                    {item.note}
+                    Emplacement prévu pour une photo validée avec la famille.
                   </p>
                 </div>
-              ))}
+              </div>
+              <p className="mt-4 text-sm leading-7 text-[var(--text-soft)]">
+                La photo sera publiée uniquement après choix de l’image et accord des personnes concernées.
+              </p>
             </div>
 
-            <div className="mt-6 rounded-[1.6rem] border border-[var(--border)] bg-[var(--accent-soft)]/75 p-5 text-sm leading-7 text-[var(--text-soft)]">
-              <p className="font-semibold text-[var(--foreground)]">Photo professionnelle</p>
-              <p className="mt-2">
-                Une photo de présentation reste à organiser. Elle permettra de rendre la page plus personnelle et plus rassurante pour les clientes. Date du shooting : à fixer.
+            <div id="contact" className="site-panel rounded-[2rem] p-6 sm:p-8">
+              <p className="text-sm uppercase tracking-[0.24em] text-[var(--gold-deep)]">
+                Contact
               </p>
+              <h2 className="font-serif-display mt-3 text-3xl tracking-[-0.04em] text-[var(--foreground)]">
+                Contacter Mélo Nail
+              </h2>
+              <p className="mt-3 max-w-3xl text-sm leading-7 text-[var(--text-soft)]">
+                Pour le moment, les coordonnées professionnelles sont en préparation. Aucun numéro personnel n’est affiché. Les champs ci-dessous sont prévus pour être complétés dès que Mélo aura une ligne professionnelle, une adresse mail dédiée et un compte Instagram séparé de son compte personnel.
+              </p>
+
+              <div className="mt-6 grid gap-4 sm:grid-cols-2">
+                {contactItems.map((item) => (
+                  <div key={item.label} className="rounded-[1.5rem] border border-[var(--border)] bg-[var(--surface-2)] p-5">
+                    <p className="text-xs uppercase tracking-[0.2em] text-[var(--gold-deep)]">
+                      {item.label}
+                    </p>
+                    <p className="mt-2 text-lg font-semibold text-[var(--foreground)]">
+                      {item.value}
+                    </p>
+                    <p className="mt-2 text-sm leading-6 text-[var(--text-soft)]">
+                      {item.note}
+                    </p>
+                  </div>
+                ))}
+              </div>
+
+              <div className="mt-6 rounded-[1.6rem] border border-[var(--border)] bg-[var(--accent-soft)]/75 p-5 text-sm leading-7 text-[var(--text-soft)]">
+                <p className="font-semibold text-[var(--foreground)]">Photo professionnelle</p>
+                <p className="mt-2">
+                  Une photo de présentation reste à organiser. Elle permettra de rendre la page plus personnelle et plus rassurante pour les clientes. Date du shooting : à fixer.
+                </p>
+              </div>
             </div>
           </div>
         </section>
