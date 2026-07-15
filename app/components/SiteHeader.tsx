@@ -2,8 +2,8 @@ import Link from "next/link";
 
 export default function SiteHeader() {
   return (
-    <header className="fixed inset-x-0 top-0 z-[100] border-b border-[var(--border)] bg-[rgba(255,250,246,0.96)] shadow-[0_12px_30px_rgba(88,66,49,0.08)] backdrop-blur">
-      <div className="mx-auto flex max-w-6xl items-center justify-between gap-3 px-4 py-3 sm:px-6">
+    <header className="fixed left-1/2 top-3 z-[100] w-[calc(100%-1rem)] max-w-6xl -translate-x-1/2 rounded-[2rem] border border-[var(--border)] bg-[rgba(255,250,246,0.96)] shadow-[0_16px_36px_rgba(88,66,49,0.12)] backdrop-blur sm:w-[calc(100%-2rem)]">
+      <div className="mx-auto flex items-center justify-between gap-3 px-4 py-3 sm:px-6">
         <Link href="/" className="leading-tight">
           <span className="block font-serif-display text-2xl tracking-[-0.04em] text-[var(--foreground)]">
             Mélo Nail
