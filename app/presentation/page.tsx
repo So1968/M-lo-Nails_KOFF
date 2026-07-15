@@ -51,15 +51,10 @@ export default function PresentationPage() {
   return (
     <>
       <SiteHeader />
-      <main className="site-page px-4 pb-16 pt-[112px] sm:px-6">
+      <main className="site-page px-4 pb-16 pt-[142px] sm:px-6">
         <section className="site-container-narrow">
-          <div className="site-panel relative overflow-hidden rounded-[2.3rem] p-6 sm:p-9">
-            <div aria-hidden="true" className="absolute right-8 top-5 text-6xl text-[var(--gold)]/15">
-              ✦
-            </div>
-            <div aria-hidden="true" className="absolute -bottom-8 -left-3 rotate-[-10deg] text-7xl font-serif-display tracking-[0.25em] text-[var(--gold-deep)]/10">
-              ⌁
-            </div>
+          <div className="site-panel arabesque-corner sparkle-dust relative overflow-hidden rounded-[2.6rem] p-7 sm:p-10">
+            <div className="ornament-divider mb-5">❦</div>
 
             <p className="text-sm uppercase tracking-[0.24em] text-[var(--gold-deep)]">
               Présentation
@@ -95,7 +90,7 @@ export default function PresentationPage() {
                 </div>
               </div>
 
-              <aside className="rounded-[2rem] border border-[var(--border)] bg-[var(--accent-soft)]/70 p-6">
+              <aside className="rounded-[2.2rem] border border-[var(--border)] bg-[var(--accent-soft)]/70 p-6">
                 <p className="text-xs uppercase tracking-[0.24em] text-[var(--gold-deep)]">
                   Mini CV
                 </p>
@@ -116,14 +111,14 @@ export default function PresentationPage() {
 
           <div className="mt-6 grid gap-5 md:grid-cols-3">
             {steps.map((step) => (
-              <article key={step.title} className="site-card rounded-[1.6rem] p-6">
+              <article key={step.title} className="site-card rounded-[1.8rem] p-6">
                 <h2 className="text-xl font-semibold text-[var(--foreground)]">{step.title}</h2>
                 <p className="mt-3 text-sm leading-7 text-[var(--text-soft)]">{step.text}</p>
               </article>
             ))}
           </div>
 
-          <div className="mt-6 site-panel rounded-[2rem] p-6 sm:p-8">
+          <div className="mt-6 site-panel arabesque-corner rounded-[2.2rem] p-6 sm:p-8">
             <p className="text-sm uppercase tracking-[0.24em] text-[var(--gold-deep)]">
               Ce qui caractérise Mélo
             </p>
@@ -137,13 +132,13 @@ export default function PresentationPage() {
           </div>
 
           <div className="mt-6 grid gap-6 lg:grid-cols-[0.85fr_1.15fr]">
-            <div className="site-panel rounded-[2rem] p-6 sm:p-8">
+            <div className="site-panel rounded-[2.2rem] p-6 sm:p-8">
               <p className="text-sm uppercase tracking-[0.24em] text-[var(--gold-deep)]">
                 Photo familiale
               </p>
-              <div className="placeholder-media mt-5 flex aspect-[4/5] items-center justify-center rounded-[1.7rem] border border-dashed border-[var(--border-strong)] p-6 text-center">
+              <div className="placeholder-media mt-5 flex aspect-[4/5] items-center justify-center rounded-[1.9rem] border border-dashed border-[var(--border-strong)] p-6 text-center">
                 <div>
-                  <p className="font-serif-display text-4xl text-[var(--gold-deep)]">✦</p>
+                  <p className="font-serif-display text-5xl text-[var(--gold-deep)]">❦</p>
                   <p className="mt-3 text-sm font-semibold text-[var(--foreground)]">
                     Photo à ajouter
                   </p>
@@ -157,7 +152,7 @@ export default function PresentationPage() {
               </p>
             </div>
 
-            <div id="contact" className="site-panel rounded-[2rem] p-6 sm:p-8">
+            <div id="contact" className="site-panel rounded-[2.2rem] p-6 sm:p-8">
               <p className="text-sm uppercase tracking-[0.24em] text-[var(--gold-deep)]">
                 Contact
               </p>
