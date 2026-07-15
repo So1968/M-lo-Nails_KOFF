@@ -4,12 +4,8 @@ export default function SiteHeader() {
   return (
     <header className="fixed left-1/2 top-4 z-[100] w-[calc(100%-1rem)] max-w-6xl -translate-x-1/2 rounded-[2.4rem] border border-[var(--border)] bg-[rgba(255,250,246,0.97)] shadow-[0_18px_42px_rgba(88,66,49,0.14)] backdrop-blur sm:w-[calc(100%-2rem)]">
       <div className="pointer-events-none absolute inset-x-8 bottom-2 hidden h-px bg-gradient-to-r from-transparent via-[rgba(171,128,70,0.32)] to-transparent md:block" />
-      <div className="pointer-events-none absolute left-6 top-2 hidden text-3xl leading-none text-[rgba(171,128,70,0.18)] md:block">
-        ❦
-      </div>
-      <div className="pointer-events-none absolute right-6 top-2 hidden text-2xl leading-none text-[rgba(171,128,70,0.18)] md:block">
-        ✧
-      </div>
+      <div className="pointer-events-none absolute inset-x-14 top-3 hidden h-px bg-gradient-to-r from-transparent via-[rgba(200,165,111,0.22)] to-transparent md:block" />
+
       <div className="mx-auto flex items-center justify-between gap-3 px-5 py-5 sm:px-8 sm:py-6">
         <Link href="/" className="leading-tight">
           <span className="block font-serif-display text-3xl tracking-[-0.05em] text-[var(--foreground)]">
