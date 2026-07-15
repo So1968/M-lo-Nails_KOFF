@@ -4,6 +4,7 @@ import { useState } from 'react';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
 import { Clock3, Instagram, MapPin, Sparkles, WandSparkles } from 'lucide-react';
+import SiteHeader from './components/SiteHeader';
 import ServicesInteractiveBlock from './components/ServicesInteractiveBlock';
 
 const heroImages = [
@@ -67,64 +68,10 @@ export default function HomePage() {
   }
 
   return (
-    <main className="overflow-hidden bg-[var(--background)] pt-[126px] text-[var(--foreground)]">
-      <header className="fixed left-1/2 top-4 z-[100] w-[calc(100%-1rem)] max-w-6xl -translate-x-1/2 rounded-[2.4rem] border border-[var(--border)] bg-[rgba(255,250,246,0.97)] shadow-[0_18px_42px_rgba(88,66,49,0.14)] backdrop-blur sm:w-[calc(100%-2rem)]">
-        <div className="pointer-events-none absolute inset-x-8 bottom-2 hidden h-px bg-gradient-to-r from-transparent via-[rgba(171,128,70,0.32)] to-transparent md:block" />
-        <div className="pointer-events-none absolute left-6 top-2 hidden text-3xl leading-none text-[rgba(171,128,70,0.18)] md:block">
-          ❦
-        </div>
-        <div className="pointer-events-none absolute right-6 top-2 hidden text-2xl leading-none text-[rgba(171,128,70,0.18)] md:block">
-          ✧
-        </div>
-        <div className="mx-auto flex items-center justify-between gap-3 px-5 py-5 sm:px-8 sm:py-6">
-          <div className="flex items-start gap-2">
-            <Link href="/" className="leading-tight">
-              <span className="block font-serif-display text-3xl tracking-[-0.05em] text-[var(--foreground)]">
-                Mélo Nail
-              </span>
-              <span className="hidden text-xs uppercase tracking-[0.2em] text-[var(--text-soft)] sm:block">
-                Prothésiste ongulaire · Neyron
-              </span>
-            </Link>
+    <main className="overflow-hidden bg-[var(--background)] pt-[132px] text-[var(--foreground)]">
+      <SiteHeader />
 
-            <Link
-              href="/acces-bureau"
-              aria-label="Accès réservé"
-              title=""
-              className="mt-1 inline-flex h-5 w-5 items-center justify-center rounded-full text-[13px] text-[var(--gold-deep)] opacity-35 transition hover:opacity-80 focus:opacity-80 focus:outline-none focus:ring-2 focus:ring-[var(--gold)]"
-            >
-              ✦
-            </Link>
-          </div>
-
-          <nav className="hidden items-center gap-6 text-sm font-semibold text-[var(--text-soft)] md:flex">
-            <Link href="/presentation" className="transition hover:text-[var(--gold-deep)]">
-              Mélo
-            </Link>
-            <Link href="#prestations" className="transition hover:text-[var(--gold-deep)]">
-              Prestations
-            </Link>
-            <Link href="#galerie" className="transition hover:text-[var(--gold-deep)]">
-              Réalisations
-            </Link>
-            <Link href="/reservation" className="transition hover:text-[var(--gold-deep)]">
-              Réservation
-            </Link>
-            <Link href="/presentation#contact" className="transition hover:text-[var(--gold-deep)]">
-              Contact
-            </Link>
-          </nav>
-
-          <Link
-            href="/reservation"
-            className="inline-flex items-center justify-center rounded-full border border-[var(--gold)] bg-[var(--accent-strong)] px-4 py-3 text-xs font-semibold text-[#fffaf6] shadow-[0_12px_24px_rgba(159,113,84,0.18)] transition hover:bg-[var(--gold-deep)] sm:px-6 sm:py-4 sm:text-sm"
-          >
-            Prendre rendez-vous
-          </Link>
-        </div>
-      </header>
-
-      <section className="sparkle-dust relative isolate flex min-h-[calc(100svh-126px)] items-center px-4 py-8 sm:px-6 md:py-10">
+      <section className="relative isolate flex min-h-[calc(100svh-132px)] items-center px-4 py-8 sm:px-6 md:py-10">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,_rgba(255,255,255,0.96),_rgba(246,240,234,0.84)_48%,_rgba(239,224,209,0.68)_100%)]" />
         <div className="absolute right-10 top-10 h-64 w-64 rounded-full bg-[var(--gold-soft)]/20 blur-3xl" />
         <div className="absolute bottom-10 left-10 h-72 w-72 rounded-full bg-white/60 blur-3xl" />
@@ -139,10 +86,13 @@ export default function HomePage() {
             variants={fadeUp}
             className="site-panel arabesque-corner rounded-[2.7rem] p-7 sm:p-9"
           >
-            <div className="ornament-divider mb-5">❦</div>
             <div className="inline-flex items-center gap-2 rounded-full border border-[var(--border)] bg-[var(--surface-2)] px-4 py-2 text-xs uppercase tracking-[0.24em] text-[var(--gold-deep)]">
               <Sparkles className="h-4 w-4" />
               Mélo Nail · secteur Neyron
+            </div>
+
+            <div className="ornament-divider mt-7 justify-start">
+              <span aria-hidden="true" />
             </div>
 
             <p className="mt-6 text-sm uppercase tracking-[0.3em] text-[var(--text-soft)]">
@@ -159,34 +109,33 @@ export default function HomePage() {
             </p>
 
             <p className="mt-6 max-w-2xl text-lg leading-relaxed text-[var(--text-soft)]">
-              Un univers doux, précis et créatif pour des mains soignées, élégantes et faciles à
-              porter au quotidien.
+              Un univers doux, précis et créatif pour des mains soignées, élégantes et faciles à porter au quotidien.
             </p>
 
             <div className="mt-8 flex flex-wrap gap-4">
               <Link
-                href="#prestations"
-                className="inline-flex items-center justify-center rounded-full border border-[var(--gold)] bg-[var(--accent-strong)] px-7 py-4 text-sm font-semibold text-[#fffaf6] shadow-[0_14px_28px_rgba(159,113,84,0.18)] transition hover:bg-[var(--gold-deep)]"
-              >
-                Découvrir les prestations
-              </Link>
-
-              <Link
-                href="#galerie"
-                className="inline-flex items-center justify-center rounded-full border border-[var(--border-strong)] bg-[var(--surface)] px-7 py-4 text-sm font-semibold text-[var(--foreground)] transition hover:bg-[var(--surface-2)]"
-              >
-                Voir les réalisations
-              </Link>
-
-              <Link
                 href="/presentation"
-                className="inline-flex items-center justify-center rounded-full border border-[var(--border-strong)] bg-[var(--surface)] px-7 py-4 text-sm font-semibold text-[var(--foreground)] transition hover:bg-[var(--surface-2)]"
+                className="inline-flex items-center justify-center rounded-full border border-[var(--gold)] bg-[var(--accent-strong)] px-7 py-4 text-sm font-semibold text-[#fffaf6] shadow-[0_14px_28px_rgba(159,113,84,0.18)] transition hover:bg-[var(--gold-deep)]"
               >
                 Découvrir Mélo
               </Link>
+
+              <Link
+                href="#prestations"
+                className="inline-flex items-center justify-center rounded-full border border-[var(--border-strong)] bg-[var(--surface)] px-7 py-4 text-sm font-semibold text-[var(--foreground)] transition hover:bg-[var(--surface-2)]"
+              >
+                Voir les prestations
+              </Link>
+
+              <Link
+                href="/reservation"
+                className="inline-flex items-center justify-center rounded-full border border-[var(--border-strong)] bg-[var(--surface)] px-7 py-4 text-sm font-semibold text-[var(--foreground)] transition hover:bg-[var(--surface-2)]"
+              >
+                Prendre rendez-vous
+              </Link>
             </div>
 
-            <div className="mt-8 rounded-[1.9rem] border border-[var(--border)] bg-[var(--accent-soft)]/70 p-5">
+            <div className="mt-8 rounded-[1.8rem] border border-[var(--border)] bg-[var(--accent-soft)]/70 p-5">
               <div className="flex items-start gap-3">
                 <WandSparkles className="mt-1 h-5 w-5 shrink-0 text-[var(--gold-deep)]" />
                 <div>
@@ -194,20 +143,19 @@ export default function HomePage() {
                     Une pose pensée pour vous mettre en valeur.
                   </p>
                   <p className="mt-2 text-sm leading-relaxed text-[var(--text-soft)]">
-                    Mélo Nail accompagne chaque rendez-vous avec soin, écoute et précision, pour un
-                    résultat élégant qui reste fidèle à votre style.
+                    Mélo Nail accompagne chaque rendez-vous avec soin, écoute et précision, pour un résultat élégant qui reste fidèle à votre style.
                   </p>
                 </div>
               </div>
             </div>
           </motion.div>
 
-          <motion.div variants={fadeUp} className="site-panel rounded-[2.7rem] p-3">
+          <motion.div variants={fadeUp} className="rounded-[2.4rem] border border-[var(--border)] bg-[var(--surface)]/92 p-3 shadow-[0_24px_60px_rgba(88,66,49,0.12)]">
             <div className="grid gap-3">
               <button
                 type="button"
                 onClick={() => setSelectedImageIndex(0)}
-                className="overflow-hidden rounded-[2.1rem] text-left"
+                className="overflow-hidden rounded-[2rem] text-left"
               >
                 <img
                   src={heroImages[0].image}
@@ -222,7 +170,7 @@ export default function HomePage() {
                     key={item.title}
                     type="button"
                     onClick={() => setSelectedImageIndex(index + 1)}
-                    className="overflow-hidden rounded-[1.7rem] border border-[var(--border)] bg-[var(--surface-2)] text-left"
+                    className="overflow-hidden rounded-[1.6rem] border border-[var(--border)] bg-[var(--surface-2)] text-left"
                   >
                     <img
                       src={item.image}
@@ -247,11 +195,13 @@ export default function HomePage() {
       <section id="galerie" className="mx-auto max-w-6xl px-4 py-16 sm:px-6 md:py-20">
         <div className="mb-10 flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
           <div>
-            <div className="ornament-divider mb-5 justify-start">❦</div>
-            <p className="text-sm uppercase tracking-[0.24em] text-[var(--gold-deep)]">
-              Réalisations
-            </p>
-            <h2 className="font-serif-display mt-4 text-4xl tracking-[-0.04em] text-[var(--foreground)] md:text-5xl">
+            <div className="mb-4 flex items-center gap-3">
+              <span className="gold-line" />
+              <p className="text-sm uppercase tracking-[0.24em] text-[var(--gold-deep)]">
+                Réalisations
+              </p>
+            </div>
+            <h2 className="font-serif-display text-4xl tracking-[-0.04em] text-[var(--foreground)] md:text-5xl">
               Quelques réalisations Mélo Nail
             </h2>
           </div>
@@ -266,7 +216,7 @@ export default function HomePage() {
               initial={{ opacity: 0, y: 18 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0.2 }}
-              className="group overflow-hidden rounded-[2.2rem] border border-[var(--border)] bg-[var(--surface)] text-left shadow-[0_16px_36px_rgba(120,98,73,0.08)]"
+              className="group overflow-hidden rounded-[2rem] border border-[var(--border)] bg-[var(--surface)] text-left shadow-[0_16px_36px_rgba(120,98,73,0.08)]"
             >
               <div className="relative overflow-hidden">
                 <img
@@ -341,7 +291,7 @@ export default function HomePage() {
           initial={{ opacity: 0, y: 22 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.2 }}
-          className="site-panel arabesque-corner rounded-[2.7rem] p-8 md:p-11"
+          className="arabesque-corner rounded-[2.7rem] border border-[var(--gold)] bg-[var(--accent-soft)]/82 p-8 shadow-[0_16px_36px_rgba(120,98,73,0.08)] md:p-10"
         >
           <div className="mb-4 flex items-center gap-3">
             <Clock3 className="h-5 w-5 text-[var(--gold-deep)]" />
@@ -362,39 +312,32 @@ export default function HomePage() {
 
               <div className="mt-8 flex flex-wrap gap-4">
                 <Link
-                  href="/presentation#contact"
+                  href="/reservation"
                   className="inline-flex items-center justify-center rounded-full border border-[var(--gold)] bg-[var(--accent-strong)] px-7 py-4 text-sm font-semibold text-[#fffaf6] shadow-[0_14px_28px_rgba(159,113,84,0.18)] transition hover:bg-[var(--gold-deep)]"
                 >
+                  Ouvrir la réservation
+                </Link>
+
+                <Link
+                  href="/presentation#contact"
+                  className="inline-flex items-center justify-center rounded-full border border-[var(--border-strong)] bg-[var(--surface)] px-7 py-4 text-sm font-semibold text-[var(--foreground)] transition hover:bg-[var(--surface-2)]"
+                >
                   Voir les contacts
-                </Link>
-
-                <Link
-                  href="/presentation"
-                  className="inline-flex items-center justify-center rounded-full border border-[var(--border-strong)] bg-[var(--surface)] px-7 py-4 text-sm font-semibold text-[var(--foreground)] transition hover:bg-[var(--surface-2)]"
-                >
-                  Découvrir Mélo
-                </Link>
-
-                <Link
-                  href="#prestations"
-                  className="inline-flex items-center justify-center rounded-full border border-[var(--border-strong)] bg-[var(--surface)] px-7 py-4 text-sm font-semibold text-[var(--foreground)] transition hover:bg-[var(--surface-2)]"
-                >
-                  Revoir les prestations
                 </Link>
               </div>
             </div>
 
             <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-1">
-              <div className="rounded-[1.5rem] bg-[var(--surface)] px-4 py-4 text-[var(--foreground)]">
+              <div className="rounded-[1.3rem] bg-[var(--surface)] px-4 py-4 text-[var(--foreground)]">
                 Sur rendez-vous uniquement
               </div>
-              <div className="rounded-[1.5rem] bg-[var(--surface)] px-4 py-4 text-[var(--foreground)]">
+              <div className="rounded-[1.3rem] bg-[var(--surface)] px-4 py-4 text-[var(--foreground)]">
                 Lundi à vendredi · 8h–12h / 14h–19h
               </div>
-              <div className="rounded-[1.5rem] bg-[var(--surface)] px-4 py-4 text-[var(--foreground)]">
+              <div className="rounded-[1.3rem] bg-[var(--surface)] px-4 py-4 text-[var(--foreground)]">
                 Prévoir 1h30 à 3h selon la pose
               </div>
-              <div className="rounded-[1.5rem] bg-[var(--surface)] px-4 py-4 text-[var(--foreground)]">
+              <div className="rounded-[1.3rem] bg-[var(--surface)] px-4 py-4 text-[var(--foreground)]">
                 Confirmation du rendez-vous après validation
               </div>
             </div>
@@ -402,11 +345,10 @@ export default function HomePage() {
         </motion.article>
       </section>
 
-      <footer id="contacts" className="mx-auto mb-6 w-[calc(100%-1rem)] max-w-6xl rounded-[3rem] border border-[var(--border)] bg-[var(--surface)]/92 shadow-[0_24px_58px_rgba(88,66,49,0.12)] sm:w-[calc(100%-2rem)]">
-        <div className="ornament-divider px-4 pt-8">❦</div>
-        <div className="mx-auto grid gap-9 px-6 pb-12 pt-8 sm:px-9 md:grid-cols-[1.2fr_0.8fr_0.7fr]">
+      <footer id="contacts" className="mx-auto mb-8 max-w-6xl rounded-[2.8rem] border border-[var(--border)] bg-[var(--surface)]/92 shadow-[0_18px_42px_rgba(88,66,49,0.10)]">
+        <div className="grid gap-8 px-6 py-14 sm:px-8 md:grid-cols-[1.2fr_0.8fr_0.7fr] md:py-16">
           <div>
-            <h2 className="font-serif-display text-5xl tracking-[-0.05em] text-[var(--foreground)]">
+            <h2 className="font-serif-display text-4xl tracking-[-0.04em] text-[var(--foreground)]">
               Mélo Nail
             </h2>
             <p className="mt-4 max-w-xl text-base leading-relaxed text-[var(--text-soft)]">
