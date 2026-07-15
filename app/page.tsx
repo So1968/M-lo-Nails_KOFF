@@ -109,7 +109,7 @@ export default function HomePage() {
             <Link href="/reservation" className="transition hover:text-[var(--gold-deep)]">
               Réservation
             </Link>
-            <Link href="#contacts" className="transition hover:text-[var(--gold-deep)]">
+            <Link href="/presentation#contact" className="transition hover:text-[var(--gold-deep)]">
               Contact
             </Link>
           </nav>
@@ -364,7 +364,7 @@ export default function HomePage() {
 
               <div className="mt-8 flex flex-wrap gap-4">
                 <Link
-                  href="#contacts"
+                  href="/presentation#contact"
                   className="inline-flex items-center justify-center rounded-full border border-[var(--gold)] bg-[var(--accent-strong)] px-7 py-4 text-sm font-semibold text-[#fffaf6] shadow-[0_14px_28px_rgba(159,113,84,0.18)] transition hover:bg-[var(--gold-deep)]"
                 >
                   Voir les contacts
