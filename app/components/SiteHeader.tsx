@@ -26,7 +26,7 @@ export default function SiteHeader() {
           <Link href="/reservation" className="transition hover:text-[var(--gold-deep)]">
             Réservation
           </Link>
-          <Link href="/#contacts" className="transition hover:text-[var(--gold-deep)]">
+          <Link href="/presentation#contact" className="transition hover:text-[var(--gold-deep)]">
             Contact
           </Link>
         </nav>
