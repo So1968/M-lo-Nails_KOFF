@@ -10,11 +10,11 @@ export default function ReservationLayout({
   return (
     <>
       <SiteHeader />
-      <div className="flex w-full justify-center pt-[82px]">
+      <div className="flex w-full justify-center pt-[132px]">
         <div className="w-full max-w-5xl">
           {children}
 
-          <section className="mx-4 mb-12 rounded-[2rem] border border-[var(--border)] bg-[var(--surface)] p-6 shadow-[0_14px_34px_rgba(120,98,73,0.07)] sm:mx-6 sm:p-8">
+          <section className="ar加besque-corner mx-4 mb-14 rounded-[2.3rem] border border-[var(--border)] bg-[var(--surface)] p-7 shadow-[0_16px_38px_rgba(120,98,73,0.08)] sm:mx-6 sm:p-9">
             <p className="text-sm uppercase tracking-[0.24em] text-[var(--gold-deep)]">
               Avant de réserver
             </p>
