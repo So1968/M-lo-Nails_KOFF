@@ -22,6 +22,7 @@ type ServiceInfo = {
   image: string;
   imageAlt: string;
   price: string;
+  wearTime: string;
   discoverTitle: string;
   discoverText: string[];
   careTitle: string;
@@ -37,11 +38,12 @@ const servicesData: ServiceInfo[] = [
       'https://images.unsplash.com/photo-1604654894610-df63bc536371?auto=format&fit=crop&w=1200&q=80',
     imageAlt: 'Manucure nude élégante sur ongles naturels',
     price: 'À partir de 20€',
+    wearTime: 'Tenue moyenne : 2 à 3 semaines avec des précautions d’usage',
     discoverTitle: 'Découvrir la prestation',
     discoverText: [
       "Le semi-permanent est réalisé directement sur l’ongle naturel.",
       "Il apporte un rendu brillant, propre et plus durable qu’un vernis classique.",
-      "C’est une solution idéale pour celles qui recherchent un résultat soigné, élégant et discret, sans ajout de longueur."
+      "La tenue moyenne est de 2 à 3 semaines avec des précautions d’usage, selon la repousse, l’état de l’ongle et les gestes du quotidien."
     ],
     careTitle: "Préserver l’ongle",
     careText: [
@@ -59,11 +61,12 @@ const servicesData: ServiceInfo[] = [
       'https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?auto=format&fit=crop&w=1200&q=80',
     imageAlt: 'Pose gel chic et lumineuse',
     price: 'À partir de 25€',
+    wearTime: 'Tenue moyenne : 3 à 4 semaines avec des précautions d’usage',
     discoverTitle: 'Découvrir la prestation',
     discoverText: [
       "La pose gel permet d’obtenir un rendu structuré, harmonieux et très soigné.",
       "Elle convient parfaitement aux personnes qui souhaitent une belle tenue et une mise en forme élégante.",
-      "Le résultat peut rester naturel ou aller vers un style plus affirmé selon l’envie."
+      "La tenue moyenne est de 3 à 4 semaines avec des précautions d’usage. Un remplissage est ensuite conseillé pour garder une pose nette."
     ],
     careTitle: "Préserver l’ongle",
     careText: [
@@ -81,11 +84,12 @@ const servicesData: ServiceInfo[] = [
       'https://images.unsplash.com/photo-1610992015732-2449b76344bc?auto=format&fit=crop&w=1200&q=80',
     imageAlt: 'Gainage raffiné sur ongle naturel',
     price: 'À partir de 25€',
+    wearTime: 'Tenue moyenne : 3 à 4 semaines avec des précautions d’usage',
     discoverTitle: 'Découvrir la prestation',
     discoverText: [
       "Le gainage renforce l’ongle naturel sans forcément ajouter de longueur.",
       "Il aide à obtenir un rendu net, solide et élégant tout en gardant un aspect naturel.",
-      "C’est une option idéale lorsqu’on souhaite conserver sa longueur avec plus de tenue."
+      "La tenue moyenne est de 3 à 4 semaines avec des précautions d’usage et un entretien régulier."
     ],
     careTitle: "Préserver l’ongle",
     careText: [
@@ -103,11 +107,12 @@ const servicesData: ServiceInfo[] = [
       'https://images.unsplash.com/photo-1632345031435-8727f6897d53?auto=format&fit=crop&w=1200&q=80',
     imageAlt: 'Capsules américaines élégantes',
     price: 'À partir de 30€',
+    wearTime: 'Tenue moyenne : 3 à 4 semaines avec des précautions d’usage',
     discoverTitle: 'Découvrir la prestation',
     discoverText: [
       "Les capsules américaines, aussi appelées Gel X, permettent d’obtenir rapidement de la longueur et une jolie forme.",
       "Le rendu est moderne, élégant et particulièrement adapté aux poses plus dessinées ou créatives.",
-      "C’est une belle solution pour celles qui souhaitent une pose plus visible avec une ligne d’ongle très travaillée."
+      "La tenue moyenne est de 3 à 4 semaines avec des précautions d’usage, selon la longueur choisie et les gestes du quotidien."
     ],
     careTitle: "Préserver l’ongle",
     careText: [
@@ -125,11 +130,12 @@ const servicesData: ServiceInfo[] = [
       'https://images.unsplash.com/photo-1607779097040-26e80aa4576d?auto=format&fit=crop&w=1200&q=80',
     imageAlt: 'Remplissage soigné et élégant',
     price: 'À partir de 20€',
+    wearTime: 'À prévoir en moyenne toutes les 3 à 4 semaines',
     discoverTitle: 'Découvrir la prestation',
     discoverText: [
       "Le remplissage permet d’entretenir une pose existante en corrigeant la repousse.",
       "Il aide à garder un résultat propre, équilibré et harmonieux au fil du temps.",
-      "C’est une étape importante pour conserver une belle pose sans attendre qu’elle se fragilise."
+      "Il est conseillé en moyenne toutes les 3 à 4 semaines, selon la repousse et l’état de la pose."
     ],
     careTitle: "Préserver l’ongle",
     careText: [
@@ -147,6 +153,7 @@ const servicesData: ServiceInfo[] = [
       'https://images.unsplash.com/photo-1519014816548-bf5fe059798b?auto=format&fit=crop&w=1200&q=80',
     imageAlt: 'Dépose respectueuse de l’ongle',
     price: 'À partir de 10€',
+    wearTime: 'Durée de la prestation : selon la pose à retirer',
     discoverTitle: 'Découvrir la prestation',
     discoverText: [
       "La dépose consiste à retirer la matière avec soin.",
@@ -169,11 +176,12 @@ const servicesData: ServiceInfo[] = [
       'https://images.unsplash.com/photo-1519014816548-bf5fe059798b?auto=format&fit=crop&w=1200&q=80',
     imageAlt: 'French élégante et lumineuse',
     price: 'Supplément possible',
+    wearTime: 'Tenue liée à la pose choisie : semi-permanent, gel ou gainage',
     discoverTitle: 'Découvrir la prestation',
     discoverText: [
       "La french offre un rendu intemporel, propre et raffiné.",
       "Avec sa base nude et son bord clair, elle apporte une élégance sobre qui reste très appréciée.",
-      "Elle convient parfaitement à celles qui recherchent une pose chic et soignée."
+      "Sa tenue dépend de la pose choisie en base : semi-permanent, gel ou gainage."
     ],
     careTitle: "Préserver l’ongle",
     careText: [
@@ -191,11 +199,12 @@ const servicesData: ServiceInfo[] = [
       'https://images.unsplash.com/photo-1610992015732-2449b76344bc?auto=format&fit=crop&w=1200&q=80',
     imageAlt: 'Nail art chic et raffiné',
     price: 'Supplément selon création',
+    wearTime: 'Tenue liée à la pose choisie et aux précautions d’usage',
     discoverTitle: 'Découvrir la prestation',
     discoverText: [
       "Le nail art permet d’ajouter une touche créative et personnelle à la pose.",
       "Il peut rester discret et raffiné, ou devenir plus travaillé selon le style souhaité.",
-      "C’est idéal pour celles qui veulent une pose unique, avec du caractère."
+      "Sa tenue dépend de la pose choisie et des précautions d’usage, surtout si la décoration comporte du relief ou des détails."
     ],
     careTitle: "Préserver l’ongle",
     careText: [
@@ -213,11 +222,12 @@ const servicesData: ServiceInfo[] = [
       'https://images.unsplash.com/photo-1604654894610-df63bc536371?auto=format&fit=crop&w=1200&q=80',
     imageAlt: 'Décorations délicates et élégantes',
     price: 'Supplément selon création',
+    wearTime: 'Tenue liée à la pose choisie et aux précautions d’usage',
     discoverTitle: 'Découvrir la prestation',
     discoverText: [
       "Les décorations, strass et effets apportent de la lumière, du relief ou une finition plus précieuse.",
       "Ils permettent de personnaliser la pose tout en gardant un rendu chic.",
-      "Selon le style souhaité, ils peuvent être très discrets ou un peu plus visibles."
+      "Leur tenue dépend de la pose choisie et des précautions d’usage, notamment pour les éléments en relief."
     ],
     careTitle: "Préserver l’ongle",
     careText: [
@@ -235,11 +245,12 @@ const servicesData: ServiceInfo[] = [
       'https://images.unsplash.com/photo-1607779097040-26e80aa4576d?auto=format&fit=crop&w=1200&q=80',
     imageAlt: 'Réparation d’ongle précise et soignée',
     price: 'Selon besoin',
+    wearTime: 'Tenue variable selon l’ongle et la réparation',
     discoverTitle: 'Découvrir la prestation',
     discoverText: [
       "La réparation d’ongle permet de restaurer un ongle fragilisé, cassé ou abîmé.",
       "L’objectif est de retrouver un rendu propre, harmonieux et confortable.",
-      "C’est une solution utile pour prolonger l’esthétique de la pose ou rééquilibrer l’ensemble."
+      "La tenue dépend de l’état de l’ongle, de la réparation réalisée et des précautions d’usage."
     ],
     careTitle: "Préserver l’ongle",
     careText: [
@@ -273,8 +284,12 @@ export default function ServicesInteractiveBlock() {
           Choisir la prestation qui vous correspond
         </h2>
         <p className="mt-3 max-w-3xl text-base leading-relaxed text-[var(--text-soft)]">
-          Découvrez chaque prestation à travers une image, une explication claire et des conseils
-          simples pour mieux préserver l’ongle.
+          Découvrez chaque prestation à travers une image, une explication claire, une tenue moyenne
+          et des conseils simples pour mieux préserver l’ongle.
+        </p>
+        <p className="mt-3 max-w-3xl rounded-2xl border border-[var(--border)] bg-[var(--surface-2)] px-4 py-3 text-sm leading-relaxed text-[var(--text-soft)]">
+          Les tenues indiquées sont des moyennes : elles peuvent varier selon l’ongle naturel, la repousse,
+          le métier, les gestes du quotidien et les précautions d’usage.
         </p>
       </div>
 
@@ -302,10 +317,11 @@ export default function ServicesInteractiveBlock() {
                       : 'border-[var(--border)] bg-[var(--surface)] hover:bg-[#f8efe5]'
                   }`}
                 >
-                  <div className="flex items-center justify-between gap-3">
+                  <div className="flex items-start justify-between gap-3">
                     <div>
                       <p className="text-sm font-semibold text-[var(--foreground)]">{service.shortLabel}</p>
                       <p className="mt-1 text-xs text-[var(--text-soft)]">{service.price}</p>
+                      <p className="mt-1 text-xs font-medium text-[var(--gold-deep)]">{service.wearTime}</p>
                     </div>
                     <span className="text-xs font-medium uppercase tracking-[0.18em] text-[var(--gold-deep)]">
                       Voir
@@ -335,10 +351,13 @@ export default function ServicesInteractiveBlock() {
               </div>
 
               <div className="mt-5">
-                <div className="flex flex-wrap items-center justify-between gap-3">
+                <div className="flex flex-wrap items-start justify-between gap-3">
                   <div>
                     <h3 className="text-2xl font-semibold text-[var(--foreground)]">{currentService.title}</h3>
                     <p className="mt-1 text-sm font-medium text-[var(--gold-deep)]">{currentService.price}</p>
+                    <p className="mt-2 inline-flex rounded-full border border-[var(--border)] bg-[var(--surface-2)] px-4 py-2 text-xs font-semibold text-[var(--gold-deep)]">
+                      {currentService.wearTime}
+                    </p>
                   </div>
                 </div>
 
