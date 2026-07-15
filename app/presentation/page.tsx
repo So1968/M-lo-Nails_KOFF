@@ -53,8 +53,10 @@ export default function PresentationPage() {
       <SiteHeader />
       <main className="site-page px-4 pb-16 pt-[142px] sm:px-6">
         <section className="site-container-narrow">
-          <div className="site-panel arabesque-corner sparkle-dust relative overflow-hidden rounded-[2.6rem] p-7 sm:p-10">
-            <div className="ornament-divider mb-5">❦</div>
+          <div className="site-panel arabesque-corner relative overflow-hidden rounded-[2.6rem] p-7 sm:p-10">
+            <div className="ornament-divider mb-5">
+              <span aria-hidden="true" />
+            </div>
 
             <p className="text-sm uppercase tracking-[0.24em] text-[var(--gold-deep)]">
               Présentation
@@ -138,7 +140,6 @@ export default function PresentationPage() {
               </p>
               <div className="placeholder-media mt-5 flex aspect-[4/5] items-center justify-center rounded-[1.9rem] border border-dashed border-[var(--border-strong)] p-6 text-center">
                 <div>
-                  <p className="font-serif-display text-5xl text-[var(--gold-deep)]">❦</p>
                   <p className="mt-3 text-sm font-semibold text-[var(--foreground)]">
                     Photo à ajouter
                   </p>
