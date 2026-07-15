@@ -24,31 +24,31 @@ export const meloServices: MeloService[] = [
     id: "semi-permanent",
     name: "Semi-permanent",
     durationMinutes: 90,
-    description: "Pose simple sur ongle naturel. Tenue moyenne : 2 à 3 semaines avec des précautions d’usage, selon la repousse et le quotidien.",
+    description: "Pose simple sur ongle naturel, pour un rendu propre, brillant et soigné.",
   },
   {
     id: "gainage",
     name: "Gainage / renfort",
     durationMinutes: 120,
-    description: "Renfort de l’ongle naturel. Tenue moyenne : 3 à 4 semaines avec des précautions d’usage et un entretien régulier.",
+    description: "Renfort de l’ongle naturel, sans forcément ajouter de longueur.",
   },
   {
     id: "remplissage",
     name: "Remplissage",
     durationMinutes: 120,
-    description: "Entretien d’une pose existante. À prévoir en général toutes les 3 à 4 semaines, selon la repousse.",
+    description: "Entretien d’une pose existante pour corriger la repousse.",
   },
   {
     id: "pose-complete",
     name: "Pose complète gel",
     durationMinutes: 180,
-    description: "Pose complète avec construction. Tenue moyenne : 3 à 4 semaines avec des précautions d’usage, puis remplissage conseillé.",
+    description: "Pose complète avec construction. Temps large prévu au démarrage.",
   },
   {
     id: "depose",
     name: "Dépose",
     durationMinutes: 60,
-    description: "Retrait propre d’une pose. À faire quand la pose doit être retirée ou avant une nouvelle prestation.",
+    description: "Retrait propre d’une pose, avec attention portée à l’ongle naturel.",
   },
 ];
 
