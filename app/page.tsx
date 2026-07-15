@@ -3,13 +3,7 @@
 import { useState } from 'react';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
-import {
-  Clock3,
-  Instagram,
-  MapPin,
-  Sparkles,
-  WandSparkles
-} from 'lucide-react';
+import { Clock3, Instagram, MapPin, Sparkles, WandSparkles } from 'lucide-react';
 import ServicesInteractiveBlock from './components/ServicesInteractiveBlock';
 
 const heroImages = [
@@ -73,15 +67,22 @@ export default function HomePage() {
   }
 
   return (
-    <main className="overflow-hidden bg-[var(--background)] pt-[92px] text-[var(--foreground)]">
-      <header className="fixed left-1/2 top-3 z-[100] w-[calc(100%-1rem)] max-w-6xl -translate-x-1/2 rounded-[2rem] border border-[var(--border)] bg-[rgba(255,250,246,0.96)] shadow-[0_16px_36px_rgba(88,66,49,0.12)] backdrop-blur sm:w-[calc(100%-2rem)]">
-        <div className="mx-auto flex items-center justify-between gap-3 px-4 py-3 sm:px-6">
+    <main className="overflow-hidden bg-[var(--background)] pt-[126px] text-[var(--foreground)]">
+      <header className="fixed left-1/2 top-4 z-[100] w-[calc(100%-1rem)] max-w-6xl -translate-x-1/2 rounded-[2.4rem] border border-[var(--border)] bg-[rgba(255,250,246,0.97)] shadow-[0_18px_42px_rgba(88,66,49,0.14)] backdrop-blur sm:w-[calc(100%-2rem)]">
+        <div className="pointer-events-none absolute inset-x-8 bottom-2 hidden h-px bg-gradient-to-r from-transparent via-[rgba(171,128,70,0.32)] to-transparent md:block" />
+        <div className="pointer-events-none absolute left-6 top-2 hidden text-3xl leading-none text-[rgba(171,128,70,0.18)] md:block">
+          ❦
+        </div>
+        <div className="pointer-events-none absolute right-6 top-2 hidden text-2xl leading-none text-[rgba(171,128,70,0.18)] md:block">
+          ✧
+        </div>
+        <div className="mx-auto flex items-center justify-between gap-3 px-5 py-5 sm:px-8 sm:py-6">
           <div className="flex items-start gap-2">
             <Link href="/" className="leading-tight">
-              <span className="block font-serif-display text-2xl tracking-[-0.04em] text-[var(--foreground)]">
+              <span className="block font-serif-display text-3xl tracking-[-0.05em] text-[var(--foreground)]">
                 Mélo Nail
               </span>
-              <span className="hidden text-xs uppercase tracking-[0.18em] text-[var(--text-soft)] sm:block">
+              <span className="hidden text-xs uppercase tracking-[0.2em] text-[var(--text-soft)] sm:block">
                 Prothésiste ongulaire · Neyron
               </span>
             </Link>
@@ -96,7 +97,7 @@ export default function HomePage() {
             </Link>
           </div>
 
-          <nav className="hidden items-center gap-5 text-sm font-semibold text-[var(--text-soft)] md:flex">
+          <nav className="hidden items-center gap-6 text-sm font-semibold text-[var(--text-soft)] md:flex">
             <Link href="/presentation" className="transition hover:text-[var(--gold-deep)]">
               Mélo
             </Link>
@@ -116,26 +117,17 @@ export default function HomePage() {
 
           <Link
             href="/reservation"
-            className="inline-flex items-center justify-center rounded-full border border-[var(--gold)] bg-[var(--accent-strong)] px-5 py-3 text-sm font-semibold text-[#fffaf6] shadow-[0_12px_24px_rgba(159,113,84,0.18)] transition hover:bg-[var(--gold-deep)]"
+            className="inline-flex items-center justify-center rounded-full border border-[var(--gold)] bg-[var(--accent-strong)] px-4 py-3 text-xs font-semibold text-[#fffaf6] shadow-[0_12px_24px_rgba(159,113,84,0.18)] transition hover:bg-[var(--gold-deep)] sm:px-6 sm:py-4 sm:text-sm"
           >
             Prendre rendez-vous
           </Link>
         </div>
       </header>
 
-      <section className="relative isolate flex min-h-[100svh] items-center px-4 py-8 sm:px-6 md:py-10">
+      <section className="sparkle-dust relative isolate flex min-h-[calc(100svh-126px)] items-center px-4 py-8 sm:px-6 md:py-10">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,_rgba(255,255,255,0.96),_rgba(246,240,234,0.84)_48%,_rgba(239,224,209,0.68)_100%)]" />
         <div className="absolute right-10 top-10 h-64 w-64 rounded-full bg-[var(--gold-soft)]/20 blur-3xl" />
         <div className="absolute bottom-10 left-10 h-72 w-72 rounded-full bg-white/60 blur-3xl" />
-        <div aria-hidden="true" className="pointer-events-none absolute left-8 top-20 hidden text-[8rem] font-serif-display leading-none text-[var(--gold)]/12 md:block">
-          ♡
-        </div>
-        <div aria-hidden="true" className="pointer-events-none absolute right-8 top-28 hidden text-[7rem] font-serif-display leading-none text-[var(--gold-deep)]/12 md:block">
-          ✦
-        </div>
-        <div aria-hidden="true" className="pointer-events-none absolute bottom-20 right-24 hidden rotate-[-8deg] text-6xl font-serif-display tracking-[0.4em] text-[var(--gold)]/20 lg:block">
-          ⌁ ⌁ ⌁
-        </div>
 
         <motion.div
           initial="hidden"
@@ -145,21 +137,13 @@ export default function HomePage() {
         >
           <motion.div
             variants={fadeUp}
-            className="relative overflow-hidden rounded-[2.4rem] border border-[var(--border)] bg-[var(--surface)]/95 p-6 shadow-[0_24px_60px_rgba(88,66,49,0.10)] sm:p-8"
+            className="site-panel arabesque-corner rounded-[2.7rem] p-7 sm:p-9"
           >
-            <div aria-hidden="true" className="absolute right-6 top-5 text-5xl text-[var(--gold)]/20">
-              ✦
-            </div>
-            <div aria-hidden="true" className="absolute -bottom-7 -right-5 rotate-[-12deg] text-7xl font-serif-display text-[var(--gold-deep)]/10">
-              ⌁
-            </div>
-
+            <div className="ornament-divider mb-5">❦</div>
             <div className="inline-flex items-center gap-2 rounded-full border border-[var(--border)] bg-[var(--surface-2)] px-4 py-2 text-xs uppercase tracking-[0.24em] text-[var(--gold-deep)]">
               <Sparkles className="h-4 w-4" />
               Mélo Nail · secteur Neyron
             </div>
-
-            <div className="mt-6 h-px w-20 bg-gradient-to-r from-transparent via-[var(--gold)] to-transparent" />
 
             <p className="mt-6 text-sm uppercase tracking-[0.3em] text-[var(--text-soft)]">
               Onglerie créative · poses soignées · réservation en ligne
@@ -202,7 +186,7 @@ export default function HomePage() {
               </Link>
             </div>
 
-            <div className="mt-8 rounded-[1.8rem] border border-[var(--border)] bg-[var(--accent-soft)]/70 p-5">
+            <div className="mt-8 rounded-[1.9rem] border border-[var(--border)] bg-[var(--accent-soft)]/70 p-5">
               <div className="flex items-start gap-3">
                 <WandSparkles className="mt-1 h-5 w-5 shrink-0 text-[var(--gold-deep)]" />
                 <div>
@@ -218,15 +202,12 @@ export default function HomePage() {
             </div>
           </motion.div>
 
-          <motion.div variants={fadeUp} className="relative rounded-[2.4rem] border border-[var(--border)] bg-[var(--surface)]/92 p-3 shadow-[0_24px_60px_rgba(88,66,49,0.12)]">
-            <div aria-hidden="true" className="absolute -left-4 -top-4 z-10 rounded-full border border-[var(--gold)]/30 bg-[var(--surface)] px-4 py-2 text-sm text-[var(--gold-deep)] shadow-sm">
-              ✦ détails fins
-            </div>
+          <motion.div variants={fadeUp} className="site-panel rounded-[2.7rem] p-3">
             <div className="grid gap-3">
               <button
                 type="button"
                 onClick={() => setSelectedImageIndex(0)}
-                className="overflow-hidden rounded-[2rem] text-left"
+                className="overflow-hidden rounded-[2.1rem] text-left"
               >
                 <img
                   src={heroImages[0].image}
@@ -241,7 +222,7 @@ export default function HomePage() {
                     key={item.title}
                     type="button"
                     onClick={() => setSelectedImageIndex(index + 1)}
-                    className="overflow-hidden rounded-[1.6rem] border border-[var(--border)] bg-[var(--surface-2)] text-left"
+                    className="overflow-hidden rounded-[1.7rem] border border-[var(--border)] bg-[var(--surface-2)] text-left"
                   >
                     <img
                       src={item.image}
@@ -259,23 +240,18 @@ export default function HomePage() {
         </motion.div>
       </section>
 
-      <section id="prestations" className="relative">
-        <div aria-hidden="true" className="pointer-events-none absolute left-1/2 top-2 hidden -translate-x-1/2 text-5xl tracking-[0.35em] text-[var(--gold)]/20 md:block">
-          ✦ ✧ ✦
-        </div>
+      <section id="prestations">
         <ServicesInteractiveBlock />
       </section>
 
       <section id="galerie" className="mx-auto max-w-6xl px-4 py-16 sm:px-6 md:py-20">
         <div className="mb-10 flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
           <div>
-            <div className="mb-4 flex items-center gap-3">
-              <span className="gold-line" />
-              <p className="text-sm uppercase tracking-[0.24em] text-[var(--gold-deep)]">
-                Réalisations
-              </p>
-            </div>
-            <h2 className="font-serif-display text-4xl tracking-[-0.04em] text-[var(--foreground)] md:text-5xl">
+            <div className="ornament-divider mb-5 justify-start">❦</div>
+            <p className="text-sm uppercase tracking-[0.24em] text-[var(--gold-deep)]">
+              Réalisations
+            </p>
+            <h2 className="font-serif-display mt-4 text-4xl tracking-[-0.04em] text-[var(--foreground)] md:text-5xl">
               Quelques réalisations Mélo Nail
             </h2>
           </div>
@@ -290,7 +266,7 @@ export default function HomePage() {
               initial={{ opacity: 0, y: 18 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0.2 }}
-              className="group overflow-hidden rounded-[2rem] border border-[var(--border)] bg-[var(--surface)] text-left shadow-[0_16px_36px_rgba(120,98,73,0.08)]"
+              className="group overflow-hidden rounded-[2.2rem] border border-[var(--border)] bg-[var(--surface)] text-left shadow-[0_16px_36px_rgba(120,98,73,0.08)]"
             >
               <div className="relative overflow-hidden">
                 <img
@@ -310,7 +286,7 @@ export default function HomePage() {
 
       {selectedImage && (
         <div
-          className="fixed inset-0 z-[80] flex items-center justify-center bg-black/82 p-4"
+          className="fixed inset-0 z-[120] flex items-center justify-center bg-black/82 p-4"
           role="dialog"
           aria-modal="true"
         >
@@ -365,11 +341,8 @@ export default function HomePage() {
           initial={{ opacity: 0, y: 22 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.2 }}
-          className="relative overflow-hidden rounded-[2.4rem] border border-[var(--gold)] bg-[var(--accent-soft)]/82 p-8 shadow-[0_16px_36px_rgba(120,98,73,0.08)] md:p-10"
+          className="site-panel arabesque-corner rounded-[2.7rem] p-8 md:p-11"
         >
-          <div aria-hidden="true" className="absolute -right-4 top-4 text-7xl text-[var(--gold)]/15">
-            ✧
-          </div>
           <div className="mb-4 flex items-center gap-3">
             <Clock3 className="h-5 w-5 text-[var(--gold-deep)]" />
             <p className="text-sm uppercase tracking-[0.22em] text-[var(--gold-deep)]">
@@ -412,16 +385,16 @@ export default function HomePage() {
             </div>
 
             <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-1">
-              <div className="rounded-[1.3rem] bg-[var(--surface)] px-4 py-4 text-[var(--foreground)]">
+              <div className="rounded-[1.5rem] bg-[var(--surface)] px-4 py-4 text-[var(--foreground)]">
                 Sur rendez-vous uniquement
               </div>
-              <div className="rounded-[1.3rem] bg-[var(--surface)] px-4 py-4 text-[var(--foreground)]">
+              <div className="rounded-[1.5rem] bg-[var(--surface)] px-4 py-4 text-[var(--foreground)]">
                 Lundi à vendredi · 8h–12h / 14h–19h
               </div>
-              <div className="rounded-[1.3rem] bg-[var(--surface)] px-4 py-4 text-[var(--foreground)]">
+              <div className="rounded-[1.5rem] bg-[var(--surface)] px-4 py-4 text-[var(--foreground)]">
                 Prévoir 1h30 à 3h selon la pose
               </div>
-              <div className="rounded-[1.3rem] bg-[var(--surface)] px-4 py-4 text-[var(--foreground)]">
+              <div className="rounded-[1.5rem] bg-[var(--surface)] px-4 py-4 text-[var(--foreground)]">
                 Confirmation du rendez-vous après validation
               </div>
             </div>
@@ -429,15 +402,15 @@ export default function HomePage() {
         </motion.article>
       </section>
 
-      <footer id="contacts" className="mx-3 mb-3 rounded-t-[3rem] border border-[var(--border)] bg-[var(--surface)]/88 shadow-[0_-16px_36px_rgba(88,66,49,0.08)] sm:mx-6">
-        <div className="mx-auto grid max-w-6xl gap-8 px-4 py-12 sm:px-6 md:grid-cols-[1.2fr_0.8fr_0.7fr]">
+      <footer id="contacts" className="mx-auto mb-6 w-[calc(100%-1rem)] max-w-6xl rounded-[3rem] border border-[var(--border)] bg-[var(--surface)]/92 shadow-[0_24px_58px_rgba(88,66,49,0.12)] sm:w-[calc(100%-2rem)]">
+        <div className="ornament-divider px-4 pt-8">❦</div>
+        <div className="mx-auto grid gap-9 px-6 pb-12 pt-8 sm:px-9 md:grid-cols-[1.2fr_0.8fr_0.7fr]">
           <div>
-            <h2 className="font-serif-display text-4xl tracking-[-0.04em] text-[var(--foreground)]">
+            <h2 className="font-serif-display text-5xl tracking-[-0.05em] text-[var(--foreground)]">
               Mélo Nail
             </h2>
             <p className="mt-4 max-w-xl text-base leading-relaxed text-[var(--text-soft)]">
-              Onglerie créative à Neyron. Un univers chic, doux et soigné, centré sur l’élégance des
-              poses et une réservation simple.
+              Onglerie créative à Neyron. Un univers chic, doux et soigné, centré sur l’élégance des poses et une réservation simple.
             </p>
             <Link href="/presentation" className="mt-5 inline-flex rounded-full border border-[var(--border-strong)] bg-[var(--surface-2)] px-5 py-3 text-sm font-semibold text-[var(--foreground)] transition hover:bg-[var(--accent-soft)]">
               Lire la présentation de Mélo
