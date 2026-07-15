@@ -73,9 +73,9 @@ export default function HomePage() {
   }
 
   return (
-    <main className="overflow-hidden bg-[var(--background)] pt-[82px] text-[var(--foreground)]">
-      <header className="fixed inset-x-0 top-0 z-[100] border-b border-[var(--border)] bg-[rgba(255,250,246,0.96)] shadow-[0_12px_30px_rgba(88,66,49,0.08)] backdrop-blur">
-        <div className="mx-auto flex max-w-6xl items-center justify-between gap-3 px-4 py-3 sm:px-6">
+    <main className="overflow-hidden bg-[var(--background)] pt-[92px] text-[var(--foreground)]">
+      <header className="fixed left-1/2 top-3 z-[100] w-[calc(100%-1rem)] max-w-6xl -translate-x-1/2 rounded-[2rem] border border-[var(--border)] bg-[rgba(255,250,246,0.96)] shadow-[0_16px_36px_rgba(88,66,49,0.12)] backdrop-blur sm:w-[calc(100%-2rem)]">
+        <div className="mx-auto flex items-center justify-between gap-3 px-4 py-3 sm:px-6">
           <div className="flex items-start gap-2">
             <Link href="/" className="leading-tight">
               <span className="block font-serif-display text-2xl tracking-[-0.04em] text-[var(--foreground)]">
@@ -97,14 +97,14 @@ export default function HomePage() {
           </div>
 
           <nav className="hidden items-center gap-5 text-sm font-semibold text-[var(--text-soft)] md:flex">
+            <Link href="/presentation" className="transition hover:text-[var(--gold-deep)]">
+              Mélo
+            </Link>
             <Link href="#prestations" className="transition hover:text-[var(--gold-deep)]">
               Prestations
             </Link>
             <Link href="#galerie" className="transition hover:text-[var(--gold-deep)]">
               Réalisations
-            </Link>
-            <Link href="/presentation" className="transition hover:text-[var(--gold-deep)]">
-              Mélo
             </Link>
             <Link href="/reservation" className="transition hover:text-[var(--gold-deep)]">
               Réservation
@@ -122,10 +122,20 @@ export default function HomePage() {
           </Link>
         </div>
       </header>
+
       <section className="relative isolate flex min-h-[100svh] items-center px-4 py-8 sm:px-6 md:py-10">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,_rgba(255,255,255,0.96),_rgba(246,240,234,0.84)_48%,_rgba(239,224,209,0.68)_100%)]" />
         <div className="absolute right-10 top-10 h-64 w-64 rounded-full bg-[var(--gold-soft)]/20 blur-3xl" />
         <div className="absolute bottom-10 left-10 h-72 w-72 rounded-full bg-white/60 blur-3xl" />
+        <div aria-hidden="true" className="pointer-events-none absolute left-8 top-20 hidden text-[8rem] font-serif-display leading-none text-[var(--gold)]/12 md:block">
+          ♡
+        </div>
+        <div aria-hidden="true" className="pointer-events-none absolute right-8 top-28 hidden text-[7rem] font-serif-display leading-none text-[var(--gold-deep)]/12 md:block">
+          ✦
+        </div>
+        <div aria-hidden="true" className="pointer-events-none absolute bottom-20 right-24 hidden rotate-[-8deg] text-6xl font-serif-display tracking-[0.4em] text-[var(--gold)]/20 lg:block">
+          ⌁ ⌁ ⌁
+        </div>
 
         <motion.div
           initial="hidden"
@@ -135,8 +145,15 @@ export default function HomePage() {
         >
           <motion.div
             variants={fadeUp}
-            className="rounded-[2.4rem] border border-[var(--border)] bg-[var(--surface)]/95 p-6 shadow-[0_24px_60px_rgba(88,66,49,0.10)] sm:p-8"
+            className="relative overflow-hidden rounded-[2.4rem] border border-[var(--border)] bg-[var(--surface)]/95 p-6 shadow-[0_24px_60px_rgba(88,66,49,0.10)] sm:p-8"
           >
+            <div aria-hidden="true" className="absolute right-6 top-5 text-5xl text-[var(--gold)]/20">
+              ✦
+            </div>
+            <div aria-hidden="true" className="absolute -bottom-7 -right-5 rotate-[-12deg] text-7xl font-serif-display text-[var(--gold-deep)]/10">
+              ⌁
+            </div>
+
             <div className="inline-flex items-center gap-2 rounded-full border border-[var(--border)] bg-[var(--surface-2)] px-4 py-2 text-xs uppercase tracking-[0.24em] text-[var(--gold-deep)]">
               <Sparkles className="h-4 w-4" />
               Mélo Nail · secteur Neyron
@@ -201,7 +218,10 @@ export default function HomePage() {
             </div>
           </motion.div>
 
-          <motion.div variants={fadeUp} className="rounded-[2.4rem] border border-[var(--border)] bg-[var(--surface)]/92 p-3 shadow-[0_24px_60px_rgba(88,66,49,0.12)]">
+          <motion.div variants={fadeUp} className="relative rounded-[2.4rem] border border-[var(--border)] bg-[var(--surface)]/92 p-3 shadow-[0_24px_60px_rgba(88,66,49,0.12)]">
+            <div aria-hidden="true" className="absolute -left-4 -top-4 z-10 rounded-full border border-[var(--gold)]/30 bg-[var(--surface)] px-4 py-2 text-sm text-[var(--gold-deep)] shadow-sm">
+              ✦ détails fins
+            </div>
             <div className="grid gap-3">
               <button
                 type="button"
@@ -239,7 +259,10 @@ export default function HomePage() {
         </motion.div>
       </section>
 
-      <section id="prestations">
+      <section id="prestations" className="relative">
+        <div aria-hidden="true" className="pointer-events-none absolute left-1/2 top-2 hidden -translate-x-1/2 text-5xl tracking-[0.35em] text-[var(--gold)]/20 md:block">
+          ✦ ✧ ✦
+        </div>
         <ServicesInteractiveBlock />
       </section>
 
@@ -284,7 +307,6 @@ export default function HomePage() {
           ))}
         </div>
       </section>
-
 
       {selectedImage && (
         <div
@@ -343,8 +365,11 @@ export default function HomePage() {
           initial={{ opacity: 0, y: 22 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.2 }}
-          className="rounded-[2.4rem] border border-[var(--gold)] bg-[var(--accent-soft)]/82 p-8 shadow-[0_16px_36px_rgba(120,98,73,0.08)] md:p-10"
+          className="relative overflow-hidden rounded-[2.4rem] border border-[var(--gold)] bg-[var(--accent-soft)]/82 p-8 shadow-[0_16px_36px_rgba(120,98,73,0.08)] md:p-10"
         >
+          <div aria-hidden="true" className="absolute -right-4 top-4 text-7xl text-[var(--gold)]/15">
+            ✧
+          </div>
           <div className="mb-4 flex items-center gap-3">
             <Clock3 className="h-5 w-5 text-[var(--gold-deep)]" />
             <p className="text-sm uppercase tracking-[0.22em] text-[var(--gold-deep)]">
@@ -404,7 +429,7 @@ export default function HomePage() {
         </motion.article>
       </section>
 
-      <footer id="contacts" className="border-t border-[var(--border)] bg-[var(--surface)]/88">
+      <footer id="contacts" className="mx-3 mb-3 rounded-t-[3rem] border border-[var(--border)] bg-[var(--surface)]/88 shadow-[0_-16px_36px_rgba(88,66,49,0.08)] sm:mx-6">
         <div className="mx-auto grid max-w-6xl gap-8 px-4 py-12 sm:px-6 md:grid-cols-[1.2fr_0.8fr_0.7fr]">
           <div>
             <h2 className="font-serif-display text-4xl tracking-[-0.04em] text-[var(--foreground)]">
