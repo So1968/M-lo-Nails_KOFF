@@ -14,7 +14,7 @@ export default function ReservationLayout({
         <div className="w-full max-w-5xl">
           {children}
 
-          <section className="ar加besque-corner mx-4 mb-14 rounded-[2.3rem] border border-[var(--border)] bg-[var(--surface)] p-7 shadow-[0_16px_38px_rgba(120,98,73,0.08)] sm:mx-6 sm:p-9">
+          <section className="arabesque-corner mx-4 mb-14 rounded-[2.3rem] border border-[var(--border)] bg-[var(--surface)] p-7 shadow-[0_16px_38px_rgba(120,98,73,0.08)] sm:mx-6 sm:p-9">
             <p className="text-sm uppercase tracking-[0.24em] text-[var(--gold-deep)]">
               Avant de réserver
             </p>
