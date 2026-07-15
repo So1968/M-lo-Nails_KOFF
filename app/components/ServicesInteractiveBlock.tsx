@@ -284,12 +284,7 @@ export default function ServicesInteractiveBlock() {
           Choisir la prestation qui vous correspond
         </h2>
         <p className="mt-3 max-w-3xl text-base leading-relaxed text-[var(--text-soft)]">
-          Découvrez chaque prestation à travers une image, une explication claire, une tenue moyenne
-          et des conseils simples pour mieux préserver l’ongle.
-        </p>
-        <p className="mt-3 max-w-3xl rounded-2xl border border-[var(--border)] bg-[var(--surface-2)] px-4 py-3 text-sm leading-relaxed text-[var(--text-soft)]">
-          Les tenues indiquées sont des moyennes : elles peuvent varier selon l’ongle naturel, la repousse,
-          le métier, les gestes du quotidien et les précautions d’usage.
+          Découvrez chaque prestation à travers une image, une explication claire et des conseils simples pour mieux préserver l’ongle.
         </p>
       </div>
 
@@ -317,11 +312,10 @@ export default function ServicesInteractiveBlock() {
                       : 'border-[var(--border)] bg-[var(--surface)] hover:bg-[#f8efe5]'
                   }`}
                 >
-                  <div className="flex items-start justify-between gap-3">
+                  <div className="flex items-center justify-between gap-3">
                     <div>
                       <p className="text-sm font-semibold text-[var(--foreground)]">{service.shortLabel}</p>
                       <p className="mt-1 text-xs text-[var(--text-soft)]">{service.price}</p>
-                      <p className="mt-1 text-xs font-medium text-[var(--gold-deep)]">{service.wearTime}</p>
                     </div>
                     <span className="text-xs font-medium uppercase tracking-[0.18em] text-[var(--gold-deep)]">
                       Voir
@@ -333,7 +327,7 @@ export default function ServicesInteractiveBlock() {
           </div>
         </div>
 
-        <div className="rounded-[2rem] border border-[var(--border)] bg-[var(--surface)]/95 p-5 shadow-[0_18px_50px_rgba(120,98,73,0.07)]">
+        <div className="arabesque-corner rounded-[2rem] border border-[var(--border)] bg-[var(--surface)]/95 p-5 shadow-[0_18px_50px_rgba(120,98,73,0.07)]">
           <AnimatePresence mode="wait">
             <motion.div
               key={currentService.id}
