@@ -7,7 +7,6 @@ import {
   Clock3,
   Instagram,
   MapPin,
-  Phone,
   Sparkles,
   WandSparkles
 } from 'lucide-react';
@@ -104,6 +103,9 @@ export default function HomePage() {
             <Link href="#galerie" className="transition hover:text-[var(--gold-deep)]">
               Réalisations
             </Link>
+            <Link href="/presentation" className="transition hover:text-[var(--gold-deep)]">
+              Mélo
+            </Link>
             <Link href="/reservation" className="transition hover:text-[var(--gold-deep)]">
               Réservation
             </Link>
@@ -176,10 +178,10 @@ export default function HomePage() {
               </Link>
 
               <Link
-                href="/reservation"
+                href="/presentation"
                 className="inline-flex items-center justify-center rounded-full border border-[var(--border-strong)] bg-[var(--surface)] px-7 py-4 text-sm font-semibold text-[var(--foreground)] transition hover:bg-[var(--surface-2)]"
               >
-                Prendre rendez-vous
+                Découvrir Mélo
               </Link>
             </div>
 
@@ -369,6 +371,13 @@ export default function HomePage() {
                 </Link>
 
                 <Link
+                  href="/presentation"
+                  className="inline-flex items-center justify-center rounded-full border border-[var(--border-strong)] bg-[var(--surface)] px-7 py-4 text-sm font-semibold text-[var(--foreground)] transition hover:bg-[var(--surface-2)]"
+                >
+                  Découvrir Mélo
+                </Link>
+
+                <Link
                   href="#prestations"
                   className="inline-flex items-center justify-center rounded-full border border-[var(--border-strong)] bg-[var(--surface)] px-7 py-4 text-sm font-semibold text-[var(--foreground)] transition hover:bg-[var(--surface-2)]"
                 >
@@ -388,7 +397,7 @@ export default function HomePage() {
                 Prévoir 1h30 à 3h selon la pose
               </div>
               <div className="rounded-[1.3rem] bg-[var(--surface)] px-4 py-4 text-[var(--foreground)]">
-                Pré-paiement sécurisé pour confirmer le créneau
+                Confirmation du rendez-vous après validation
               </div>
             </div>
           </div>
@@ -405,6 +414,9 @@ export default function HomePage() {
               Onglerie créative à Neyron. Un univers chic, doux et soigné, centré sur l’élégance des
               poses et une réservation simple.
             </p>
+            <Link href="/presentation" className="mt-5 inline-flex rounded-full border border-[var(--border-strong)] bg-[var(--surface-2)] px-5 py-3 text-sm font-semibold text-[var(--foreground)] transition hover:bg-[var(--accent-soft)]">
+              Lire la présentation de Mélo
+            </Link>
           </div>
 
           <div className="space-y-4 text-base text-[var(--foreground)]">
@@ -415,12 +427,12 @@ export default function HomePage() {
 
             <div className="flex items-center gap-3">
               <Instagram className="h-5 w-5 text-[var(--gold-deep)]" />
-              <span>Instagram</span>
+              <span>Instagram pro à créer : @melo.nails</span>
             </div>
 
             <div className="flex items-center gap-3">
-              <Phone className="h-5 w-5 text-[var(--gold-deep)]" />
-              <span>Téléphone en complément si besoin</span>
+              <Sparkles className="h-5 w-5 text-[var(--gold-deep)]" />
+              <span>Pas de téléphone public pour le moment</span>
             </div>
           </div>
 
@@ -428,6 +440,9 @@ export default function HomePage() {
             <p className="text-xs uppercase tracking-[0.24em] text-[var(--gold-deep)]">
               Informations
             </p>
+            <Link href="/presentation" className="block transition hover:text-[var(--gold-deep)]">
+              Présentation de Mélo
+            </Link>
             <Link href="/mentions-legales" className="block transition hover:text-[var(--gold-deep)]">
               Mentions légales
             </Link>
