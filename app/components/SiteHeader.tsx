@@ -20,6 +20,9 @@ export default function SiteHeader() {
           <Link href="/#galerie" className="transition hover:text-[var(--gold-deep)]">
             Réalisations
           </Link>
+          <Link href="/presentation" className="transition hover:text-[var(--gold-deep)]">
+            Mélo
+          </Link>
           <Link href="/reservation" className="transition hover:text-[var(--gold-deep)]">
             Réservation
           </Link>
