@@ -24,31 +24,31 @@ export const meloServices: MeloService[] = [
     id: "semi-permanent",
     name: "Semi-permanent",
     durationMinutes: 90,
-    description: "Pose simple, mains propres et soignées.",
+    description: "Pose simple sur ongle naturel. Tenue moyenne : 2 à 3 semaines selon la repousse et le quotidien.",
   },
   {
     id: "gainage",
     name: "Gainage / renfort",
     durationMinutes: 120,
-    description: "Renfort de l’ongle naturel, tenue et élégance.",
+    description: "Renfort de l’ongle naturel. Tenue moyenne : 3 à 4 semaines avec entretien régulier.",
   },
   {
     id: "remplissage",
     name: "Remplissage",
     durationMinutes: 120,
-    description: "Entretien d’une pose existante.",
+    description: "Entretien d’une pose existante. À prévoir en général toutes les 3 à 4 semaines.",
   },
   {
     id: "pose-complete",
     name: "Pose complète gel",
     durationMinutes: 180,
-    description: "Pose complète avec construction. Temps large prévu au démarrage.",
+    description: "Pose complète avec construction. Tenue moyenne : 3 à 4 semaines, puis remplissage conseillé.",
   },
   {
     id: "depose",
     name: "Dépose",
     durationMinutes: 60,
-    description: "Retrait propre d’une pose.",
+    description: "Retrait propre d’une pose. À faire quand la pose doit être retirée ou avant une nouvelle prestation.",
   },
 ];
 
@@ -84,6 +84,7 @@ export function timeToMinutes(time: string) {
 export function minutesToTime(totalMinutes: number) {
   const hours = Math.floor(totalMinutes / 60);
   const minutes = totalMinutes % 60;
+
   return `${String(hours).padStart(2, "0")}:${String(minutes).padStart(2, "0")}`;
 }
 
